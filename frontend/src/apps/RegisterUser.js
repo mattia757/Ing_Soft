@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import {
   Button,
   Checkbox,
@@ -16,18 +17,21 @@ import {
 import styled from '@mui/material/styles/styled';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  maxWidth: '600px',
-  margin: 'auto',
-  marginTop: theme.spacing(3),
+  padding: theme.spacing(6),
+  //maxWidth: '600px',
+  margin: '2rem',
+  //marginTop: theme.spacing(3),
+  backgroundColor: '#f5f5f5',
+  borderRadius: '8px',
+  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
 }));
 
 const StyledForm = styled('form')(({ theme }) => ({
   '& .MuiTextField-root': {
-    marginBottom: theme.spacing(2),
+    //marginBottom: theme.spacing(2),
   },
   '& .MuiButton-root': {
-    marginTop: theme.spacing(2),
+    //marginTop: theme.spacing(2),
   },
 }));
 
@@ -79,7 +83,8 @@ function RegistrationForm() {
       birthCountry &&
       educationTitle &&
       email &&
-      isEmailValid(email)
+      isEmailValid(email) &&
+      typeof isStudent === 'boolean'
     ) {
       setIsFormComplete(true);
     } else {
@@ -133,12 +138,15 @@ function RegistrationForm() {
   return (
     <Container maxWidth="md">
       <StyledPaper>
-        <Typography variant="h5" gutterBottom>
-          Registration Form
+        <Typography variant="h4" align='center' gutterBottom>
+          Dati anagrafici
+        </Typography>
+        <Typography variant="h6" gutterBottom>
+          Dati personali
         </Typography>
         <StyledForm onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <TextField
                 label="Nome"
                 fullWidth
@@ -152,7 +160,7 @@ function RegistrationForm() {
                 }
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <TextField
                 label="Cognome"
                 fullWidth
@@ -166,73 +174,11 @@ function RegistrationForm() {
                 }
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Data di Nascita"
-                fullWidth
-                type="date"
-                name="birthDate"
-                value={birthDate}
-                onChange={(event) => setBirthDate(event.target.value)}
-                required            
-              />
-            </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Luogo di Nascita"
-                fullWidth
-                name="birthPlace"
-                value={birthPlace}
-                onChange={(event) => setBirthPlace(event.target.value)}
-                required
-                inputProps={{
-                  min: '1920-01-01', // Imposta la data minima
-                }}            
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Stato di Nascita"
-                fullWidth
-                name="birthCountry"
-                value={birthCountry}
-                onChange={(event) => setBirthCountry(event.target.value)}
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Titolo di Studio"
-                fullWidth
-                name="educationTitle"
-                value={educationTitle}
-                onChange={(event) => setEducationTitle(event.target.value)}
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Email"
-                fullWidth
-                type="email"
-                name="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                required
-                error={!isEmailValid(email) && email.trim() !== ''}
-                helperText={
-                  !isEmailValid(email) && email.trim() !== ''
-                    ? 'Inserisci un indirizzo email valido'
-                    : ''
-                }
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <FormControl sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-controlled-open-select-label">
-                  Gender
-                </InputLabel>
+            <Grid item xs={12} sm={4}>
+              <FormControl sx={{ m: 1, minWidth: 120 }} style={{ margin: 'auto' }}>
+              <InputLabel id="demo-controlled-open-select-label" >
+                Gender
+              </InputLabel>
                 <Select
                   labelId="demo-controlled-open-select-label"
                   id="demo-controlled-open-select"
@@ -249,7 +195,76 @@ function RegistrationForm() {
                   <MenuItem value={'femmina'}>Femmina</MenuItem>
                 </Select>
               </FormControl>
-            <Grid item xs={12}>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                label="Data di Nascita"
+                fullWidth
+                type="date"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  inputProps: {
+                    max: new Date().toISOString().split('T')[0], // Impedisci la selezione di date future
+                  },
+                  value: birthDate,
+                  onChange: (event) => setBirthDate(event.target.value),
+                }}
+                required
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                label="Luogo di Nascita"
+                fullWidth
+                name="birthPlace"
+                value={birthPlace}
+                onChange={(event) => setBirthPlace(event.target.value)}
+                required
+                inputProps={{
+                  min: '1920-01-01', // Imposta la data minima
+                }}            
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                label="Stato di Nascita"
+                fullWidth
+                name="birthCountry"
+                value={birthCountry}
+                onChange={(event) => setBirthCountry(event.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                label="Titolo di Studio"
+                fullWidth
+                name="educationTitle"
+                value={educationTitle}
+                onChange={(event) => setEducationTitle(event.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                label="Email"
+                fullWidth
+                type="email"
+                name="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+                error={!isEmailValid(email) && email.trim() !== ''}
+                helperText={
+                  !isEmailValid(email) && email.trim() !== ''
+                    ? 'Inserisci un indirizzo email valido'
+                    : ''
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
               <FormControlLabel
                 control={
                   <Checkbox
@@ -267,6 +282,8 @@ function RegistrationForm() {
                 variant="contained"
                 color="primary"
                 disabled={!isFormComplete}
+                fullWidth
+                style={{ borderRadius: '4px' }}
               >
                 Registrati
               </Button>

@@ -1,44 +1,31 @@
-import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Button from '@mui/material/Button';
+import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
 
-export default function ControlledOpenSelect() {
-  const [open, setOpen] = React.useState(false);
-  const [gender, setGender] = React.useState('');
-  
-  const handleChange = (event) => {
-    setGender(event.target.value);
-  };
+function Test() {
+  const [birthDate, setBirthDate] = useState('');
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
+  const handleDateChange = (event) => {
+    setBirthDate(event.target.value);
   };
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-controlled-open-select-label">Gender</InputLabel>
-        <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={gender}
-          label="Gender"
-          onChange={handleChange}
-        >
-          <MenuItem value={'maschio'}>maschio</MenuItem>
-          <MenuItem value={'femmina'}>femmina</MenuItem>
-        </Select>
-      </FormControl>
-    </div>
+    <TextField
+      label="Data di Nascita"
+      fullWidth
+      type="date"
+      InputLabelProps={{
+        shrink: true,
+      }}
+      InputProps={{
+        inputProps: {
+          max: new Date().toISOString().split('T')[0], // Impedisci la selezione di date future
+        },
+        value: birthDate,
+        onChange: handleDateChange,
+      }}
+      required
+    />
   );
 }
+
+export default Test;

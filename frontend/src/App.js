@@ -1,6 +1,7 @@
 import './App.css';
 import './apps/RegisterUser'
 import RegisterUser from './apps/RegisterUser';
+import Test from './apps/Test';
 import ControlledOpenSelect from './apps/Test';
 
 function App() {
