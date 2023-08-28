@@ -410,7 +410,7 @@ function RegistrationForm() {
                 required
                 error={!isNameValid(lastName)}
                 helperText={
-                  !isNameValid(lastName) ? 'Inserisci un cognome valido' : ''
+                  !isNameValid(lastName) ? 'Inserisci un cognome valido' : ' '
                 }
               />
             </Grid>
