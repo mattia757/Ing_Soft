@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { parsePhoneNumberFromString } from 'libphonenumber-js'; //Viene usata per il controllo del numero di telefono
 
 import {
   Button,
@@ -50,12 +51,18 @@ function RegistrationForm() {
   const [isStudent, setIsStudent] = useState(false);
 
   //Cittadinanza
-  const [euCitizen, setEuCitizen] = useState(false);
-  const [euCountryOpen, setEuCountryOpen] = useState(false);
-  const [nonEuCountryOpen, setNonEuCountryOpen] = useState(false);
-  const [euCountry, setEuCountry] = useState(false);
-  const [nonEuCountry, setNonEuCountry] = useState(false);
+  const [euCitizen, setEuCitizen] = useState(false); //Appartiene all'Unione Europea?
+  const [euCountryOpen, setEuCountryOpen] = useState(false); //Variabile che fa aprire la Select dei Paesi EU
+  const [nonEuCountryOpen, setNonEuCountryOpen] = useState(false); //Variabile che fa aprire la Select dei Paesi non EU
+  const [euCountry, setEuCountry] = useState(false); //Memorizza tutti i Paesi EU
+  const [nonEuCountry, setNonEuCountry] = useState(false); //Memorizza tutti i Paesi non EU
   const [euCitizenOpen, setEuCitizenOpen] = useState(false);
+
+  //Contatti
+  const [tel1, setTel1] = useState('');
+  const [tel2, setTel2] = useState('');
+  const [pec, setPec] = useState('');
+  const [website, setWebsite] = useState('');
 
   const euCountries = [
     'Austria',
@@ -275,8 +282,37 @@ function RegistrationForm() {
 
   const isNameValid = (name) => {
     const namePattern = /^[a-zA-Z\s]*$/;
-    return namePattern.test(name);
+    return namePattern.test(name)
   };
+
+  const isTelValid = (tel1) => {
+    let formattedNumber = "Numero non valido";
+
+    const parsedNumber = parsePhoneNumberFromString(tel1, 'ZZ');
+
+    if (parsedNumber && parsedNumber.isValid()) {
+      formattedNumber = parsedNumber.formatInternational();
+
+      console.log(parsedNumber && parsedNumber.isValid)
+      return true;
+    }
+    else{
+      console.log(parsedNumber)
+      return false
+    }
+  }
+
+  const isWebsiteValid = (website) => {
+    const websiteRegex = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\/\S*)?$/;
+
+    if (!website) {
+      return true; // Il campo è vuoto, quindi considerato valido
+    }
+    else {
+      return websiteRegex.test(website)
+    }
+
+  }
 
   useEffect(() => {
     if (
@@ -292,13 +328,19 @@ function RegistrationForm() {
       educationTitle &&
       email &&
       isEmailValid(email) &&
-      typeof isStudent === 'boolean'
+      typeof isStudent === 'boolean' &&
+      (euCountry || nonEuCountry) &&
+      tel1 && isTelValid(tel1) &&
+      (!tel2 || isTelValid(tel2)) &&
+      pec && (isEmailValid(pec)) && 
+      (!website || isWebsiteValid(website))
     ) {
       setIsFormComplete(true);
     } else {
       setIsFormComplete(false);
     }
-  }, [firstName, lastName, gender, birthDate, birthPlace, birthCountry, educationTitle, email]);
+  }, [firstName, lastName, gender, birthDate, birthPlace, birthCountry, educationTitle, email, euCountry, nonEuCountry,
+      tel1, tel2, pec, website]);
 
 
   const handleSubmit = (event) => {
@@ -315,7 +357,13 @@ function RegistrationForm() {
       birthCountry &&
       educationTitle &&
       email &&
-      isEmailValid(email)
+      isEmailValid(email) &&
+      typeof isStudent === 'boolean' &&
+      (euCountry || nonEuCountry) &&
+      tel1 && isTelValid(tel1) &&
+      (!tel2 || isTelValid(tel2)) &&
+      pec && (isEmailValid(pec)) && 
+      (!website || isWebsiteValid(website))
     ) {
       setIsFormComplete(true);
       const formData = {
@@ -328,6 +376,12 @@ function RegistrationForm() {
         educationTitle,
         email,
         isStudent,
+        euCountry,
+        nonEuCountry,
+        tel1, 
+        tel2,
+        pec,
+        website
       };
       console.log(formData);
     } else {
@@ -589,6 +643,75 @@ function RegistrationForm() {
                 </FormControl> 
               </Grid>
             )}
+
+            <Typography variant="h6" gutterBottom style={{ width: '100%'}}>
+              Contatti
+            </Typography>
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="tel1"
+                fullWidth
+                type="tel"
+                name="tel1"
+                value={tel1}
+                onChange={(event) => setTel1(event.target.value)}
+                required
+                error={!isTelValid(tel1) && tel1.trim() !== ''}
+                helperText={
+                  !isTelValid(tel1) && tel1.trim() !== ''
+                    ? 'Inserisci un numero di telefono valido, ricordati di inserire il prefisso es. +39'
+                    : ''
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="tel2"
+                fullWidth
+                type="tel"
+                name="tel2"
+                value={tel2}
+                onChange={(event) => setTel2(event.target.value)}
+                error={!isTelValid(tel2) && tel2.trim() !== ''}
+                helperText={
+                  !isTelValid(tel2) && tel2.trim() !== ''
+                    ? 'Inserisci un numero di telefono valido, ricordati di inserire il prefisso es. +39'
+                    : ''
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="PEC"
+                fullWidth
+                type="email"
+                name="pec"
+                value={pec}
+                onChange={(event) => setPec(event.target.value)}
+                required
+                error={!isEmailValid(pec) && pec.trim() !== ''}
+                helperText={
+                  !isEmailValid(pec) && pec.trim() !== ''
+                    ? 'Inserisci un indirizzo PEC valido'
+                    : ''
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                label="Website"
+                fullWidth
+                name="website"
+                value={website}
+                onChange={(event) => setWebsite(event.target.value)}
+                error={!isWebsiteValid(website)}
+                helperText={
+                  !isWebsiteValid(website) ? 'Inserisci un sito web valido' : ''
+                }
+              />
+            </Grid>
+
             <Grid item xs={12}>
               <Button
                 type="submit"
