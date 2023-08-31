@@ -42,8 +42,19 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
   const [cittàResidenza, setCittàResidenza] = useState('');
   const [provinciaResidenza, setProvinciaResidenza] = useState('');
   const [regioneResidenza, setRegioneResidenza] = useState('');
-  const [stateResidence, setStateResidence] = useState('');
+  const [stateResidence, setStateResidence] = useState(''); //Stato selezionato
   const [stateResidenceOpen, setStateResidenceOpen] = useState(false); //Variabile che fa aprire la Select degli Stati per la residenza
+  
+  const [domicilioSameResidenza, setDomicilioSameResidenza] = useState(false); //Se spuntato le informazioni di domicilio sono le stesse di residenza altrimenti si dovranno reinserire
+  
+  //Domicilio
+  const [domicilio, setDomicilio] = useState('');
+  const [capDomicilio, setCapDomicilio] = useState('');
+  const [cittàDomicilio, setCittàDomicilio] = useState('');
+  const [provinciaDomicilio, setProvinciaDomicilio] = useState('');
+  const [regioneDomicilio, setRegioneDomicilio] = useState('');
+  const [stateDomicilio, setStateDomicilio] = useState('');
+  const [stateDomicilioOpen, setStateDomicilioOpen] = useState(false); //Variabile che fa aprire la Select degli Stati per il domicilio
 
   const euCountries = [
     'Austria',
@@ -253,6 +264,29 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
     return residenzaPattern.test(residenza)
   };
 
+  const handleCheckboxChange = (event) => {
+    setDomicilioSameResidenza(event.target.checked);
+    console.log(event.target.checked)
+    if (event.target.checked === true) {
+      setDomicilio(residenza);
+      setCapDomicilio(cap);
+      setCittàDomicilio(cittàResidenza);
+      setProvinciaDomicilio(provinciaResidenza);
+      setRegioneDomicilio(regioneResidenza);
+      setStateDomicilio(stateResidence);
+
+      console.log(domicilio)
+    }
+    else{
+      setDomicilio('');
+      setCapDomicilio('');
+      setCittàDomicilio('');
+      setProvinciaDomicilio('');
+      setRegioneDomicilio('');
+      setStateDomicilio();
+    }
+  };
+  
   useEffect(() => {
     if (
       residenza &&
@@ -260,13 +294,20 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
       cittàResidenza &&
       provinciaResidenza &&
       regioneResidenza &&
-      stateResidence
+      stateResidence &&
+      ((!domicilioSameResidenza && domicilio) || domicilioSameResidenza) && // Condizione per il domicilio
+      ((!domicilioSameResidenza && capDomicilio) || domicilioSameResidenza) && // Condizione per il capDomicilio
+      ((!domicilioSameResidenza && cittàDomicilio) || domicilioSameResidenza) && // Condizione per la cittàDomicilio
+      ((!domicilioSameResidenza && provinciaDomicilio) || domicilioSameResidenza) && // Condizione per la provinciaDomicilio
+      ((!domicilioSameResidenza && regioneDomicilio) || domicilioSameResidenza) && // Condizione per la regioneDomicilio
+      ((!domicilioSameResidenza && stateDomicilio) || domicilioSameResidenza) // Condizione per lo stateDomicilio
     ) {
       setIsFormComplete(true);
     } else {
       setIsFormComplete(false);
     }
-  }, [residenza, cap, cittàResidenza, provinciaResidenza, regioneResidenza, stateResidence
+  }, [residenza, cap, cittàResidenza, provinciaResidenza, regioneResidenza, stateResidence,
+    domicilio, capDomicilio, cittàDomicilio, provinciaDomicilio, regioneDomicilio, stateDomicilio
 ]);
 
 
@@ -279,7 +320,13 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
       cittàResidenza &&
       provinciaResidenza &&
       regioneResidenza &&
-      stateResidence
+      stateResidence &&
+      ((!domicilioSameResidenza && domicilio) || domicilioSameResidenza) && // Condizione per il domicilio
+      ((!domicilioSameResidenza && capDomicilio) || domicilioSameResidenza) && // Condizione per il capDomicilio
+      ((!domicilioSameResidenza && cittàDomicilio) || domicilioSameResidenza) && // Condizione per la cittàDomicilio
+      ((!domicilioSameResidenza && provinciaDomicilio) || domicilioSameResidenza) && // Condizione per la provinciaDomicilio
+      ((!domicilioSameResidenza && regioneDomicilio) || domicilioSameResidenza) && // Condizione per la regioneDomicilio
+      ((!domicilioSameResidenza && stateDomicilio) || domicilioSameResidenza) // Condizione per lo stateDomicilio
     ) {
       setIsFormComplete(true);
       const formData = {
@@ -288,7 +335,13 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
         cittàResidenza,
         provinciaResidenza,
         regioneResidenza,
-        stateResidence
+        stateResidence,
+        domicilio, 
+        capDomicilio, 
+        cittàDomicilio, 
+        provinciaDomicilio, 
+        regioneDomicilio, 
+        stateDomicilio
       };
       console.log(formData);
       onSubmit();
@@ -305,6 +358,16 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
   //Open Stato Residenza
   const handleResidenceStateOpen = () => {
     setStateResidenceOpen(true);
+  };
+
+  //Close Stato Domiclio
+  const handleDomicilioStateClose = () => {
+    setStateDomicilioOpen(false);
+  };  
+  
+  //Open Stato Domiclio
+  const handleDomicilioStateOpen = () => {
+    setStateDomicilioOpen(true);
   };
 
   return (
@@ -388,7 +451,96 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
                 </Select>
               </FormControl>
             </Grid>
-            
+            <Grid item xs={12} >
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    name="domicilioSameResidenza"
+                    checked={domicilioSameResidenza}
+                    onChange={handleCheckboxChange}
+                  />
+                }
+                label="Stesso Domicilio"
+                fullWidth
+              />
+            </Grid>
+            {!domicilioSameResidenza && (
+              <>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    label="Domicilio"
+                    fullWidth
+                    name="domiclio"
+                    value={domicilio}
+                    onChange={(event) => setDomicilio(event.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    label="Cap Domicilio"
+                    fullWidth
+                    name="capDomicilio"
+                    value={capDomicilio}
+                    onChange={(event) => setCapDomicilio(event.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    label="Città Domicilio"
+                    fullWidth
+                    name="cittàDomicilio"
+                    value={cittàDomicilio}
+                    onChange={(event) => setCittàDomicilio(event.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    label="Provincia Domicilio"
+                    fullWidth
+                    name="provinciaDomicilio"
+                    value={provinciaDomicilio}
+                    onChange={(event) => setProvinciaDomicilio(event.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <TextField
+                    label="Regione Domicilio"
+                    fullWidth
+                    name="regioneDomicilio"
+                    value={regioneDomicilio}
+                    onChange={(event) => setRegioneDomicilio(event.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <FormControl sx={{ m: 1, minWidth: '13.7rem' }} style={{ margin: 'auto' }}>
+                    <InputLabel id="state-domicilio-label">Stato di residenza</InputLabel>
+                    <Select
+                      labelId="state-domicilio-label"
+                      id="state-domicilio-label"
+                      open={stateDomicilioOpen}
+                      onClose={handleDomicilioStateClose}
+                      onOpen={handleDomicilioStateOpen}
+                      name="stateDomicilio"
+                      value={stateDomicilio}
+                      label={'Stato Domicilio'}
+                      onChange={(event) => setStateDomicilio(event.target.value)}
+                      required
+                    >
+                    {countries.map((country) => (
+                      <MenuItem key={country} value={country}>
+                        {country}
+                      </MenuItem>
+                    ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+              </>
+            )}
 
             <Grid item xs={12}>
               <Button
