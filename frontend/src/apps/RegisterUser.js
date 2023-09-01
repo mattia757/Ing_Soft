@@ -6,7 +6,7 @@ import AnagraficaSection from './registration sections/AnagraficaSection';
 import CittadinanzaSection from './registration sections/CittadinanzaSection'
 import ContattiSection from './registration sections/ContattiSection'
 import ResidenzaSection from './registration sections/ResidenzaSection'
-import { parsePhoneNumberFromString } from 'libphonenumber-js'; //Viene usata per il controllo del numero di telefono
+import ArtistaSection from './registration sections/ArtistaSection'
 
 const RegisterUser = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -61,6 +61,11 @@ const RegisterUser = () => {
       {/* Sezione 4 */}
       <Element name="section4">
         {currentSection === 3 && <ResidenzaSection currentSection={currentSection} onSubmit={handleSectionSubmit} />}
+      </Element>
+
+      {/* Sezione 5 */}
+      <Element name="section5">
+        {currentSection === 4 && <ArtistaSection currentSection={currentSection} onSubmit={handleSectionSubmit} />}
       </Element>
     </div>
   );
