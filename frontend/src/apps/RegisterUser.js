@@ -7,10 +7,11 @@ import CittadinanzaSection from './registration sections/CittadinanzaSection'
 import ContattiSection from './registration sections/ContattiSection'
 import ResidenzaSection from './registration sections/ResidenzaSection'
 import ArtistaSection from './registration sections/ArtistaSection'
+import AgenziaSection from './registration sections/AgenziaSection';
 
 const RegisterUser = () => {
   const [currentSection, setCurrentSection] = useState(0);
-  const totalSections = 4;
+  const totalSections = 5;
 
 
   const handleSectionSubmit = () => {
@@ -66,6 +67,11 @@ const RegisterUser = () => {
       {/* Sezione 5 */}
       <Element name="section5">
         {currentSection === 4 && <ArtistaSection currentSection={currentSection} onSubmit={handleSectionSubmit} />}
+      </Element>
+
+      {/* Sezione 6 */}
+      <Element name="section6">
+        {currentSection === 5 && <AgenziaSection currentSection={currentSection} onSubmit={handleSectionSubmit} />}
       </Element>
     </div>
   );
