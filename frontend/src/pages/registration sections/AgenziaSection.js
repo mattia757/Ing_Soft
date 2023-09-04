@@ -51,12 +51,10 @@ const AgenziaSection = ({ currentSection, onSubmit }) => {
   };
 
   const isTelValid = (tel1) => {
-        let formattedNumber = "Numero non valido";
-
         const parsedNumber = parsePhoneNumberFromString(tel1, 'ZZ');
 
         if (parsedNumber && parsedNumber.isValid()) {
-        formattedNumber = parsedNumber.formatInternational();
+        parsedNumber.formatInternational();
 
         console.log(parsedNumber && parsedNumber.isValid)
         return true;

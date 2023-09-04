@@ -3,17 +3,11 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js'; //Viene usata pe
 
 import {
   Button,
-  Checkbox,
   Container,
   Grid,
-  InputLabel,
   Paper,
-  Select,
   TextField,
   Typography,
-  FormControl,
-  FormControlLabel,
-  MenuItem,
 } from '@mui/material';
 import styled from '@mui/material/styles/styled';
 
@@ -53,12 +47,10 @@ const ContattiSection = ({ currentSection, onSubmit }) => {
 
 
   const isTelValid = (tel1) => {
-    let formattedNumber = "Numero non valido";
-
     const parsedNumber = parsePhoneNumberFromString(tel1, 'ZZ');
 
     if (parsedNumber && parsedNumber.isValid()) {
-      formattedNumber = parsedNumber.formatInternational();
+      parsedNumber.formatInternational();
 
       console.log(parsedNumber && parsedNumber.isValid)
       return true;

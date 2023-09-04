@@ -14,7 +14,6 @@ import {
   MenuItem,
 } from '@mui/material';
 import styled from '@mui/material/styles/styled';
-import RegisterUser from '../RegisterUser';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(6),

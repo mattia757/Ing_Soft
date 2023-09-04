@@ -1,14 +1,20 @@
 import './App.css';
-import './apps/RegisterUser'
-import RegistrationForm from './apps/RegisterUser';
-import Test from './apps/Test';
-import ControlledOpenSelect from './apps/Test';
+import './pages/RegisterUser'
+import RegistrationForm from './pages/RegisterUser';
+import Footer from './components/Footer';
 
 function App() {
+ 
   return (
-    <div>
-      <h1>Dynamic Form with React</h1>
-      <RegistrationForm />
+    <div id='container'>
+      <div id="content">
+        <h1>Dynamic Form with React</h1>
+        <RegistrationForm />
+      </div>
+
+      <div id='footer'>
+        <Footer />
+      </div>
     </div>
   );
 }

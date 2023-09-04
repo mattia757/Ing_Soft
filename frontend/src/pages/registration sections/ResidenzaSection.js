@@ -253,17 +253,6 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
   
   const [isFormComplete, setIsFormComplete] = useState(false);
 
-  const isNameValid = (name) => {
-    const namePattern = /^[a-zA-Z\s]*$/;
-    return namePattern.test(name)
-  };
-
-  const isAddressValid = (residenza) => {
-    const residenzaPattern = /^[a-zA-Z0-9\- ]+$/;
-    
-    return residenzaPattern.test(residenza)
-  };
-
   const handleCheckboxChange = (event) => {
     setDomicilioSameResidenza(event.target.checked);
     console.log(event.target.checked)
@@ -306,7 +295,7 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
     } else {
       setIsFormComplete(false);
     }
-  }, [residenza, cap, cittàResidenza, provinciaResidenza, regioneResidenza, stateResidence,
+  }, [domicilioSameResidenza, residenza, cap, cittàResidenza, provinciaResidenza, regioneResidenza, stateResidence,
     domicilio, capDomicilio, cittàDomicilio, provinciaDomicilio, regioneDomicilio, stateDomicilio
 ]);
 

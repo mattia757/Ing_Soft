@@ -2,20 +2,16 @@ import React, { useState, useEffect } from 'react';
 
 import {
   Button,
-  Checkbox,
   Container,
   Grid,
   InputLabel,
   Paper,
   Select,
-  TextField,
   Typography,
   FormControl,
-  FormControlLabel,
   MenuItem,
 } from '@mui/material';
 import styled from '@mui/material/styles/styled';
-import { display, textAlign } from '@mui/system';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(6),
@@ -238,7 +234,7 @@ const CittadinanzaSection = ({ currentSection, onSubmit }) => {
     'Zambia',
     'Zimbabwe'
   ];
-  const countries = euCountries.concat(nonEuCountries)
+  //const countries = euCountries.concat(nonEuCountries)
 
   const [isFormComplete, setIsFormComplete] = useState(false);
 
