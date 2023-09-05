@@ -13,6 +13,8 @@ import {
   FormControlLabel,
   MenuItem,
 } from '@mui/material';
+
+import './css/style.css'
 import styled from '@mui/material/styles/styled';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -143,12 +145,10 @@ const AnagraficaSection = ({ currentSection, onSubmit }) => {
     return (
         <Container maxWidth="md">
           <StyledPaper>
-            <Typography variant="h4" align='center' gutterBottom>
-              Dati anagrafici
-            </Typography>
             <Typography variant="h6" gutterBottom>
               Dati personali
             </Typography>
+            <br></br>
             <StyledForm onSubmit={handleSubmit}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={4}>

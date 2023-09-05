@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import './css/RegisterUser.css'
 import { Element, scroller } from 'react-scroll';
+import '../configs/colors.css'
 import { LinearProgress, Box } from '@mui/material';
 
 import AnagraficaSection from './registration sections/AnagraficaSection';
@@ -8,6 +10,7 @@ import ContattiSection from './registration sections/ContattiSection'
 import ResidenzaSection from './registration sections/ResidenzaSection'
 import ArtistaSection from './registration sections/ArtistaSection'
 import AgenziaSection from './registration sections/AgenziaSection';
+import BancaSection from './registration sections/BancaSection';
 
 const RegisterUser = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -40,9 +43,9 @@ const RegisterUser = () => {
         <LinearProgress
           variant="determinate"
           value={progressPercent}
-          sx={{ flexGrow: 1, marginRight: '10px' }}
+          sx={{ flexGrow: 1 }}
+          style={{ backgroundColor: 'white', height: '1vh', borderRadius: '3px' }}
         />
-        <span style={{ color:'#00000099' }}>{Math.round(progressPercent)}%</span>
       </Box>
       {/* Sezione 1 */}
       <Element name="section1">
@@ -72,6 +75,11 @@ const RegisterUser = () => {
       {/* Sezione 6 */}
       <Element name="section6">
         {currentSection === 5 && <AgenziaSection currentSection={currentSection} onSubmit={handleSectionSubmit} />}
+      </Element>
+
+      {/* Sezione 7 */}
+      <Element name="section7">
+        {currentSection === 6 && <BancaSection currentSection={currentSection} onSubmit={handleSectionSubmit} />}
       </Element>
     </div>
   );
