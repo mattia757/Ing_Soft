@@ -15,11 +15,23 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         return httpSecurity
+                .csrf(withDefaults())
                 .authorizeRequests(auth -> {
+                    auth.requestMatchers("/api/user/**").authenticated();
                     auth.requestMatchers("/").permitAll();
                     auth.anyRequest().authenticated();
                 })
-                .formLogin(withDefaults())
+                /*.formLogin(formLogin ->
+                        formLogin
+                                //.loginPage("/auth")
+                                .defaultSuccessUrl("/dashboard")
+                                .permitAll()
+                )*/
+                .logout(logout ->
+                        logout
+                                //.logoutSuccessUrl("/auth")
+                                .permitAll()
+                )
                 .build();
     }
 

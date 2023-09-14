@@ -91,5 +91,4 @@ public class User {
 
     //TODO Other Attributes
     //Getters and Setters
-
 }
