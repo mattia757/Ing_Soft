@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   Button,
-  Checkbox,
   Container,
   Grid,
   InputLabel,
@@ -10,7 +9,6 @@ import {
   TextField,
   Typography,
   FormControl,
-  FormControlLabel,
   MenuItem,
 } from '@mui/material';
 import styled from '@mui/material/styles/styled';
@@ -36,7 +34,7 @@ const StyledForm = styled('form')(({ theme }) => ({
 
 const BancaSection = ({ currentSection, onSubmit }) => {
     
-    const [paeseContoOpen, setPaeseContoOpen] = useState('');
+    const [paeseContoOpen, setPaeseContoOpen] = useState(false);
     const [paeseConto, setPaeseConto] = useState('');
     
     const [iban, setIban] = useState('');
@@ -2005,7 +2003,6 @@ const BancaSection = ({ currentSection, onSubmit }) => {
     ];
   
     const [isFormComplete, setIsFormComplete] = useState(false);
-    const [bankName, setBankName] = useState('');
     
     const isNameValid = (name) => {
         const namePattern = /^[a-zA-Z\s]*$/;
@@ -2019,7 +2016,7 @@ const BancaSection = ({ currentSection, onSubmit }) => {
     };      
     
     const bicIsValid = (bic) => {
-        const bicRegex = /([a-zA-Z]{4})([a-zA-Z]{2})(([2-9a-zA-Z]{1})([0-9a-np-zA-NP-Z]{1}))((([0-9a-wy-zA-WY-Z]{1})([0-9a-zA-Z]{2}))|([xX]{3})|)/;
+        const bicRegex = /[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}/;
         
         return bicRegex.test(bic);
     }
@@ -2069,7 +2066,6 @@ const BancaSection = ({ currentSection, onSubmit }) => {
         cab) ||
         (paeseConto === 'Conto Estero' &&
         nomeBeneficiario &&
-        bic &&
         (iban && ibanIsValid(iban)) &&
         bic && bicIsValid(bic))
         ){
@@ -2082,6 +2078,9 @@ const BancaSection = ({ currentSection, onSubmit }) => {
     const handleGenerateClick = () => {
         if(ibanIsValid(iban))
             ibanExtract(iban);
+        else{
+            
+        }
       };
     
   
@@ -2107,7 +2106,7 @@ const BancaSection = ({ currentSection, onSubmit }) => {
         <StyledPaper>
           <StyledForm onSubmit={handleSubmit}>
             <Grid container spacing={2}>
-                <Typography variant="h6" gutterBottom style={{ width: '100%' }}>
+                <Typography variant="h5" gutterBottom style={{ width: '100%' }}>
                 Dati Bancari
                 </Typography>
                 <Grid item xs={12} sm={4}>
@@ -2184,8 +2183,8 @@ const BancaSection = ({ currentSection, onSubmit }) => {
                             value={iban}
                             onChange={(event) => setIban(event.target.value)}
                             required
-                            error={!ibanIsValid && iban.trim() !== ''}
-                            helperText={!ibanIsValid && iban.trim() !== ''
+                            error={!ibanIsValid(iban) && iban.trim() !== ''}
+                            helperText={!ibanIsValid(iban) && iban.trim() !== ''
                                 ? 'Inserisci un iban valido'
                                 : ''}
                             disabled={enableIban}
@@ -2225,8 +2224,8 @@ const BancaSection = ({ currentSection, onSubmit }) => {
                                 value={iban}
                                 onChange={(event) => setIban(event.target.value)}
                                 required
-                                error={!ibanIsValid && iban.trim() !== ''}
-                                helperText={!ibanIsValid && iban.trim() !== ''
+                                error={!ibanIsValid(iban) && iban.trim() !== ''}
+                                helperText={!ibanIsValid(iban) && iban.trim() !== ''
                                     ? 'Inserisci un iban valido'
                                     : ''}
                             />
@@ -2239,8 +2238,8 @@ const BancaSection = ({ currentSection, onSubmit }) => {
                                 value={bic}
                                 onChange={(event) => setBic(event.target.value)}
                                 required
-                                error={!bicIsValid && bic.trim() !== ''}
-                                helperText={!bicIsValid && bic.trim() !== ''
+                                error={!bicIsValid(bic) && bic.trim() !== ''}
+                                helperText={!bicIsValid(bic) && bic.trim() !== ''
                                     ? 'Inserisci un BIC/Swift valido'
                                     : ''}
                             />

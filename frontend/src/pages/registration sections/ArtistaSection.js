@@ -249,8 +249,8 @@ const ArtistaSection = ({ currentSection, onSubmit }) => {
     <Container maxWidth="md">
       <StyledPaper>
         <StyledForm onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Typography variant="h6" gutterBottom style={{ width: '100%'}}>
+          <Grid container spacing={3}>
+            <Typography variant="h5" gutterBottom style={{ width: '100%'}}>
               Dati Artistici
             </Typography>
             <Grid item xs={12} sm={4}>
@@ -264,8 +264,8 @@ const ArtistaSection = ({ currentSection, onSubmit }) => {
               />
             </Grid>
             <Grid item xs={12} sm={4}>
-            <FormControl sx={{ m: 1, minWidth: '13.7rem' }} style={{ margin: 'auto' }}>
-              <InputLabel id="tipologia-artista-label">Stato di residenza</InputLabel>
+            <FormControl sx={{ m: 1, minWidth: '13.7rem', maxWidth: '13.8rem' }} style={{ margin: 'auto' }}>
+              <InputLabel id="tipologia-artista-label">Tipologia Artista</InputLabel>
               <Select
                 labelId="tipologia-artista-label"
                 id="tipologia-artista-id"
@@ -288,7 +288,7 @@ const ArtistaSection = ({ currentSection, onSubmit }) => {
           </Grid>
           {tipologia === '081 - Concertisti e solisti' || tipologia === '082 - Professori d\'orchestra' ? (
             <Grid item xs={12} sm={4}>
-                <FormControl sx={{ m: 1, minWidth: '13.7rem' }} style={{ margin: 'auto' }}>
+                <FormControl sx={{ m: 1, minWidth: '13.7rem', maxWidth: '13.7rem' }} style={{ margin: 'auto' }}>
                 <InputLabel id="strumento-label">Strumento</InputLabel>
                 <Select
                     labelId="strumento-label"

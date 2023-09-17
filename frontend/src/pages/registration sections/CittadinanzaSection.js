@@ -300,13 +300,13 @@ const CittadinanzaSection = ({ currentSection, onSubmit }) => {
 
   return (
     <Container maxWidth="md">
-      <StyledPaper>
-        <Typography variant="h6" gutterBottom style={{ width: '100%', textAlign: 'center'}}>
-            Cittadinanza
-        </Typography>
-        <StyledForm onSubmit={handleSubmit} style={{ display: 'flex', gap: '3%' }}>   
-            <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+      <StyledPaper >
+        <StyledForm onSubmit={handleSubmit} style={{ display: 'flex' }}>   
+            <Grid container spacing={2} alignContent={"center"}>
+                <Typography variant="h5" gutterBottom style={{ width: '100%'}}>
+                    Cittadinanza
+                </Typography>
+                <Grid item xs={12} sm={4}>  
                     <FormControl sx={{ m: 1, minWidth: '13.7rem' }} style={{ margin: 'auto' }}>
                     <InputLabel id="eu-citizen-label">Appartiene alla Comunità Europea?</InputLabel>
                     <Select
@@ -327,8 +327,8 @@ const CittadinanzaSection = ({ currentSection, onSubmit }) => {
                     </FormControl>
                 </Grid>
                 {euCitizen === 'Si' && (
-                    <Grid item xs={12} sm={6}>
-                    <FormControl sx={{ m: 1, minWidth: 120 }} style={{ margin: 'auto' }}>
+                    <Grid item xs={12} sm={5}>
+                    <FormControl sx={{ m: 1, minWidth: '13.7rem' }} style={{ margin: 'auto' }}>
                         <InputLabel id="eu-country-label">Stato dell'Unione Europea</InputLabel>
                         <Select
                         labelId="eu-country-label"
@@ -352,8 +352,8 @@ const CittadinanzaSection = ({ currentSection, onSubmit }) => {
                     </Grid>
                 )}
                 {euCitizen === 'No' && (
-                    <Grid item xs={12} sm={6}>
-                    <FormControl sx={{ m: 1, minWidth: 120 }} style={{ margin: 'auto' }}>
+                    <Grid item xs={12} sm={4}>
+                    <FormControl sx={{ m: 1, minWidth: '13.7rem' }} style={{ margin: 'auto' }}>
                         <InputLabel id="eu-country-label">Stato fuori dall'Unione Europea</InputLabel>
                         <Select
                             id="eu-non-country-select"

@@ -121,7 +121,7 @@ const AgenziaSection = ({ currentSection, onSubmit }) => {
       <StyledPaper>
         <StyledForm onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Typography variant="h6" gutterBottom style={{ width: '100%'}}>
+            <Typography variant="h5" gutterBottom style={{ width: '100%'}}>
               Dati Agenzia
             </Typography>
             <Grid item xs={12} >

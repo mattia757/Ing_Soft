@@ -364,7 +364,7 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
       <StyledPaper>
         <StyledForm onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Typography variant="h6" gutterBottom style={{ width: '100%'}}>
+            <Typography variant="h5" gutterBottom style={{ width: '100%'}}>
               Residenza
             </Typography>
             <Grid item xs={12} sm={4}>
@@ -418,7 +418,7 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
               />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <FormControl sx={{ m: 1, minWidth: '13.7rem' }} style={{ margin: 'auto' }}>
+              <FormControl sx={{ m: 1, minWidth: '13.7rem', maxWidth: '13.8rem' }} style={{ margin: 'auto' }}>
                 <InputLabel id="state-residence-label">Stato di residenza</InputLabel>
                 <Select
                   labelId="state-residence-label"
@@ -506,7 +506,7 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  <FormControl sx={{ m: 1, minWidth: '13.7rem' }} style={{ margin: 'auto' }}>
+                  <FormControl sx={{ m: 1, minWidth: '13.7rem', maxWidth: '13.8rem' }} style={{ margin: 'auto' }}>
                     <InputLabel id="state-domicilio-label">Stato di residenza</InputLabel>
                     <Select
                       labelId="state-domicilio-label"

@@ -114,7 +114,7 @@ const ContattiSection = ({ currentSection, onSubmit }) => {
       <StyledPaper>
         <StyledForm onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Typography variant="h6" gutterBottom style={{ width: '100%'}}>
+            <Typography variant="h5" gutterBottom style={{ width: '100%'}}>
               Contatti
             </Typography>
             <Grid item xs={12} sm={6}>
@@ -166,7 +166,7 @@ const ContattiSection = ({ currentSection, onSubmit }) => {
                 }
               />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 label="Website"
                 fullWidth

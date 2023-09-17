@@ -145,12 +145,11 @@ const AnagraficaSection = ({ currentSection, onSubmit }) => {
     return (
         <Container maxWidth="md">
           <StyledPaper>
-            <Typography variant="h6" gutterBottom>
-              Dati personali
-            </Typography>
-            <br></br>
             <StyledForm onSubmit={handleSubmit}>
               <Grid container spacing={2}>
+              <Typography variant="h5" gutterBottom style={{ width: '100%'}}>
+                Dati personali
+              </Typography>
                 <Grid item xs={12} sm={4}>
                   <TextField
                     label="Nome"
@@ -180,7 +179,7 @@ const AnagraficaSection = ({ currentSection, onSubmit }) => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  <FormControl sx={{ fullWidth: true, mb: 2 }}>
+                  <FormControl sx={{ width: '100%', mb: 2 }}>
                     <InputLabel id="demo-controlled-open-select-label" >
                       Gender
                     </InputLabel>
@@ -206,22 +205,24 @@ const AnagraficaSection = ({ currentSection, onSubmit }) => {
                   <TextField
                     label="Data di Nascita"
                     fullWidth
-                    type="date"                   
+                    type="date"  
+                    value={birthDate}
                     error={!isBirthDateValid(birthDate)}
                     helperText={
                       !isBirthDateValid(birthDate) ? 'Inserisci una data valida' : ' '
                     }
                     required
+                    placeholder={''}
                     InputLabelProps={{
                         shrink: true,
                       }}
                       InputProps={{
-                        inputProps: {
+                        /* inputProps: {
                           max: new Date().toISOString().split('T')[0],
-                        },
+                        }, */
                         value: birthDate, // This will control the value of the input
                         onChange: (event) => setBirthDate(event.target.value),
-                        placeholder: '', // This will remove any placeholder text
+                        placeholder: ',', // This will remove any placeholder text
                       }}
                   />
                 </Grid>

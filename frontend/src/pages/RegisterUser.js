@@ -14,7 +14,7 @@ import BancaSection from './registration sections/BancaSection';
 
 const RegisterUser = () => {
   const [currentSection, setCurrentSection] = useState(0);
-  const totalSections = 5;
+  const totalSections = 7;
 
 
   const handleSectionSubmit = () => {
