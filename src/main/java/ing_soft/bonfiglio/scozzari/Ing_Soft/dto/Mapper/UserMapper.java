@@ -17,11 +17,11 @@ public class UserMapper implements Function<User, UserDTO> {
         );
     }
 
-    public User apply(UserDTO userDTO){
+    /*public User apply(UserDTO userDTO){
         return new User(
                 userDTO.getEmail(),
                 userDTO.getPassword(),
                 userDTO.getRole()
         );
-    }
+    }*/
 }

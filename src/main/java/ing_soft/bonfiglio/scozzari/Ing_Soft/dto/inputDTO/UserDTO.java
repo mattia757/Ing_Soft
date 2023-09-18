@@ -1,14 +1,14 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.UserRole;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.UserRoles;
 
 public class UserDTO {
 
     private String email;
     private String password;
-    private UserRole role;
+    private UserRoles role;
 
-    public UserDTO(String email, String password, UserRole role) {
+    public UserDTO(String email, String password, UserRoles role) {
         this.email = email;
         this.password = password;
         this.role = role;
@@ -22,7 +22,7 @@ public class UserDTO {
         return password;
     }
 
-    public UserRole getRole() {
+    public UserRoles getRole() {
         return role;
     }
 }
