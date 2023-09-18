@@ -27,9 +27,9 @@ public class UserController {
         }
     }
 
-    @DeleteMapping(path = "/delete/{id}", consumes = "application/json")
-    public ResponseEntity<String> delete(@PathVariable("id") Long id){
-        Optional<Boolean> result = userService.delete(id);
+    @DeleteMapping(path = "/delete/{email}", consumes = "application/json")
+    public ResponseEntity<String> delete(@PathVariable("email") String email){
+        Optional<Boolean> result = userService.delete(email);
         if(result.orElse(false)){
             return new ResponseEntity<>("Utente rimosso correttamente", HttpStatus.NO_CONTENT);
         }
@@ -37,17 +37,4 @@ public class UserController {
             return new ResponseEntity<>("Impossibile rimuovere l'utente , esso non è presente nel Database", HttpStatus.BAD_REQUEST);
         }
     }
-
-    /*
-    @PutMapping(path = "update/{id}" , consumes = "application/json")
-    public ResponseEntity<String> update(@PathVariable("id") Long id , @RequestParam("email") @Valid String email){
-        if(userService.update(id ,email)){
-            return new ResponseEntity<>("Email modificata correttamente", HttpStatus.NO_CONTENT);
-        }
-        else{
-            return new ResponseEntity<>("ERRORE, Impossibile modificare l'email", HttpStatus.BAD_REQUEST);
-        }
-    }
-    */
-
 }
