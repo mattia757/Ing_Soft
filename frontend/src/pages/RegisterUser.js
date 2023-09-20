@@ -11,10 +11,11 @@ import ResidenzaSection from './registration sections/ResidenzaSection'
 import ArtistaSection from './registration sections/ArtistaSection'
 import AgenziaSection from './registration sections/AgenziaSection';
 import BancaSection from './registration sections/BancaSection';
+import FiscoSection from "./registration sections/FiscoSection";
 
 const RegisterUser = () => {
   const [currentSection, setCurrentSection] = useState(0);
-  const totalSections = 7;
+  const totalSections = 8;
 
 
   const handleSectionSubmit = () => {
@@ -23,7 +24,6 @@ const RegisterUser = () => {
     // Se i dati sono validi, passa alla prossima sezione
     if (currentSection < totalSections) {
       const nextSection = currentSection + 1; // Calcola la prossima sezione
-      console.log(currentSection, ' ' + nextSection)
       setCurrentSection(nextSection, () => {
         // Esegui lo scroll alla prossima sezione
         scroller.scrollTo(`section${nextSection}`, {
@@ -80,6 +80,10 @@ const RegisterUser = () => {
       {/* Sezione 7 */}
       <Element name="section7">
         {currentSection === 6 && <BancaSection currentSection={currentSection} onSubmit={handleSectionSubmit} />}
+      </Element>
+
+      <Element name="section8">
+        {currentSection === 7 && <FiscoSection currentSection={currentSection} onSubmit={handleSectionSubmit} />}
       </Element>
     </div>
   );

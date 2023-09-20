@@ -37,7 +37,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   }));
 
 const AnagraficaSection = ({ currentSection, onSubmit }) => {
-
+    //TODO documernto identità
   //Dati Anagrafici
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
