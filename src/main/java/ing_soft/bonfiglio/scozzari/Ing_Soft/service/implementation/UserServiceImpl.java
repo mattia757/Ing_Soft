@@ -22,36 +22,6 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
 
     @Override
-    public Optional<UserDTO> findById(Long id) {
-        Optional<User> user = userRepo.getUserById(id);
-        if(user.isPresent()){
-            return Optional.of(userMapper.apply(user.get()));
-        }
-        else {
-            try {
-                throw new UserNotFoundException("User not found with ID: " + id);
-            } catch (UserNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    @Override
-    public Optional<UserDTO> findByUsername(String username) {
-        Optional<User> user = userRepo.getUserByUsername(username);
-        if(user.isPresent()){
-            return Optional.of(userMapper.apply(user.get()));
-        }
-        else {
-            try {
-                throw new UserNotFoundException("User not found with username: " + username);
-            } catch (UserNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    @Override
     public Optional<UserDTO> findByEmail(String email) {
         Optional<User> user = userRepo.getUserByEmail(email);
         if(user.isPresent()){
@@ -59,22 +29,7 @@ public class UserServiceImpl implements UserService {
         }
         else {
             try {
-                throw new UserNotFoundException("User not found with email: " + email);
-            } catch (UserNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    @Override
-    public Optional<UserDTO> findByCodiceFiscale(String codiceFiscale) {
-        Optional<User> user = userRepo.getUserByCodiceFiscale(codiceFiscale);
-        if(user.isPresent()){
-            return Optional.of(userMapper.apply(user.get()));
-        }
-        else {
-            try {
-                throw new UserNotFoundException("User not found with Codice Fiscale: " + codiceFiscale);
+                throw new UserNotFoundException("User not found with EMAIL: " + email);
             } catch (UserNotFoundException e) {
                 throw new RuntimeException(e);
             }
@@ -83,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<Boolean> insert(User user){
-        Optional<User> utente = userRepo.getUserByUsername(user.getUsername());
+        Optional<User> utente = userRepo.getUserByEmail(user.getEmail());
         if(utente.isPresent()){
             try {
                 throw new UserAlreadyExistException("User Already Exist!");
@@ -98,17 +53,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<Boolean> delete(Long id){
-        Optional<User> utente = userRepo.getUserById(id);
+    public Optional<Boolean> delete(String email){
+        Optional<User> utente = userRepo.getUserByEmail(email);
         if(!utente.isPresent()){
             try {
-                throw new UserNotFoundException("User notfound with ID: " + id);
+                throw new UserNotFoundException("User not found with EMAIL: " + email);
             } catch (UserNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
         else {
-            userRepo.deleteById(id);
+            userRepo.deleteById(Long.valueOf(email));
             return Optional.of(true);
         }
     }
