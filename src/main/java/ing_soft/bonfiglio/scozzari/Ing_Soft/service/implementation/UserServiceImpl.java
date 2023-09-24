@@ -5,7 +5,7 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.UserDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.exception.UserAlreadyExistException;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.exception.UserNotFoundException;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.User;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.repo.UserRepo;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.repo.UserRepository;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.interfaces.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepo userRepo;
+    private final UserRepository userRepo;
     private final UserMapper userMapper;
 
     @Override
