@@ -1,6 +1,5 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.TypologyOfArtists;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +15,7 @@ import java.time.Period;
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Artist extends User{
+public class Artist{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +36,7 @@ public class Artist extends User{
     @Column(nullable = false)
     @NotBlank(message = "The gender cannot be empty")
     @NotNull(message = "The gender cannot be null")
-    @Pattern(regexp = "^(Male|Female|Other)$")
+    @Pattern(regexp = "^(Maschio|Femmina|Altro)$")
     private String gender;
 
     @Column(nullable = false)
@@ -61,9 +60,6 @@ public class Artist extends User{
     private String educationTitle;
 
     @Column(nullable = false)
-    private boolean isStudent;
-
-    @Column(nullable = false)
     private boolean isEuropean;
 
     @Column(nullable = false)
@@ -76,17 +72,17 @@ public class Artist extends User{
     @NotNull(message = "The cell phone number cannot be null")
     private String cellPhoneNumber1;
 
-    @Column
+    @Column(nullable = true)
     private String cellPhoneNumber2;
 
     @Column(nullable = false, unique = true)
-    @NotBlank(message = "The email cannot be empty")
-    @NotNull(message = "The email cannot be null")
-    @Email(message = "The email must respect the format")
+    @NotBlank(message = "The pec cannot be empty")
+    @NotNull(message = "The pec cannot be null")
+    @Email(message = "The pec must respect the format")
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$")
     private String pec;
 
-    @Column
+    @Column(nullable = true)
     private String webSite;
 
     @Column(nullable = false)
@@ -154,16 +150,25 @@ public class Artist extends User{
     @NotNull(message = "The stage name cannot be null")
     private String stageName;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @NotBlank(message = "The artist typology cannot be empty")
     @NotNull(message = "The artist typology cannot be null")
-    private TypologyOfArtists artistTypology;
+    private String artistTypology;
 
     @Column(nullable = false)
     @NotBlank(message = "The instrument cannot be empty")
     @NotNull(message = "The instrument cannot be null")
     private String instrument;
+
+    @Column(nullable = false)
+    @NotBlank(message = "The compensation cannot be empty")
+    @NotNull(message = "The compensation cannot be null")
+    private String compensation;
+
+    @Column(nullable = false)
+    @NotBlank(message = "The burden cannot be empty")
+    @NotNull(message = "The burden cannot be null")
+    private String burden;
 
     @AssertTrue(message = "L'utente deve essere maggiorenne")
     private boolean isAdult(){
