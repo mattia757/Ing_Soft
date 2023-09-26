@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   Button,
-  Checkbox,
   Container,
   Grid,
   InputLabel,
@@ -10,7 +9,6 @@ import {
   TextField,
   Typography,
   FormControl,
-  FormControlLabel,
   MenuItem,
 } from '@mui/material';
 
@@ -47,16 +45,8 @@ const AnagraficaSection = ({ currentSection, onSubmit }) => {
   const [birthPlace, setBirthPlace] = useState('');
   const [birthCountry, setBirthCountry] = useState('');
   const [educationTitle, setEducationTitle] = useState('');
-  const [email, setEmail] = useState('');
-  const [isStudent, setIsStudent] = useState(false);
 
   const [isFormComplete, setIsFormComplete] = useState(false);
-
-  const isEmailValid = (email) => {
-    // Regular expression for basic email validation
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return emailPattern.test(email);
-  };
 
   const isBirthDateValid = (birthDate) => {
     const currentDate = new Date();
@@ -75,45 +65,25 @@ const AnagraficaSection = ({ currentSection, onSubmit }) => {
     
     useEffect(() => {
         if (
-            firstName &&
-            lastName &&
-            isNameValid(firstName) &&
-            isNameValid(lastName) &&
+            firstName && isNameValid(firstName) &&
+            lastName && isNameValid(lastName) &&
             gender &&
-            birthDate &&
-            isBirthDateValid(birthDate) &&
+            birthDate && isBirthDateValid(birthDate) &&
             birthPlace &&
             birthCountry &&
-            educationTitle &&
-            email &&
-            isEmailValid(email) &&
-            typeof isStudent === 'boolean'
+            educationTitle
         ) {
         setIsFormComplete(true);
         } else {
         setIsFormComplete(false);
         }
-    }, [firstName, lastName, gender, birthDate, birthPlace, birthCountry, educationTitle, email, isStudent
+    }, [firstName, lastName, gender, birthDate, birthPlace, birthCountry, educationTitle
 ]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (
-        firstName &&
-        lastName &&
-        isNameValid(firstName) &&
-        isNameValid(lastName) &&
-        gender &&
-        birthDate &&
-        birthPlace &&
-        birthCountry &&
-        educationTitle &&
-        email &&
-        isEmailValid(email) &&
-        typeof isStudent === 'boolean'
-        ) {
-            setIsFormComplete(true);
+        if (isFormComplete) {
             const formData = {
                 firstName,
                 lastName,
@@ -122,8 +92,6 @@ const AnagraficaSection = ({ currentSection, onSubmit }) => {
                 birthPlace,
                 birthCountry,
                 educationTitle,
-                email,
-                isStudent
             };
             console.log(formData);
             onSubmit();
@@ -257,35 +225,6 @@ const AnagraficaSection = ({ currentSection, onSubmit }) => {
                     value={educationTitle}
                     onChange={(event) => setEducationTitle(event.target.value)}
                     required
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <TextField
-                    label="Email"
-                    fullWidth
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    required
-                    error={!isEmailValid(email) && email.trim() !== ''}
-                    helperText={
-                      !isEmailValid(email) && email.trim() !== ''
-                        ? 'Inserisci un indirizzo email valido'
-                        : ''
-                    }
-                  />
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        name="isStudent"
-                        checked={isStudent}
-                        onChange={(event) => setIsStudent(event.target.checked)}
-                      />
-                    }
-                    label="Studente"
                   />
                 </Grid>
                 <Grid item xs={12}>

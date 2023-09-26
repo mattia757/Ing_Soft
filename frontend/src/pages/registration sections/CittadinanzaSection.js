@@ -253,10 +253,7 @@ const CittadinanzaSection = ({ currentSection, onSubmit }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (
-      (euCountry || nonEuCountry)
-    ) {
-      setIsFormComplete(true);
+    if (isFormComplete) {
       const formData = {
         euCountry,
         nonEuCountry,

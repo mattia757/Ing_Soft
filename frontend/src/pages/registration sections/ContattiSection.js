@@ -34,6 +34,7 @@ const ContattiSection = ({ currentSection, onSubmit }) => {
   //Contatti
   const [tel1, setTel1] = useState('');
   const [tel2, setTel2] = useState('');
+  const [email, setEmail] = useState('');
   const [pec, setPec] = useState('');
   const [website, setWebsite] = useState(''); 
 
@@ -77,30 +78,26 @@ const ContattiSection = ({ currentSection, onSubmit }) => {
       (tel1 && isTelValid(tel1)) &&
       (!tel2 || isTelValid(tel2)) &&
       (!pec || (isEmailValid(pec))) && 
-      (!website || isWebsiteValid(website))
+      (!website || isWebsiteValid(website)) &&
+      email && isEmailValid(email)
     ) {
       setIsFormComplete(true);
     } else {
       setIsFormComplete(false);
     }
-  }, [tel1, tel2, pec, website
+  }, [tel1, tel2, pec, website, email
 ]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (
-      (tel1 && isTelValid(tel1)) &&
-      (!tel2 || isTelValid(tel2)) &&
-      (!pec || (isEmailValid(pec))) && 
-      (!website || isWebsiteValid(website))
-    ) {
-      setIsFormComplete(true);
+    if (isFormComplete) {
       const formData = {
         tel1, 
         tel2,
         pec,
-        website
+        website,
+        email
       };
       console.log(formData);
       onSubmit();
@@ -164,6 +161,23 @@ const ContattiSection = ({ currentSection, onSubmit }) => {
                     ? 'Inserisci un indirizzo PEC valido'
                     : ''
                 }
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <TextField
+                  label="Email"
+                  fullWidth
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                  error={!isEmailValid(email) && email.trim() !== ''}
+                  helperText={
+                    !isEmailValid(email) && email.trim() !== ''
+                        ? 'Inserisci un indirizzo email valido'
+                        : ''
+                  }
               />
             </Grid>
             <Grid item xs={12} sm={6}>

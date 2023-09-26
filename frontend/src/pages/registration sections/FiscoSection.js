@@ -37,7 +37,7 @@ const StyledForm = styled('form')(({ theme }) => ({
 }));
 
 const FiscoSection = ({ currentSection, onSubmit }) => {
-    //TODO documernto identità
+    //TODO funzione validazione matricola Inps
     //Dati fiscali
     const [fiscalCode, setFiscalCode] = useState('');
     const [isIva, setIsIva] = useState(false);
@@ -55,6 +55,9 @@ const FiscoSection = ({ currentSection, onSubmit }) => {
     const [degree, setDegree] = useState('');
     const [age, setAge] = useState('');
     const [ageOpen, setAgeOpen] = useState(false);
+    const [matrInps, setMatrInps] = useState('');
+    const [iscrizioneInps, setIscrizioneInps] = useState('');
+    const [iscrizioneOpen, setIscrizioneOpen] = useState(false);
 
     const [isFormComplete, setIsFormComplete] = useState(false);
 
@@ -88,7 +91,8 @@ const FiscoSection = ({ currentSection, onSubmit }) => {
             (occupation === 'Contratto di Lavoro a tempo indeterminato' && employer && revenue) ||
             (occupation === 'Giovane fino a 18 anni') ||
             (occupation === 'Studente fino a 25 anni' && degree) ||
-            (occupation === 'Pensionato' && age))
+            (occupation === 'Pensionato' && age)) &&
+            iscrizioneInps
         ) {
             setIsFormComplete(true);
             console.log('Form complete')
@@ -97,7 +101,7 @@ const FiscoSection = ({ currentSection, onSubmit }) => {
             console.log('Form incomplete')
         }
     }, [
-        fiscalCode, isIva, nIva, regime, occupation, employmentAllowance, expiration, employer, degree, age, revenue
+        fiscalCode, isIva, nIva, regime, occupation, employmentAllowance, expiration, employer, degree, age, revenue, iscrizioneInps, matrInps
     ]);
 
     const handleSubmit = (event) => {
@@ -115,7 +119,9 @@ const FiscoSection = ({ currentSection, onSubmit }) => {
                 employer,
                 degree,
                 age,
-                revenue
+                revenue,
+                iscrizioneInps,
+                matrInps
             };
             console.log(formData);
             onSubmit();
@@ -168,6 +174,14 @@ const FiscoSection = ({ currentSection, onSubmit }) => {
 
     const handleAgeOpen = () => {
         setAgeOpen(true);
+    }
+
+    const handleIscrizioneClose = () => {
+        setIscrizioneOpen(false);
+    }
+
+    const handleIscrizioneOpen = () => {
+        setIscrizioneOpen(true);
     }
 
     return (
@@ -260,7 +274,7 @@ const FiscoSection = ({ currentSection, onSubmit }) => {
                                     <MenuItem value={'Contratto di Lavoro a tempo indeterminato'}>Contratto di Lavoro a tempo indeterminato</MenuItem>
                                     <MenuItem value={'Giovane fino a 18 anni'}>Giovane fino a 18 anni</MenuItem>
                                     <MenuItem value={'Studente fino a 25 anni'}>Studente fino a 25 anni</MenuItem>
-                                    <MenuItem value={'Pensionato'}>Pensionato oltre i 65 anni</MenuItem>
+                                    <MenuItem value={'Pensionato'}>Pensionato</MenuItem>
                                 </Select>
                             </FormControl>
                         </Grid>
@@ -407,6 +421,38 @@ const FiscoSection = ({ currentSection, onSubmit }) => {
                                 </Grid>
                             </>
                         )}
+                        <Grid item xs={12} sm={4}>
+                            <TextField
+                                label="Matricola Inps"
+                                fullWidth
+                                name="matrInps"
+                                value={matrInps}
+                                onChange={(event) => setMatrInps(event.target.value)}
+                           />
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <FormControl sx={{ width: '100%', mb: 2 }}>
+                                <InputLabel id="iscrizione-label" >
+                                    Iscrizione Inps
+                                </InputLabel>
+                                <Select
+                                    labelId="iscrizione-label"
+                                    id="iscrizione-id"
+                                    fullWidth
+                                    open={iscrizioneOpen}
+                                    onClose={handleIscrizioneClose}
+                                    onOpen={handleIscrizioneOpen}
+                                    name="iscrizione"
+                                    value={iscrizioneInps}
+                                    label="Iscrizione Inps"
+                                    onChange={(event) => setIscrizioneInps(event.target.value)}
+                                    required
+                                >
+                                    <MenuItem value={'>= 95>'}> > 95 </MenuItem>
+                                    <MenuItem value={'< 95'}> &lt; 95 </MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
                         <Grid item xs={12}>
                             <Button
                                 type="submit"

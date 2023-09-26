@@ -42,6 +42,9 @@ const ArtistaSection = ({ currentSection, onSubmit }) => {
     const [showStrumento, setShowStrumento] = useState(false);
     const [strumentoValue, setStrumentoValue] = useState(''); //Strumento selezionato
 
+    const [showVoice, setShowVoice] = useState(false);
+    const [voiceValue, setVoiceValue] = useState(''); //Voce selezionata
+
     const tipologieArtista = [
         "011 - Artisti lirici",
         "012 - Cantanti",
@@ -163,61 +166,50 @@ const ArtistaSection = ({ currentSection, onSubmit }) => {
         "Batteria",
         "Percussioni orchestrali (come tamburi, piatti, triangolo, castanets, ecc.)",        
     ];
+    const voices = [
+        "Soprano",
+        "Mezzosoprano",
+        "Contralto",
+        "Tenore",
+        "Baritono",
+        "Basso",
+    ];
 
     const [isFormComplete, setIsFormComplete] = useState(false);  
     
     useEffect(() => {
-        let isComplete = false;
-
         if (tipologia) {
-          if (tipologia === '081 - Concertisti e solisti' || tipologia === '082 - Professori d\'orchestra') {
-            setShowStrumento(true);
+          if (tipologia === '081 - Concertisti e solisti' || tipologia === '082 - Professori d\'orchestra' || tipologia === '083 - Orchestrali anche di musica leggera' || tipologia === '084 - Bandisti') {
             if (strumentoValue) {
-              isComplete = true;
+                setIsFormComplete(true)
             }
-          } else {
-            isComplete = true;
+          }
+          else if (tipologia === '011 - Artisti lirici') {
+            if (voiceValue) {
+                setIsFormComplete(true)
+            }
+          }
+          else {
+              setIsFormComplete(true);
           }
         }
-      
-        setIsFormComplete(isComplete);
-    }, [tipologia, strumentoValue]);
+    }, [nomeArte, tipologia, strumentoValue, voiceValue]);
     
 
     const handleSubmit = (event) => {
         event.preventDefault();
     
-        if (nomeArte && tipologia) {
-          if (tipologia === '081 - Concertisti e solisti' || tipologia === '082 - Professori d\'orchestra') {
-            if (strumentoValue) {
-              setIsFormComplete(true);
-              const formData = {
+        if (isFormComplete) {
+            const formData = {
                 nomeArte,
                 tipologia,
-                showStrumento,
-                strumentoValue
-                };
-              console.log(formData);
-              onSubmit();
-            } else {
-              setIsFormComplete(false);
-            }
-          } 
-          else {
-            setIsFormComplete(true);
-            const formData = {
-              nomeArte,
-              tipologia,
-              showStrumento,
-              strumentoValue
+                strumentoValue,
+                voiceValue
             };
-            console.log(formData);
-            onSubmit();
-          }
-        } 
-        else {
-            console.log('ciao');
-          setIsFormComplete(false);
+          console.log(formData);
+          onSubmit();
+        } else {
+            setIsFormComplete(false);
         }
     };
     
@@ -243,7 +235,15 @@ const ArtistaSection = ({ currentSection, onSubmit }) => {
     // Close Stato Strumento
     const handleStrumentoClose = () => {
         setShowStrumento(false);
-  };
+    };
+
+    const handleVoiceOpen = () => {
+        setShowVoice(true);
+    }
+
+    const handleVoiceClose = () => {
+        setShowVoice(false);
+    }
 
   return (
     <Container maxWidth="md">
@@ -260,7 +260,6 @@ const ArtistaSection = ({ currentSection, onSubmit }) => {
                 name="nomeArte"
                 value={nomeArte}
                 onChange={(event) => setNomeArte(event.target.value)}
-                required
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -286,32 +285,56 @@ const ArtistaSection = ({ currentSection, onSubmit }) => {
               </Select>
             </FormControl>
           </Grid>
-          {tipologia === '081 - Concertisti e solisti' || tipologia === '082 - Professori d\'orchestra' ? (
-            <Grid item xs={12} sm={4}>
+          {(tipologia === '081 - Concertisti e solisti' || tipologia === '082 - Professori d\'orchestra' || tipologia === '083 - Orchestrali anche di musica leggera' || tipologia === '084 - Bandisti') && (
+              <Grid item xs={12} sm={4}>
                 <FormControl sx={{ m: 1, minWidth: '13.7rem', maxWidth: '13.7rem' }} style={{ margin: 'auto' }}>
-                <InputLabel id="strumento-label">Strumento</InputLabel>
-                <Select
-                    labelId="strumento-label"
-                    id="strumento-id"
-                    open={showStrumento}
-                    onClose={handleStrumentoClose}
-                    onOpen={handleStrumentoOpen}
-                    name="stateStrumento"
-                    value={strumentoValue}
-                    label={'Stato Strumento'}
-                    onChange={(event) => setStrumentoValue(event.target.value)}
-                    required
-                >
-                    {strumenti.map((strumento) => (
-                    <MenuItem key={strumento} value={strumento}>
-                        {strumento}
-                    </MenuItem>
-                    ))}
-                </Select>
+                    <InputLabel id="strumento-label">Strumento</InputLabel>
+                    <Select
+                        labelId="strumento-label"
+                        id="strumento-id"
+                        open={showStrumento}
+                        onClose={handleStrumentoClose}
+                        onOpen={handleStrumentoOpen}
+                        name="stateStrumento"
+                        value={strumentoValue}
+                        label={'Stato Strumento'}
+                        onChange={(event) => setStrumentoValue(event.target.value)}
+                        required
+                    >
+                        {strumenti.map((strumento) => (
+                        <MenuItem key={strumento} value={strumento}>
+                            {strumento}
+                        </MenuItem>
+                        ))}
+                    </Select>
                 </FormControl>
             </Grid>
-            ) : null}
-
+          )}
+          {tipologia === '011 - Artisti lirici' && (
+                <Grid item xs={12} sm={4}>
+                    <FormControl sx={{ m: 1, minWidth: '13.7rem', maxWidth: '13.7rem' }} style={{ margin: 'auto' }}>
+                        <InputLabel id="strumento-label">Voce</InputLabel>
+                        <Select
+                            labelId="voce-label"
+                            id="voce-id"
+                            open={showVoice}
+                            onClose={handleVoiceClose}
+                            onOpen={handleVoiceOpen}
+                            name="stateVoice"
+                            value={voiceValue}
+                            label={'Voce'}
+                            onChange={(event) => setVoiceValue(event.target.value)}
+                            required
+                        >
+                            {voices.map((voice) => (
+                                <MenuItem key={voice} value={voice}>
+                                    {voice}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Grid>
+          )}
             <Grid item xs={12}>
                 <Button
                 type="submit"

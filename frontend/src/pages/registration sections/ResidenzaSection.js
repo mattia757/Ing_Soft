@@ -303,21 +303,7 @@ const ResidenzaSection = ({ currentSection, onSubmit }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (
-      residenza &&
-      cap &&
-      cittàResidenza &&
-      provinciaResidenza &&
-      regioneResidenza &&
-      stateResidence &&
-      ((!domicilioSameResidenza && domicilio) || domicilioSameResidenza) && // Condizione per il domicilio
-      ((!domicilioSameResidenza && capDomicilio) || domicilioSameResidenza) && // Condizione per il capDomicilio
-      ((!domicilioSameResidenza && cittàDomicilio) || domicilioSameResidenza) && // Condizione per la cittàDomicilio
-      ((!domicilioSameResidenza && provinciaDomicilio) || domicilioSameResidenza) && // Condizione per la provinciaDomicilio
-      ((!domicilioSameResidenza && regioneDomicilio) || domicilioSameResidenza) && // Condizione per la regioneDomicilio
-      ((!domicilioSameResidenza && stateDomicilio) || domicilioSameResidenza) // Condizione per lo stateDomicilio
-    ) {
-      setIsFormComplete(true);
+    if (isFormComplete){
       const formData = {
         residenza,
         cap,
