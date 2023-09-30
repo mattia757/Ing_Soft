@@ -44,7 +44,7 @@ public class User implements UserDetails {
     @NotBlank(message = "The tax id code cannot be empty")
     @NotNull(message = "The tax id code name cannot be null")
     @Pattern(regexp = "^[a-zA-Z]{6}\\d{2}[a-zA-Z]\\d{2}[a-zA-Z]\\d{3}[a-zA-Z]$")
-    private String taxIdCode;
+    private String taxCode;
 
     @Column(nullable = false , unique = true)
     @NotBlank(message = "The email cannot be empty")

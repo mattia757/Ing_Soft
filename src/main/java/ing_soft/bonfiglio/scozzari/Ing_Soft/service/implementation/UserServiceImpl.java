@@ -9,6 +9,8 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.repo.UserRepository;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.interfaces.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -18,53 +20,32 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepo;
-    private final UserMapper userMapper;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
-    public Optional<UserDTO> findByEmail(String email) {
-        Optional<User> user = userRepo.getUserByEmail(email);
+    public Optional<User> updateUserPassword(Long id, String newPassword) throws UserNotFoundException {
+        Optional<User> user = userRepository.findById(id);
         if(user.isPresent()){
-            return Optional.of(userMapper.apply(user.get()));
+            User userModified = user.get();
+            String encodedPassword = passwordEncoder.encode(newPassword);
+            userModified.setPassword(encodedPassword);
+            userRepository.save(userModified);
+            return Optional.of(userModified);
         }
         else {
-            try {
-                throw new UserNotFoundException("User not found with EMAIL: " + email);
-            } catch (UserNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            throw new UserNotFoundException("User not found!");
         }
     }
 
     @Override
-    public Optional<Boolean> insert(User user){
-        Optional<User> utente = userRepo.getUserByEmail(user.getEmail());
-        if(utente.isPresent()){
-            try {
-                throw new UserAlreadyExistException("User Already Exist!");
-            } catch (UserAlreadyExistException e) {
-                throw new RuntimeException(e);
-            }
+    public Optional<User> getUserByUsername(String username) throws UserNotFoundException {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            return user;
         }
         else {
-            userRepo.save(user);
-            return Optional.of(true);
-        }
-    }
-
-    @Override
-    public Optional<Boolean> delete(String email){
-        Optional<User> utente = userRepo.getUserByEmail(email);
-        if(!utente.isPresent()){
-            try {
-                throw new UserNotFoundException("User not found with EMAIL: " + email);
-            } catch (UserNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        else {
-            userRepo.deleteById(Long.valueOf(email));
-            return Optional.of(true);
+            throw new UserNotFoundException("User with username: " + username + " not found!");
         }
     }
 }

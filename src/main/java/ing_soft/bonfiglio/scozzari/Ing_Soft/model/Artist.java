@@ -22,22 +22,11 @@ public class Artist{
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank(message = "The name cannot be empty")
-    @NotNull(message = "The name cannot be null")
-    @Pattern(regexp = "^[^- '](?=(?![A-Z]?[A-Z]))(?=(?![a-z]+[A-Z]))(?=(?!.*[A-Z][A-Z]))(?=(?!.*[- '][- '.]))(?=(?!.*[.][-'.]))[A-Za-z- '.]{2,}$")
-    private String firstName;
-
-    @Column(nullable = false)
-    @NotBlank(message = "The surname cannot be empty")
-    @NotNull(message = "The last name cannot be null")
-    @Pattern(regexp = "^[^- '](?=(?![A-Z]?[A-Z]))(?=(?![a-z]+[A-Z]))(?=(?!.*[A-Z][A-Z]))(?=(?!.*[- '][- '.]))(?=(?!.*[.][-'.]))[A-Za-z- '.]{2,}$")
-    private String lastName;
-
-    @Column(nullable = false)
     @NotBlank(message = "The gender cannot be empty")
     @NotNull(message = "The gender cannot be null")
     @Pattern(regexp = "^(Maschio|Femmina|Altro)$")
     private String gender;
+    //TODO Enum for gender
 
     @Column(nullable = false)
     @NotBlank(message = "The date of birth cannot be empty")
@@ -66,18 +55,17 @@ public class Artist{
     @NotBlank(message = "The state of citizenship cannot be empty")
     @NotNull(message = "The state of citizenship cannot be null")
     private String stateOfCitizenship;
+    //TODO Enum
 
     @Column(nullable = false)
     @NotBlank(message = "The cell phone number cannot be empty")
     @NotNull(message = "The cell phone number cannot be null")
-    private String cellPhoneNumber1;
+    private String cellPhone1;
 
     @Column(nullable = true)
-    private String cellPhoneNumber2;
+    private String cellPhone2;
 
-    @Column(nullable = false, unique = true)
-    @NotBlank(message = "The pec cannot be empty")
-    @NotNull(message = "The pec cannot be null")
+    @Column(nullable = true, unique = true)
     @Email(message = "The pec must respect the format")
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$")
     private String pec;
@@ -145,7 +133,7 @@ public class Artist{
     @NotNull(message = "The state of domicile cannot be null")
     private String stateOfDomicile;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     @NotBlank(message = "The stage name cannot be empty")
     @NotNull(message = "The stage name cannot be null")
     private String stageName;
@@ -153,22 +141,19 @@ public class Artist{
     @Column(nullable = false)
     @NotBlank(message = "The artist typology cannot be empty")
     @NotNull(message = "The artist typology cannot be null")
-    private String artistTypology;
+    private Integer idTypology;
+    //TODO FK Table Typology
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     @NotBlank(message = "The instrument cannot be empty")
     @NotNull(message = "The instrument cannot be null")
     private String instrument;
 
-    @Column(nullable = false)
-    @NotBlank(message = "The compensation cannot be empty")
-    @NotNull(message = "The compensation cannot be null")
-    private String compensation;
+    private String voice; //TODO
 
-    @Column(nullable = false)
-    @NotBlank(message = "The burden cannot be empty")
-    @NotNull(message = "The burden cannot be null")
-    private String burden;
+    //TODO Bank Account
+
+    //TODO Fisco
 
     @AssertTrue(message = "L'utente deve essere maggiorenne")
     private boolean isAdult(){

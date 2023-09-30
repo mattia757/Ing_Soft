@@ -1,6 +1,5 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.security.config;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.exception.UserNotFoundException;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
