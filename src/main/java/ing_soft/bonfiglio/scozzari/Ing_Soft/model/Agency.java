@@ -9,10 +9,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "Agency")
 public class Agency {
 
     @Id
@@ -20,33 +24,29 @@ public class Agency {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank(message = "The name of the agency cannot be empty")
-    @NotNull(message = "The name of the agency cannot be null")
     private String nameAgency;
 
-    @Column(nullable = false)
-    @NotBlank(message = "The cell phone number cannot be empty")
-    @NotNull(message = "The cell phone number cannot be null")
-    private String cellPhoneNumber1;
-
-    @Column
-    private String cellPhoneNumber2;
-
     @Column(nullable = false , unique = true)
-    @NotBlank(message = "The email cannot be empty")
-    @NotNull(message = "The email cannot be null")
     @Email(message = "The email must respect the format")
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$")
     private String email;
 
-    @Column(nullable = false, unique = true)
-    @NotBlank(message = "The pec cannot be empty")
-    @NotNull(message = "The pec cannot be null")
+    @Column(nullable = false , unique = true)
     @Email(message = "The pec must respect the format")
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$")
     private String pec;
 
+    @Column(nullable = false)
+    @Pattern(regexp = "^\\+(?:[0-9] ?){6,14}[0-9]$\n")
+    private String tel;
+
     @Column(nullable = true)
     private String webSite;
+
+    @ManyToMany(mappedBy = "agencies")
+    private Set<Artist> artists = new HashSet<>();
+
+    @ManyToMany(mappedBy = "agencies")
+    private Set<User> users = new HashSet<>();
 
 }

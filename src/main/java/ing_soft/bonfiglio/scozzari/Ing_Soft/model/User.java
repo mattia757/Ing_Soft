@@ -15,7 +15,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -29,43 +31,41 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank(message = "The name cannot be empty")
-    @NotNull(message = "The name cannot be null")
     @Pattern(regexp = "^[^- '](?=(?![A-Z]?[A-Z]))(?=(?![a-z]+[A-Z]))(?=(?!.*[A-Z][A-Z]))(?=(?!.*[- '][- '.]))(?=(?!.*[.][-'.]))[A-Za-z- '.]{2,}$")
-    private String firstName;
+    private String name;
 
     @Column(nullable = false)
-    @NotBlank(message = "The surname cannot be empty")
-    @NotNull(message = "The surname cannot be null")
     @Pattern(regexp = "^[^- '](?=(?![A-Z]?[A-Z]))(?=(?![a-z]+[A-Z]))(?=(?!.*[A-Z][A-Z]))(?=(?!.*[- '][- '.]))(?=(?!.*[.][-'.]))[A-Za-z- '.]{2,}$")
-    private String lastName;
+    private String surname;
 
     @Column(nullable = false, unique = true)
-    @NotBlank(message = "The tax id code cannot be empty")
-    @NotNull(message = "The tax id code name cannot be null")
-    @Pattern(regexp = "^[a-zA-Z]{6}\\d{2}[a-zA-Z]\\d{2}[a-zA-Z]\\d{3}[a-zA-Z]$")
+    @Pattern(regexp = "/^(?:[A-Z][AEIOU][AEIOUX]|[AEIOU]X{2}|[B-DF-HJ-NP-TV-Z]{2}[A-Z]){2}(?:[\\dLMNP-V]{2}(?:[A-EHLMPR-T](?:[04LQ][1-9MNP-V]|[15MR][\\dLMNP-V]|[26NS][0-8LMNP-U])|[DHPS][37PT][0L]|[ACELMRT][37PT][01LM]|[AC-EHLMPR-T][26NS][9V])|(?:[02468LNQSU][048LQU]|[13579MPRTV][26NS])B[26NS][9V])(?:[A-MZ][1-9MNP-V][\\dLMNP-V]{2}|[A-M][0L](?:[1-9MNP-V][\\dLMNP-V]|[0L][1-9MNP-V]))[A-Z]$/i")
     private String taxCode;
 
     @Column(nullable = false , unique = true)
-    @NotBlank(message = "The email cannot be empty")
-    @NotNull(message = "The email cannot be null")
     @Email(message = "The email must respect the format")
-    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$")
+    @Pattern(regexp = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$/")
     private String email;
 
-    @Column(nullable = false , unique = true)
-    @NotBlank(message = "The username cannot be empty")
-    @NotNull(message = "The username cannot be null")
+    @Column(nullable = false)
     private String username;
 
     @Column(nullable = false)
-    @NotBlank(message = "The password cannot be empty")
-    @NotNull(message = "The password cannot be null")
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
     private String password;
 
     @Enumerated(EnumType.STRING)
     private UserRoles role;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_agency",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "agency_id"))
+    private Set<Agency> agencies = new HashSet<>();
+
+    @OneToOne(mappedBy = "user")
+    private Artist artist;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
