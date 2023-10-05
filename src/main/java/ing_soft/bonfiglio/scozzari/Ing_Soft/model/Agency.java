@@ -1,5 +1,7 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.ArtistAgency;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.UserAgency;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
@@ -36,15 +38,19 @@ public class Agency {
 
     @Column(nullable = false, unique = true)
     @Pattern(regexp = "^\\+(?:[0-9] ?){6,14}[0-9]$\n")
-    private String tel;
+    private String tel1;
+
+    @Column(nullable = true, unique = true)
+    @Pattern(regexp = "^\\+(?:[0-9] ?){6,14}[0-9]$\n")
+    private String tel2;
 
     @Column(nullable = true)
     private String webSite;
 
-    @ManyToMany(mappedBy = "agencies")
-    private Set<Artist> artists = new HashSet<>();
+    @OneToMany(mappedBy = "agency")
+    private Set<ArtistAgency> artistAgencies = new HashSet<>();
 
-    @ManyToMany(mappedBy = "agencies")
-    private Set<User> users = new HashSet<>();
+    @OneToMany(mappedBy = "agency")
+    private Set<UserAgency> userAgencies = new HashSet<>();
 
 }

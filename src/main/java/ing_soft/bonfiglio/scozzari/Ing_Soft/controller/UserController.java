@@ -1,5 +1,7 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.controller;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.RegistrationArtistDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.RegistrationArtistMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.exception.UnauthenticatedUserException;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.exception.UserNotFoundException;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.User;
@@ -17,6 +19,9 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    private RegistrationArtistMapper registrationArtistMapper;
+
 
     @Autowired
     private AuthenticationService authenticationService;

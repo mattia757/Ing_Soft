@@ -1,5 +1,6 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.RegistrationArtistMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.exception.UserNotFoundException;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.User;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.repo.UserRepository;

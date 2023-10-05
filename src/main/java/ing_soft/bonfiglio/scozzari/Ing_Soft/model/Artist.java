@@ -1,11 +1,10 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.*;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.ArtistAgency;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -104,6 +103,9 @@ public class Artist{
     private String voice;
 
     @Column(nullable = true)
+    private Boolean isIva;
+
+    @Column(nullable = true)
     private String iva;
 
     @Column(nullable = true)
@@ -114,7 +116,7 @@ public class Artist{
     private String inpsNumber;
 
     @Column(nullable = false)
-    private boolean memberFrom;
+    private Boolean memberFrom;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -127,12 +129,8 @@ public class Artist{
             inverseJoinColumns = @JoinColumn(name = "tipology_id"))
     private Set<Typology> typologies = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "artist_agency",
-            joinColumns = @JoinColumn(name = "artist_id"),
-            inverseJoinColumns = @JoinColumn(name = "agency_id"))
-    private Set<Agency> agencies = new HashSet<>();
+    @OneToMany(mappedBy = "artist")
+    private Set<ArtistAgency> artistAgencies = new HashSet<>();
 
     @OneToOne
     private User user;

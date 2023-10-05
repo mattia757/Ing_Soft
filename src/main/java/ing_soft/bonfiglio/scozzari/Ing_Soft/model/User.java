@@ -1,6 +1,8 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.UserRoles;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.ArtistAgency;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.UserAgency;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
@@ -56,15 +58,14 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRoles role;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_agency",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "agency_id"))
-    private Set<Agency> agencies = new HashSet<>();
-
     @OneToOne(mappedBy = "user")
     private Artist artist;
+
+    @OneToOne(mappedBy = "user")
+    private ArtistAgency artistAgency;
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserAgency> userAgencies = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

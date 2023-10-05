@@ -1,4 +1,4 @@
-package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.Mapper;
+package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.UserDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.User;
