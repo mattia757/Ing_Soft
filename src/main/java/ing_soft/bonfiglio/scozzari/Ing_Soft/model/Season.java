@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.*;
 
 @Entity
@@ -25,13 +26,10 @@ public class Season {
     private String title;
 
     @Column(nullable = false)
-    private short year;
+    private LocalDate startDate;
 
     @Column(nullable = false)
-    private Date startDate;
-
-    @Column(nullable = false)
-    private Date endDate;
+    private LocalDate endDate;
 
     @Column(nullable = false)
     private BigDecimal artisticDirectorSocialCosts;

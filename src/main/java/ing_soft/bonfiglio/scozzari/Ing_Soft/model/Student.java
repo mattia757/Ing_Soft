@@ -17,6 +17,7 @@ public class Student {
 
     @Column(nullable = false)
     private String studies;
+    //TODO Specify the studies
 
     @OneToOne
     private Artist artist;

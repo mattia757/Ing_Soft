@@ -16,12 +16,12 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tipology {
+public class Typology {
 
     @Id
     @Column(length = 3)
     private String id;
 
-    @ManyToMany(mappedBy = "tipologies")
+    @ManyToMany(mappedBy = "typologies")
     private Set<Artist> artists = new HashSet<>();
 }

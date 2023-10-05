@@ -2,8 +2,6 @@ package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,8 +21,8 @@ public class Agency {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String nameAgency;
+    @Column(nullable = false, unique = true)
+    private String name;
 
     @Column(nullable = false , unique = true)
     @Email(message = "The email must respect the format")
@@ -36,7 +34,7 @@ public class Agency {
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$")
     private String pec;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @Pattern(regexp = "^\\+(?:[0-9] ?){6,14}[0-9]$\n")
     private String tel;
 

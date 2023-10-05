@@ -1,6 +1,5 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Revenue;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,10 +17,10 @@ public class PermanentWork {
 
     @Column(nullable = false)
     private String employer;
+    //TODO Specify agency
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Revenue revenue;
+    private boolean isRevenueOver5000;
 
     @OneToOne
     private Artist artist;

@@ -1,6 +1,5 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.MemberFrom;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -89,9 +88,8 @@ public class Invoice {
     @Column(nullable = false, length = 255)
     private String season;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private MemberFrom memberFrom;
+    private boolean memberFrom;
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal compensationNumber;

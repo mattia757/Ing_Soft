@@ -46,16 +46,16 @@ public class Artist{
     @Enumerated(EnumType.STRING)
     private StateOfCitizenship stateOfCitizenship;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String cellPhone1;
 
-    @Column
+    @Column(nullable = true, unique = true)
     private String cellPhone2;
 
-    @Column(unique = true)
+    @Column(nullable = true, unique = true)
     private String pec;
 
-    @Column
+    @Column(nullable = true)
     private String website;
 
     @Column(nullable = false)
@@ -94,28 +94,27 @@ public class Artist{
     @Column(nullable = false)
     private String stateOfDomicile;
 
-    @Column
+    @Column(nullable = true)
     private String stageName;
 
-    @Column
+    @Column(nullable = true)
     private String instrument;
 
-    @Column
+    @Column(nullable = true)
     private String voice;
 
-    @Column
+    @Column(nullable = true)
     private String iva;
 
-    @Column
+    @Column(nullable = true)
     @Enumerated(EnumType.STRING)
     private Taxation taxation;
 
-    @Column
+    @Column(nullable = true)
     private String inpsNumber;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private MemberFrom memberFrom;
+    private boolean memberFrom;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -126,7 +125,7 @@ public class Artist{
             name = "artist_tipology",
             joinColumns = @JoinColumn(name = "artist_id"),
             inverseJoinColumns = @JoinColumn(name = "tipology_id"))
-    private Set<Tipology> tipologies = new HashSet<>();
+    private Set<Typology> typologies = new HashSet<>();
 
     @ManyToMany
     @JoinTable(

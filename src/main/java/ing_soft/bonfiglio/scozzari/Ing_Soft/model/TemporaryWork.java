@@ -1,12 +1,11 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Revenue;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -20,14 +19,14 @@ public class TemporaryWork {
 
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date deadline;
+    private LocalDate deadline;
 
     @Column(nullable = false)
     private String employer;
+    //TODO Specify agency
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Revenue revenue;
+    private boolean isRevenueOver5000;
 
     @OneToOne
     private Artist artist;

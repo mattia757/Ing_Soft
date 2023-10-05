@@ -1,6 +1,5 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Age;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,8 +16,7 @@ public class Retired {
     private Long id;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Age age;
+    private boolean isOver65;
 
     @OneToOne
     private Artist artist;
