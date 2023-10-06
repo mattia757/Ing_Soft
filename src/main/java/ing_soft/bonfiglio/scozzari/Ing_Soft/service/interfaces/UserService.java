@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface UserService {
     void updateUserPassword(Long id, String newPassword) throws UserNotFoundException;
-    Optional<User> getUserByUsername(String username) throws UserNotFoundException;
+    Optional<User> getUserByUsername(String username);
 }

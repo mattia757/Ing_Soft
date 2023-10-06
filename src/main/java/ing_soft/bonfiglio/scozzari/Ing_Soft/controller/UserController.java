@@ -11,6 +11,7 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.security.auth.AuthenticationService;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.interfaces.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,25 +27,32 @@ public class UserController {
 
     @Autowired
     private AuthenticationService authenticationService;
-
-    @PutMapping(value = "/updatePassword/{id}", consumes = "application/json")
+    @PutMapping("/updatePassword")
     public ResponseEntity<String> updateUserPassword(
-            @PathVariable("id") Long id,
-            @RequestBody @Valid String password
-    ) throws UserNotFoundException, UnauthenticatedUserException {
-        Optional<User> authenticationUser = authenticationService.getAuthenticationUser();
-        if(authenticationUser.isPresent()){
-            User user = authenticationUser.get();
-            if(user.getId().equals(id)){
-                userService.updateUserPassword(id, password);
-                return ResponseEntity.ok("Password updated successfully");
+            @RequestParam Long id,
+            @RequestParam String newPassword
+    ) {
+        try {
+            Optional<User> authenticatedUser = authenticationService.getAuthenticationUser();
+
+            if (authenticatedUser.isEmpty()) {
+                throw new UnauthenticatedUserException("Unauthenticated user");
             }
-            else {
-                return ResponseEntity.badRequest().body("You are not authorized to change your password");
+
+            User user = authenticatedUser.get();
+
+            if (!user.getId().equals(id)) {
+                throw new UserNotFoundException("User not found!");
             }
-        }
-        else {
-            throw new UnauthenticatedUserException("Unauthorized user");
+            userService.updateUserPassword(id, newPassword);
+            return ResponseEntity.ok("Password aggiornata con successo");
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Utente non trovato");
+        } catch (UnauthenticatedUserException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Utente non autenticato");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore durante l'aggiornamento della password");
         }
     }
+
 }

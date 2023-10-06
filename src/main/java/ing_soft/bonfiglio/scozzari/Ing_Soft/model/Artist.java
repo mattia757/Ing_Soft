@@ -8,7 +8,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -105,7 +104,7 @@ public class Artist{
     @Column(nullable = true)
     private Boolean isIva;
 
-    @Column(nullable = true)
+    @Column(nullable = true, unique = true)
     private String iva;
 
     @Column(nullable = true)
