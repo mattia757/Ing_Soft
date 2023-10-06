@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubBankAccountITMapper {
 
-    public static BankAccountIT mapToBankITAccount(SubBankAccountDTO subBankAccountDTO) {
+    public static BankAccountIT bankITAccountToBankAccount (SubBankAccountDTO subBankAccountDTO) {
         if (subBankAccountDTO == null) {
             return null;
         }
@@ -24,6 +24,22 @@ public class SubBankAccountITMapper {
         bankAccount.setIban(subBankAccountDTO.getIban());
 
         return bankAccount;
+    }
+
+    public static SubBankAccountDTO bankITAccountToBankAccountDTO(SubBankAccountDTO subBankAccountDTO) {
+        if (subBankAccountDTO == null) {
+            return null;
+        }
+
+        SubBankAccountDTO bankAccountDTO = new SubBankAccountDTO();
+
+        bankAccountDTO.setBeneficiaryName(subBankAccountDTO.getBeneficiaryName());
+        bankAccountDTO.setBankName(subBankAccountDTO.getBankName());
+        bankAccountDTO.setAbi(subBankAccountDTO.getAbi());
+        bankAccountDTO.setCab(subBankAccountDTO.getCab());
+        bankAccountDTO.setIban(subBankAccountDTO.getIban());
+
+        return bankAccountDTO;
     }
 
 }

@@ -22,42 +22,42 @@ public class RegistrationArtistMapper{
     private SubPermanentWorkMapper subPermanentWorkMapper;
 
     public User getUserFromDTO (RegistrationArtistDTO registrationArtistDTO){
-        return SubUserMapper.mapToUser(registrationArtistDTO.getSubUserDTO());
+        return SubUserMapper.userDTOToUser(registrationArtistDTO.getSubUserDTO());
     }
 
     public Artist getArtistFromDTO (RegistrationArtistDTO registrationArtistDTO){
-        return SubArtistMapper.mapToArtist(registrationArtistDTO.getSubArtistDTO());
+        return SubArtistMapper.artistDTOToArtist(registrationArtistDTO.getSubArtistDTO());
     }
 
     public Agency getAgencyFromDTO (RegistrationArtistDTO registrationArtistDTO){
-        return SubAgencyMapper.mapToAgency(registrationArtistDTO.getSubAgencyDTO());
+        return SubAgencyMapper.agencyDTOToAgency(registrationArtistDTO.getSubAgencyDTO());
     }
 
     public BankAccountIT getBankAccountITFromDTO (RegistrationArtistDTO registrationArtistDTO){
-        return SubBankAccountITMapper.mapToBankITAccount(registrationArtistDTO.getSubBankAccountDTO());
+        return SubBankAccountITMapper.bankITAccountToBankAccount(registrationArtistDTO.getSubBankAccountDTO());
     }
 
     public BankAccountForeign getBankAccountForeignFromDTO (RegistrationArtistDTO registrationArtistDTO){
-        return SubBankAccountForeignMapper.mapToBankForeignAccount(registrationArtistDTO.getSubBankAccountDTO());
+        return SubBankAccountForeignMapper.subBankAccountDTOToBankAccount(registrationArtistDTO.getSubBankAccountDTO());
     }
 
     public PermanentWork getPermanentWorkFromDTO (RegistrationArtistDTO registrationArtistDTO){
-        return SubPermanentWorkMapper.mapToPermanentWork(registrationArtistDTO.getSubPermanentWorkDTO());
+        return SubPermanentWorkMapper.subPermanentWorkDTOToPermanentWork(registrationArtistDTO.getSubPermanentWorkDTO());
     }
 
     public TemporaryWork getTemporaryWorkFromDTO (RegistrationArtistDTO registrationArtistDTO){
-        return SubTemporaryWorkMapper.mapToTemporaryWork(registrationArtistDTO.getSubTemporaryWorkDTO());
+        return SubTemporaryWorkMapper.subTemporaryWorkDTOToTemporaryWork(registrationArtistDTO.getSubTemporaryWorkDTO());
     }
 
     public Retired getRetiredFromDTO (RegistrationArtistDTO registrationArtistDTO){
-        return SubRetiredMapper.mapToRetired(registrationArtistDTO.getSubRetiredDTO());
+        return SubRetiredMapper.subArtistDTOToRetired(registrationArtistDTO.getSubRetiredDTO());
     }
 
     public Student getStudentFromDTO (RegistrationArtistDTO registrationArtistDTO){
-        return SubStudentMapper.mapToStudent(registrationArtistDTO.getSubStudentDTO());
+        return SubStudentMapper.subStudentDTOToStudent(registrationArtistDTO.getSubStudentDTO());
     }
 
     public Unemployed getUnemployedFromDTO (RegistrationArtistDTO registrationArtistDTO){
-        return SubUnemployedMapper.mapToUnemployed(registrationArtistDTO.getSubUnemployedDTO());
+        return SubUnemployedMapper.SubUnemployedDTOToUnemployed(registrationArtistDTO.getSubUnemployedDTO());
     }
 }

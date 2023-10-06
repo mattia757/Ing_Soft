@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubTemporaryWorkMapper {
 
-    public static TemporaryWork mapToTemporaryWork(SubTemporaryWorkDTO subTemporaryWorkDTO) {
+    public static TemporaryWork subTemporaryWorkDTOToTemporaryWork(SubTemporaryWorkDTO subTemporaryWorkDTO) {
         if (subTemporaryWorkDTO == null) {
             return null;
         }
@@ -22,5 +22,19 @@ public class SubTemporaryWorkMapper {
 
         return temporaryWork;
     }
+
+    public static SubTemporaryWorkDTO temporaryWorkToSubTemporaryWorkDTO(TemporaryWork temporaryWork) {
+        if (temporaryWork == null) {
+            return null;
+        }
+
+        SubTemporaryWorkDTO subTemporaryWorkDTO = new SubTemporaryWorkDTO();
+        subTemporaryWorkDTO.setEmployer(temporaryWork.getEmployer());
+        subTemporaryWorkDTO.setDeadline(temporaryWork.getDeadline());
+        subTemporaryWorkDTO.setRevenueOver5000(temporaryWork.isRevenueOver5000());
+
+        return subTemporaryWorkDTO;
+    }
+
 
 }

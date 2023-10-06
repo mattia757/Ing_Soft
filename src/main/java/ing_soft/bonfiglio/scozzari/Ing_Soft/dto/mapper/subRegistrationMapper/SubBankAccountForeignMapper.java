@@ -2,16 +2,12 @@ package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationMapper;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationDTO.SubBankAccountDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.BankAccountForeign;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.BankAccountIT;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SubBankAccountForeignMapper {
 
-    public static BankAccountForeign mapToBankForeignAccount(SubBankAccountDTO subBankAccountDTO) {
+    public static BankAccountForeign subBankAccountDTOToBankAccount (SubBankAccountDTO subBankAccountDTO) {
         if (subBankAccountDTO == null) {
             return null;
         }
@@ -24,5 +20,20 @@ public class SubBankAccountForeignMapper {
 
         return bankAccount;
     }
+
+    public static SubBankAccountDTO bankAccountToSubBankAccountDTO(BankAccountForeign bankAccount) {
+        if (bankAccount == null) {
+            return null;
+        }
+
+        SubBankAccountDTO subBankAccountDTO = new SubBankAccountDTO();
+
+        subBankAccountDTO.setBeneficiaryName(bankAccount.getBeneficiaryName());
+        subBankAccountDTO.setIban(bankAccount.getIban());
+        subBankAccountDTO.setBicSwift(bankAccount.getBicSwift());
+
+        return subBankAccountDTO;
+    }
+
 
 }

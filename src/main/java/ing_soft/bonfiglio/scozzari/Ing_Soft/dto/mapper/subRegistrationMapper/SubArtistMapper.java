@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Component
 public class SubArtistMapper {
 
-    public static Artist mapToArtist(SubArtistDTO subArtistDTO) {
+    public static Artist artistDTOToArtist(SubArtistDTO subArtistDTO) {
         if (subArtistDTO == null) {
             return null;
         }
@@ -43,7 +43,7 @@ public class SubArtistMapper {
         artist.setRegionOfDomicile(subArtistDTO.getRegionOfDomicile());
         artist.setStateOfDomicile(subArtistDTO.getStateOfDomicile());
         artist.setStageName(subArtistDTO.getStageName());
-        artist.setTypologies(subArtistDTO.getIdTypology());
+        artist.setTypologies(subArtistDTO.getIdTypologies());
         artist.setInstrument(subArtistDTO.getInstrument());
         artist.setVoice(subArtistDTO.getVoice());
         artist.setIsIva(subArtistDTO.getIsIva());
@@ -56,5 +56,52 @@ public class SubArtistMapper {
 
         return artist;
     }
+
+    public static SubArtistDTO artistToSubArtistDTO(Artist artist) {
+        if (artist == null) {
+            return null;
+        }
+
+        SubArtistDTO subArtistDTO = new SubArtistDTO();
+
+        // Mappa i campi da Artist a SubArtistDTO
+        subArtistDTO.setGender(artist.getGender().name());
+        subArtistDTO.setBirthDate(artist.getBirthDate());
+        subArtistDTO.setBirthPlace(artist.getBirthPlace());
+        subArtistDTO.setBirthState(artist.getBirthState());
+        subArtistDTO.setEducationTitle(artist.getEducationTitle());
+        subArtistDTO.setEuropean(artist.isEuropean());
+        subArtistDTO.setStateOfCitizenship(artist.getStateOfCitizenship().name());
+        subArtistDTO.setCellPhone1(artist.getCellPhone1());
+        subArtistDTO.setCellPhone2(artist.getCellPhone2());
+        subArtistDTO.setPec(artist.getPec());
+        subArtistDTO.setWebsite(artist.getWebsite());
+        subArtistDTO.setResidence(artist.getResidence());
+        subArtistDTO.setPostalCodeOfResidence(artist.getPostalCodeOfResidence());
+        subArtistDTO.setCityOfResidence(artist.getCityOfResidence());
+        subArtistDTO.setProvinceOfResidence(artist.getProvinceOfResidence());
+        subArtistDTO.setRegionOfResidence(artist.getRegionOfResidence());
+        subArtistDTO.setStateOfResidence(artist.getStateOfResidence());
+        subArtistDTO.setDomicile(artist.getDomicile());
+        subArtistDTO.setPostalCodeOfDomicile(artist.getPostalCodeOfDomicile());
+        subArtistDTO.setCityOfDomicile(artist.getCityOfDomicile());
+        subArtistDTO.setProvinceOfDomicile(artist.getProvinceOfDomicile());
+        subArtistDTO.setRegionOfDomicile(artist.getRegionOfDomicile());
+        subArtistDTO.setStateOfDomicile(artist.getStateOfDomicile());
+        subArtistDTO.setStageName(artist.getStageName());
+        subArtistDTO.setIdTypologies(artist.getTypologies());
+        subArtistDTO.setInstrument(artist.getInstrument());
+        subArtistDTO.setVoice(artist.getVoice());
+        subArtistDTO.setIsIva(artist.getIsIva());
+        subArtistDTO.setIva(artist.getIva());
+        subArtistDTO.setTaxation(artist.getTaxation());
+        subArtistDTO.setIva(artist.getIva());
+        subArtistDTO.setOccupation(artist.getOccupation());
+        subArtistDTO.setInpsNumber(artist.getInpsNumber());
+        subArtistDTO.setMemberFrom(artist.getMemberFrom());
+
+        return subArtistDTO;
+    }
+
 
 }

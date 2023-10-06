@@ -20,7 +20,7 @@ public class PermanentWork {
     //TODO Specify agency
 
     @Column(nullable = false)
-    private boolean isRevenueOver5000;
+    private Boolean isRevenueOver5000;
 
     @OneToOne
     private Artist artist;

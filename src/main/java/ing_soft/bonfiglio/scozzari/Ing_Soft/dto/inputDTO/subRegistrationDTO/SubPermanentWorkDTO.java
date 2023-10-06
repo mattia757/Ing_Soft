@@ -1,5 +1,8 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationDTO;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SubPermanentWorkDTO {
 
+        @NotBlank(message = "Employer name cannot be empty")
+        @Size(max = 255, message = "Employer name cannot be longer than 255 characters")
         private String employer;
-        private boolean isRevenueOver5000;
+
+        @NotBlank(message = "Revenue type cannot be null")
+        private Boolean revenue;
 }

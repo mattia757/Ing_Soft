@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubRetiredMapper {
 
-    public static Retired mapToRetired(SubRetiredDTO subRetiredDTO) {
+    public static Retired subArtistDTOToRetired(SubRetiredDTO subRetiredDTO) {
         if (subRetiredDTO == null) {
             return null;
         }
@@ -19,5 +19,16 @@ public class SubRetiredMapper {
         retired.setOver65(subRetiredDTO.isOver65());
 
         return retired;
+    }
+
+    public static SubRetiredDTO retiredToSubRetiredDTO(Retired retired) {
+        if (retired == null) {
+            return null;
+        }
+
+        SubRetiredDTO subRetiredDTO = new SubRetiredDTO();
+        subRetiredDTO.setOver65(retired.isOver65());
+
+        return subRetiredDTO;
     }
 }

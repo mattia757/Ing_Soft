@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubStudentMapper {
 
-    public static Student mapToStudent(SubStudentDTO subStudentDTO) {
+    public static Student subStudentDTOToStudent(SubStudentDTO subStudentDTO) {
         if (subStudentDTO == null) {
             return null;
         }
@@ -23,4 +23,14 @@ public class SubStudentMapper {
         return student;
     }
 
+    public static SubStudentDTO studentToSubStudentDTO(Student student) {
+        if (student == null) {
+            return null;
+        }
+
+        SubStudentDTO subStudentDTO = new SubStudentDTO();
+        subStudentDTO.setStudies(student.getStudies());
+
+        return subStudentDTO;
+    }
 }
