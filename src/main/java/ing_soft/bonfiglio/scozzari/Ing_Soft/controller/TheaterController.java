@@ -4,6 +4,7 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.TheaterDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.TheaterMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation.TheaterServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/theater")
 public class TheaterController {
 
+    @Autowired
     private TheaterServiceImpl theaterService;
+    @Autowired
     private TheaterMapper theaterMapper;
 
     @PostMapping(value = "/add")
@@ -23,7 +26,12 @@ public class TheaterController {
         @RequestBody InputDTO theaterDTO
     ){
         try {
+            System.out.println(theaterDTO.toString());
+
             theaterService.addTheater(theaterMapper.theaterDTOToTheater((TheaterDTO) theaterDTO));
+
+
+
             return ResponseEntity.status(HttpStatus.CREATED).body("Theater successfully created!");
         } catch (Exception e) {
             throw new RuntimeException(e);

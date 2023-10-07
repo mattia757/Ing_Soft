@@ -6,6 +6,7 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.repo.TheaterRepository;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.interfaces.TheaterService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
