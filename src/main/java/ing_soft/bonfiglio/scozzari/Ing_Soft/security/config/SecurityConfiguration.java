@@ -27,6 +27,8 @@ public class SecurityConfiguration {
                 .permitAll()
                 .requestMatchers("/api/theater/**")
                 .permitAll()
+                .requestMatchers("/api/artist/**")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
