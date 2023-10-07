@@ -1,10 +1,8 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.TheaterDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Theater;
-import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,23 +27,23 @@ public class TheaterMapper {
         return theaterDTO;
     }
 
-    public Theater theaterDTOToTheater(TheaterDTO theaterdto) {
-        if ( theaterdto == null ) {
-            return null;
-        }
+    public Theater theaterDTOToTheater(InputDTO dto) {
 
-        Theater theater = new Theater();
+        if (dto instanceof TheaterDTO theaterdto) {
+            Theater theater = new Theater();
 
-        theater.setName( theaterdto.getName() );
-        theater.setCity( theaterdto.getCity() );
-        theater.setTel( theaterdto.getTel() );
-        theater.setEmail( theaterdto.getEmail() );
-        theater.setPec( theaterdto.getPec() );
-        theater.setTaxCode( theaterdto.getTaxCode() );
-        theater.setUniqueCode( theaterdto.getUniqueCode() );
-        theater.setRecipientCode( theaterdto.getRecipientCode() );
+            theater.setName( theaterdto.getName() );
+            theater.setCity( theaterdto.getCity() );
+            theater.setTel( theaterdto.getTel() );
+            theater.setEmail( theaterdto.getEmail() );
+            theater.setPec( theaterdto.getPec() );
+            theater.setTaxCode( theaterdto.getTaxCode() );
+            theater.setUniqueCode( theaterdto.getUniqueCode() );
+            theater.setRecipientCode( theaterdto.getRecipientCode() );
 
-        return theater;
+            return theater;
+        }else
+            throw new ClassCastException("Il DTO fornito non è un TheaterDTO");
     }
 
 }

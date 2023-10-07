@@ -1,7 +1,5 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -13,7 +11,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TheaterDTO {
+public class TheaterDTO implements InputDTO{
 
     @NotBlank(message = "Name cannot be empty")
     @Size(max = 50, message = "Name cannot exceed 50 characters")

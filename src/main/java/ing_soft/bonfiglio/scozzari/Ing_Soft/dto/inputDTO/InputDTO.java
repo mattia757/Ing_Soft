@@ -12,4 +12,5 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = TheaterDTO.class, name = "registrationTheater"),
 })
 public interface InputDTO {
+
 }
