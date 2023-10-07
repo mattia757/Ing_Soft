@@ -22,6 +22,9 @@ public class Typology {
     @Column(length = 3)
     private String id;
 
+    @Column(nullable = false)
+    private String nameTypology;
+
     @ManyToMany(mappedBy = "typologies")
     private Set<Artist> artists = new HashSet<>();
 }

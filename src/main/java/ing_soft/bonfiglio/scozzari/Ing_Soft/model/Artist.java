@@ -123,9 +123,9 @@ public class Artist{
 
     @ManyToMany
     @JoinTable(
-            name = "artist_tipology",
+            name = "artist_typology",
             joinColumns = @JoinColumn(name = "artist_id"),
-            inverseJoinColumns = @JoinColumn(name = "tipology_id"))
+            inverseJoinColumns = @JoinColumn(name = "typology_id"))
     private Set<Typology> typologies = new HashSet<>();
 
     @OneToMany(mappedBy = "artist")
