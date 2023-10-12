@@ -1,5 +1,6 @@
-package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationDTO;
+package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubBankAccountDTO {
+public class SubBankAccountDTO implements InputDTO {
 
     @NotBlank(message = "Beneficiary name cannot be empty")
     @Size(max = 255, message = "Beneficiary name must be at most 50 characters long")

@@ -1,7 +1,6 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.UserRoles;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.ArtistAgency;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.UserAgency;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -14,10 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Builder
@@ -61,11 +57,11 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user")
     private Artist artist;
 
-    @OneToOne(mappedBy = "user")
-    private ArtistAgency artistAgency;
+    /*@OneToOne(mappedBy = "user")
+    private ArtistAgency artistAgency;*/
 
     @OneToMany(mappedBy = "user")
-    private Set<UserAgency> userAgencies = new HashSet<>();
+    private List<UserAgency> userAgencies = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

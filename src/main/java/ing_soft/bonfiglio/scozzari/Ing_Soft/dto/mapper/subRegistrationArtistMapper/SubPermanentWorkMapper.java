@@ -1,10 +1,8 @@
-package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationMapper;
+package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationDTO.SubPermanentWorkDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubPermanentWorkDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.PermanentWork;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component

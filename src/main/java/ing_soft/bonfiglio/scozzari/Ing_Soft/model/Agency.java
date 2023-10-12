@@ -1,6 +1,5 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.ArtistAgency;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.UserAgency;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -9,7 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,20 +38,20 @@ public class Agency {
     private String pec;
 
     @Column(nullable = false, unique = true)
-    @Pattern(regexp = "^\\+(?:[0-9] ?){6,14}[0-9]$\n")
+    //@Pattern(regexp = "^\\+(?:[0-9] ?){6,14}[0-9]$\n")
     private String tel1;
 
     @Column(nullable = true, unique = true)
-    @Pattern(regexp = "^\\+(?:[0-9] ?){6,14}[0-9]$\n")
+    //@Pattern(regexp = "^\\+(?:[0-9] ?){6,14}[0-9]$\n")
     private String tel2;
 
     @Column(nullable = true)
     private String webSite;
 
-    @OneToMany(mappedBy = "agency")
-    private Set<ArtistAgency> artistAgencies = new HashSet<>();
+    @ManyToMany(mappedBy = "agencies", cascade = {CascadeType.ALL})
+    private List<Artist> artists = new ArrayList<>();
 
     @OneToMany(mappedBy = "agency")
-    private Set<UserAgency> userAgencies = new HashSet<>();
+    private List<UserAgency> userAgencies = new ArrayList<>();
 
 }

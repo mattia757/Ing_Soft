@@ -1,9 +1,9 @@
-package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationDTO;
+package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Typology;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Occupation;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Taxation;
-import jakarta.persistence.Column;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
@@ -15,19 +15,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubArtistDTO {
+public class SubArtistDTO implements InputDTO {
 
     @NotBlank(message = "Gender is mandatory")
     private String gender;
 
     @NotBlank(message = "BirthDate is mandatory")
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     private LocalDate birthDate;
 
     @NotBlank(message = "BirthPlace is mandatory")
@@ -43,7 +42,7 @@ public class SubArtistDTO {
     private String educationTitle;
 
     @NotBlank(message = "BirthEducationInstitute is mandatory")
-    private boolean isEuropean;
+    private Boolean isEuropean;
 
     @NotBlank(message = "BirthEducationInstitute is mandatory")
     private String stateOfCitizenship;
@@ -52,7 +51,7 @@ public class SubArtistDTO {
     @Pattern(regexp = "\\d{10}", message = "Must be a valid phone number (10 digits)")
     private String cellPhone1;
 
-    @Pattern(regexp = "\\d{10}", message = "Must be a valid phone number (10 digits)")
+    //@Pattern(regexp = "\\d{10}", message = "Must be a valid phone number (10 digits)")
     private String cellPhone2;
 
     @Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Must be a valid PEC address")

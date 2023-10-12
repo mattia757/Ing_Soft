@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SeasonDTO {
+public class SeasonDTO implements InputDTO{
 
     @NotBlank(message = "Title cannot be empty")
     @Size(max = 255, message = "Title cannot exceed 255 characters")

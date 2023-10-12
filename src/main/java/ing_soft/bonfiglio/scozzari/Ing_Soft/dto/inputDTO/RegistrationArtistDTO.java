@@ -1,13 +1,7 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationDTO.*;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Artist;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToOne;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.*;
 import lombok.*;
-
-import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor

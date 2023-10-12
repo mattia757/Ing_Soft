@@ -2,11 +2,9 @@ package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.RegistrationArtistDTO;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationMapper.*;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper.*;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.*;
 import org.springframework.stereotype.Component;
-
-import java.util.function.Function;
 
 @Component
 public class RegistrationArtistMapper{

@@ -1,6 +1,7 @@
-package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationMapper;
+package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationDTO.SubBankAccountDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubBankAccountDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.BankAccountForeign;
 import org.springframework.stereotype.Component;
 

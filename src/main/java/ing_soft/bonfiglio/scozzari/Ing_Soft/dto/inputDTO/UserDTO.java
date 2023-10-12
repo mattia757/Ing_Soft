@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class UserDTO implements InputDTO{
 
     @NotBlank(message = "Email cannot be empty")
     @Email(message = "Must be a valid email address")

@@ -1,15 +1,13 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.*;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.ArtistAgency;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Data
@@ -38,7 +36,7 @@ public class Artist{
     private String educationTitle;
 
     @Column(nullable = false)
-    private boolean isEuropean;
+    private Boolean isEuropean;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -128,8 +126,12 @@ public class Artist{
             inverseJoinColumns = @JoinColumn(name = "typology_id"))
     private Set<Typology> typologies = new HashSet<>();
 
-    @OneToMany(mappedBy = "artist")
-    private Set<ArtistAgency> artistAgencies = new HashSet<>();
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "artist_agency",
+            joinColumns = @JoinColumn(name = "artist_id"),
+            inverseJoinColumns = @JoinColumn(name = "agency_id"))
+    private List<Agency> agencies = new ArrayList<>();
 
     @OneToOne
     private User user;

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OperaDTO {
+public class OperaDTO implements InputDTO{
 
     @NotBlank(message = "Title is mandatory")
     @Size(max = 50, message = "Title must be less than 50 characters")

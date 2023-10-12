@@ -1,12 +1,11 @@
-package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationMapper;
+package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationDTO.SubArtistDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubArtistDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Artist;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Gender;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.StateOfCitizenship;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
 
 @Component
 public class SubArtistMapper {
@@ -24,7 +23,7 @@ public class SubArtistMapper {
         artist.setBirthPlace(subArtistDTO.getBirthPlace());
         artist.setBirthState(subArtistDTO.getBirthState());
         artist.setEducationTitle(subArtistDTO.getEducationTitle());
-        artist.setEuropean(subArtistDTO.isEuropean());
+        artist.setIsEuropean(subArtistDTO.getIsEuropean());
         artist.setStateOfCitizenship(StateOfCitizenship.valueOf(subArtistDTO.getStateOfCitizenship()));
         artist.setCellPhone1(subArtistDTO.getCellPhone1());
         artist.setCellPhone2(subArtistDTO.getCellPhone2());
@@ -49,7 +48,6 @@ public class SubArtistMapper {
         artist.setIsIva(subArtistDTO.getIsIva());
         artist.setIva(subArtistDTO.getIva());
         artist.setTaxation(subArtistDTO.getTaxation());
-        artist.setIva(subArtistDTO.getIva());
         artist.setOccupation(subArtistDTO.getOccupation());
         artist.setInpsNumber(subArtistDTO.getInpsNumber());
         artist.setMemberFrom(subArtistDTO.getMemberFrom());
@@ -70,7 +68,7 @@ public class SubArtistMapper {
         subArtistDTO.setBirthPlace(artist.getBirthPlace());
         subArtistDTO.setBirthState(artist.getBirthState());
         subArtistDTO.setEducationTitle(artist.getEducationTitle());
-        subArtistDTO.setEuropean(artist.isEuropean());
+        subArtistDTO.setIsEuropean(artist.getIsEuropean());
         subArtistDTO.setStateOfCitizenship(artist.getStateOfCitizenship().name());
         subArtistDTO.setCellPhone1(artist.getCellPhone1());
         subArtistDTO.setCellPhone2(artist.getCellPhone2());

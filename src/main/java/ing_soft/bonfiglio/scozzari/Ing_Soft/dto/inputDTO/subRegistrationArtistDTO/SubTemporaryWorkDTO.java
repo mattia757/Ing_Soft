@@ -1,6 +1,7 @@
-package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationDTO;
+package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO;
 
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubTemporaryWorkDTO {
+public class SubTemporaryWorkDTO implements InputDTO {
 
     @NotBlank(message = "Employer name cannot be empty")
     @Size(max = 255, message = "Employer name cannot be longer than 255 characters")
