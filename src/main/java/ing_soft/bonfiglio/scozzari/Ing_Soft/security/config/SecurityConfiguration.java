@@ -27,10 +27,6 @@ public class SecurityConfiguration {
                 .permitAll()
                 .requestMatchers("/api/theater/**")
                 .permitAll()
-                .requestMatchers("/api/artist/**")
-                .permitAll()
-                .requestMatchers("/api/agency/**")
-                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -42,4 +38,5 @@ public class SecurityConfiguration {
 
         return httpSecurity.build();
     }
+
 }
