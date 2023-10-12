@@ -44,6 +44,6 @@ public class AgencyDTO implements InputDTO {
 
     private List<Long> idArtists;
 
-    //TODO capire come gestirla, se creare agenzia e poi le utenze dei suoi dipendenti oppure altri modi
+    //TODO capire come gestirla, se creare agenzia e poi le utenze dei suoi dipendenti oppure in altri modi
     private List<Long> idUsers;
 }
