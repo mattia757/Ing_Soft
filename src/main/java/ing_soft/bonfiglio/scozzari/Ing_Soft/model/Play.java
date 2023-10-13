@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -21,7 +22,7 @@ public class Play {
     private String name;
 
     @Column(nullable = false)
-    private Date datePlay;
+    private LocalDate datePlay;
 
     @ManyToOne
     private Opera opera;
