@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,13 +25,10 @@ public class Opera {
     private String title;
 
     @Column(nullable = false)
-    private Date startDate;
-
-    @Column
-    private Long idVenue;
+    private LocalDate startDate;
 
     @Column(nullable = false)
-    private Date startRehearsal;
+    private LocalDate startRehearsal;
 
     @ManyToOne
     @JoinColumn(name = "seasonId", nullable = false)

@@ -12,7 +12,8 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDT
         @JsonSubTypes.Type(value = RegistrationArtistDTO.class, name = "registrationArtist"),
         @JsonSubTypes.Type(value = TheaterDTO.class, name = "registrationTheater"),
         @JsonSubTypes.Type(value = AgencyDTO.class, name = "registrationAgency"),
-        @JsonSubTypes.Type(value = SeasonDTO.class, name = "registrationSeason")
+        @JsonSubTypes.Type(value = SeasonDTO.class, name = "registrationSeason"),
+        @JsonSubTypes.Type(value = OperaDTO.class, name = "registrationOpera")
 })
 public interface InputDTO {
 
