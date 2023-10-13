@@ -2,6 +2,7 @@ package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.SeasonDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Season;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Theater;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -42,9 +43,11 @@ public class SeasonMapper {
             return null;
         }
 
+        Theater theater = new Theater();
+        theater.setId( seasonDTO.getIdTheater() );
+
         Season.SeasonBuilder season = Season.builder();
 
-        season.id( seasonDTO.getIdTheater() );
         season.title( seasonDTO.getTitle() );
         season.startDate( seasonDTO.getStartDate() );
         season.endDate( seasonDTO.getEndDate() );
@@ -60,6 +63,7 @@ public class SeasonMapper {
         season.technicalPersonnelPerDiem( seasonDTO.getTechnicalPersonnelPerDiem() );
         season.projectRelatedDailyExpenses( seasonDTO.getProjectRelatedDailyExpenses() );
         season.travelTransportAccommodationCosts( seasonDTO.getTravelTransportAccommodationCosts() );
+        season.theater(theater);
 
         return season.build();
     }

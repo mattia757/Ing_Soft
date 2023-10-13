@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -60,17 +61,12 @@ public class Theater {
     @Column(nullable = true, unique = true)
     private String recipientCode;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Theater_Season",
-            joinColumns = @JoinColumn(name = "theater_id"),
-            inverseJoinColumns = @JoinColumn(name = "season_id"))
-    private Set<Season> seasons = new HashSet<>();
+    @OneToMany(mappedBy = "theater")
+    private List<Season> seasons;
 
     @OneToMany(mappedBy = "theater")
     private Set<VenueTheater> venues = new HashSet<>();
 
     @OneToMany(mappedBy = "theater")
     private Set<DigitalDrawer> digitalDrawers = new HashSet<>();
-
 }

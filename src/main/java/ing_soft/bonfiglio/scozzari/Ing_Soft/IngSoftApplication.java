@@ -1,11 +1,5 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.AgencyDTO;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.UserDTO;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.AgencyMapper;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.UserMapper;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Agency;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

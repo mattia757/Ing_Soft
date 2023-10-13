@@ -16,8 +16,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    private final UserRepository userRepository;
 
     @Override
     public void updateUserPassword(Long id, String newPassword) throws UserNotFoundException {

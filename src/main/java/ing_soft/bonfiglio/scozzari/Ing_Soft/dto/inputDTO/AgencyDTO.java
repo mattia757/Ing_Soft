@@ -1,8 +1,6 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO;
 
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationAgencyDTO.SubArtistAgencyDTO;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationAgencyDTO.SubUserAgencyDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubAgencyDTO;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +9,6 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor

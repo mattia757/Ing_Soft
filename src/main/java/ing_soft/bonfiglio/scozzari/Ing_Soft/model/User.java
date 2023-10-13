@@ -57,8 +57,7 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user")
     private Artist artist;
 
-    /*@OneToOne(mappedBy = "user")
-    private ArtistAgency artistAgency;*/
+    //TODO aggiungere collegamento a teatro
 
     @OneToMany(mappedBy = "user")
     private List<UserAgency> userAgencies = new ArrayList<>();

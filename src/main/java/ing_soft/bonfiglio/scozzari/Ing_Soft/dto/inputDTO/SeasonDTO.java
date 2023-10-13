@@ -30,7 +30,7 @@ public class SeasonDTO implements InputDTO{
     @Temporal(TemporalType.DATE)
     private LocalDate endDate;
 
-    private long idTheater; // TODO Non sono sicuro se inserire long o theater
+    private Long idTheater; // TODO Non sono sicuro se inserire long o theater
 
     @NotBlank(message = "Artistic Director Social Costs cannot be null")
     @DecimalMin(value = "0.00", message = "Artistic Director Social Costs must be >= 0.00")

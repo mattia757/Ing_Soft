@@ -1,15 +1,11 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.controller;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.RegistrationArtistDTO;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.UserDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.RegistrationArtistMapper;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.UserMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.exception.UnauthenticatedUserException;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.exception.UserNotFoundException;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.User;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.security.auth.AuthenticationService;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.interfaces.UserService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +16,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
+
     @Autowired
     private UserService userService;
-
     private RegistrationArtistMapper registrationArtistMapper;
-
     @Autowired
     private AuthenticationService authenticationService;
+
     @PutMapping("/updatePassword")
     public ResponseEntity<String> updateUserPassword(
             @RequestParam Long id,

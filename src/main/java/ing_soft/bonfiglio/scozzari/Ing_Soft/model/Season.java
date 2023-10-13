@@ -67,9 +67,8 @@ public class Season {
     @Column(nullable = false)
     private BigDecimal travelTransportAccommodationCosts;
 
-    @ManyToMany(mappedBy = "seasons")
-    @Column(nullable = false)
-    private Set<Theater> theaters = new HashSet<>();
+    @ManyToOne
+    private Theater theater;
 
     @OneToMany(mappedBy = "season")
     private List<Opera> operas = new ArrayList<>();
