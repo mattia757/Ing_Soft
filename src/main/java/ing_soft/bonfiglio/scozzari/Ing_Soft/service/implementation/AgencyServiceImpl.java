@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -63,5 +64,52 @@ public class AgencyServiceImpl implements AgencyService {
             } else {
                 throw new EntityNotFoundException("The name of the agency is empty");
             }
+        }
+
+
+        public void deleteAgency(String name) throws Exception {
+            Agency agency = agencyRepository.findAgencyByName(name)
+                    .orElseThrow(() -> new EntityNotFoundException("Agency not found with name: " + name));
+
+            // Rimuovo l'agenzia dagli artisti
+            for (Artist artist : agency.getArtists()) {
+                artist.getAgencies().remove(agency);
+            }
+
+            // Rimuovi l'agenzia dagli utenti associati
+            Optional<UserAgency> userAgencyOptional = userAgencyRepository.findUserAgencyByAgencyId(agency.getId());
+
+            if (userAgencyOptional.isPresent()) {
+                UserAgency userAgency = userAgencyOptional.get();
+                userAgencyRepository.delete(userAgency);
+            }
+            else {
+                throw new EntityNotFoundException("UserAgency not found with agencyId: " + agency.getId());
+            }
+        }
+
+        public void updateAgency(AgencyDTO agencyDTO, String agencyName) throws Exception {
+            Agency agency = agencyRepository.findAgencyByName(agencyName)
+                    .orElseThrow(() -> new EntityNotFoundException("Agency not found with name: " + agencyName));
+
+            agency.setName(agencyDTO.getAgencyName());
+            agency.setEmail(agencyDTO.getAgencyEmail());
+            agency.setPec(agencyDTO.getAgencyPec());
+            agency.setTel1(agencyDTO.getAgencyPhone1());
+            agency.setTel2(agencyDTO.getAgencyPhone2());
+            agency.setWebSite(agencyDTO.getWebsite());
+
+            agencyRepository.save(agency);
+        }
+
+        public Agency getAgencyByName(String name) throws Exception {
+            return agencyRepository.findAgencyByName(name)
+                    .orElseThrow(() -> new EntityNotFoundException("Agency not found with name: " + name));
+        }
+
+        public List<Agency> getAgencies() throws Exception {
+            System.out.println("Repo: " + agencyRepository.findAllAgencies());
+
+            return agencyRepository.findAllAgencies();
         }
 }
