@@ -1,8 +1,8 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.service.interfaces;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Agency;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.AgencyDTO;
 
 public interface AgencyService {
 
-    void addAgency(Agency agency) throws Exception;
+    void addAgency(AgencyDTO agencyDTO) throws Exception;
 }

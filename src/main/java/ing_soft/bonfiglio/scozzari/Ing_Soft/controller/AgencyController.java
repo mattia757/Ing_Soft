@@ -22,7 +22,7 @@ public class AgencyController {
     @Autowired
     private AgencyMapper agencyMapper;
 
-    /*@PostMapping(value = "/add")
+    @PostMapping(value = "/add")
     private ResponseEntity<String> create(
             @RequestBody AgencyDTO agencyDTO
     ){
@@ -32,5 +32,5 @@ public class AgencyController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
 }
