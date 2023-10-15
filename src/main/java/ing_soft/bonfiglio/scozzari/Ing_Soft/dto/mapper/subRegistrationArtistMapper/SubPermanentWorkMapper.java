@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubPermanentWorkMapper {
 
-    public static PermanentWork subPermanentWorkDTOToPermanentWork(SubPermanentWorkDTO subPermanentWorkDTO) {
+    public static PermanentWork subPermanentWorkDTOToPermanentWork (SubPermanentWorkDTO subPermanentWorkDTO) {
         if (subPermanentWorkDTO == null) {
             return null;
         }
@@ -20,7 +20,7 @@ public class SubPermanentWorkMapper {
         return permanentWork;
     }
 
-    public static SubPermanentWorkDTO permanentWorkToSubPermanentWorkDTO(PermanentWork permanentWork) {
+    public static SubPermanentWorkDTO permanentWorkToSubPermanentWorkDTO (PermanentWork permanentWork) {
         if (permanentWork == null) {
             return null;
         }

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -28,6 +30,6 @@ public class TemporaryWork {
     @Column(nullable = false)
     private boolean isRevenueOver5000;
 
-    @OneToOne
-    private Artist artist;
+    @OneToMany
+    private Set<Artist> artists = new HashSet<>();
 }

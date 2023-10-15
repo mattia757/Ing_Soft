@@ -1,6 +1,5 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -12,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubAgencyDTO implements InputDTO {
+public class SubAgencyDTO{
 
     @NotBlank(message = "Name cannot be empty")
     @Size(max=255, message = "Name must be less than 255 characters")
@@ -32,4 +31,5 @@ public class SubAgencyDTO implements InputDTO {
 
     @Size(max=255, message = "Website must be less than 255 characters")
     private String website;
+
 }

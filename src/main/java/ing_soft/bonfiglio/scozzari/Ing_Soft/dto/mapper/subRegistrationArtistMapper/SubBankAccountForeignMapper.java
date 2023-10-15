@@ -1,39 +1,38 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubBankAccountDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubBankAccountForeignDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.BankAccountForeign;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SubBankAccountForeignMapper {
 
-    public static BankAccountForeign subBankAccountDTOToBankAccount (SubBankAccountDTO subBankAccountDTO) {
-        if (subBankAccountDTO == null) {
+    public static BankAccountForeign subBankAccountForeignDTOToBankAccountForeign (SubBankAccountForeignDTO subBankAccountForeignDTO) {
+        if (subBankAccountForeignDTO == null) {
             return null;
         }
 
-        BankAccountForeign bankAccount = new BankAccountForeign();
+        BankAccountForeign bankAccountForeign = new BankAccountForeign();
 
-        bankAccount.setBeneficiaryName(subBankAccountDTO.getBeneficiaryName());
-        bankAccount.setIban(subBankAccountDTO.getIban());
-        bankAccount.setBicSwift(subBankAccountDTO.getBicSwift());
+        bankAccountForeign.setBeneficiaryName(subBankAccountForeignDTO.getBeneficiaryName());
+        bankAccountForeign.setIban(subBankAccountForeignDTO.getIban());
+        bankAccountForeign.setBicSwift(subBankAccountForeignDTO.getBicSwift());
 
-        return bankAccount;
+        return bankAccountForeign;
     }
 
-    public static SubBankAccountDTO bankAccountToSubBankAccountDTO(BankAccountForeign bankAccount) {
-        if (bankAccount == null) {
+    public static SubBankAccountForeignDTO bankAccountForeignToSubBankAccountForeignDTO (BankAccountForeign bankAccountForeign) {
+        if (bankAccountForeign == null) {
             return null;
         }
 
-        SubBankAccountDTO subBankAccountDTO = new SubBankAccountDTO();
+        SubBankAccountForeignDTO subBankAccountForeignDTO = new SubBankAccountForeignDTO();
 
-        subBankAccountDTO.setBeneficiaryName(bankAccount.getBeneficiaryName());
-        subBankAccountDTO.setIban(bankAccount.getIban());
-        subBankAccountDTO.setBicSwift(bankAccount.getBicSwift());
+        subBankAccountForeignDTO.setBeneficiaryName(bankAccountForeign.getBeneficiaryName());
+        subBankAccountForeignDTO.setIban(bankAccountForeign.getIban());
+        subBankAccountForeignDTO.setBicSwift(bankAccountForeign.getBicSwift());
 
-        return subBankAccountDTO;
+        return subBankAccountForeignDTO;
     }
 
 

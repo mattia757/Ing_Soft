@@ -9,7 +9,7 @@ import lombok.*;
 public class RegistrationArtistDTO implements InputDTO{
 
     //From User
-    private SubUserDTO subUserDTO;
+    //private SubUserDTO subUserDTO;
 
     //From Artist
     private SubArtistDTO subArtistDTO;
@@ -17,21 +17,30 @@ public class RegistrationArtistDTO implements InputDTO{
     //From Agenzia
     private SubAgencyDTO subAgencyDTO;
 
-    //From Unemployed
-    private SubUnemployedDTO subUnemployedDTO;
+    //For Work
+    private SubWorkDTO subWorkDTO;
 
-    //From TemporaryWork
-    private SubTemporaryWorkDTO subTemporaryWorkDTO;
-
-    //From PermanentWork
-    private SubPermanentWorkDTO subPermanentWorkDTO;
-
-    //From BankAccount
+    //For BankAccount
     private SubBankAccountDTO subBankAccountDTO;
 
+    //From Unemployed
+    //private SubUnemployedDTO subUnemployedDTO;
+
+    //From TemporaryWork
+    //private SubTemporaryWorkDTO subTemporaryWorkDTO;
+
+    //From PermanentWork
+    //private SubPermanentWorkDTO subPermanentWorkDTO;
+
+    //From Italian BankAccount
+    //private SubBankAccountITDTO subBankAccountITDTO;
+
+    //From Foreign BankAccount
+    //private SubBankAccountForeignDTO subBankAccountForeignDTO;
+
     //From Student
-    private SubStudentDTO subStudentDTO;
+    //private SubStudentDTO subStudentDTO;
 
     //From Retired
-    private SubRetiredDTO subRetiredDTO;
+    //private SubRetiredDTO subRetiredDTO;
 }

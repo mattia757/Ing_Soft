@@ -45,7 +45,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    public AuthenticationResponse registerAdmin(RegisterRequest request) {
+    /*public AuthenticationResponse registerAdmin(RegisterRequest request) {
         var user = User.builder()
                 .name(request.getName())
                 .surname(request.getSurname())
@@ -61,7 +61,7 @@ public class AuthenticationService {
                 .builder()
                 .token(jwtToken)
                 .build();
-    }
+    }*/
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(

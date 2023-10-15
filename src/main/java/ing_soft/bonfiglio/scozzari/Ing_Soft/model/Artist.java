@@ -119,7 +119,7 @@ public class Artist{
     @Enumerated(EnumType.STRING)
     private Occupation occupation;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "artist_typology",
             joinColumns = @JoinColumn(name = "artist_id"),
@@ -139,19 +139,19 @@ public class Artist{
     @OneToMany
     private Set<DigitalDrawer> digitalDrawers = new HashSet<>();
 
-    @OneToOne(mappedBy = "artist")
+    @ManyToOne
     private Student student;
 
-    @OneToOne(mappedBy = "artist")
+    @ManyToOne
     private PermanentWork permanentWork;
 
-    @OneToOne(mappedBy = "artist")
+    @ManyToOne
     private Retired retired;
 
-    @OneToOne(mappedBy = "artist")
+    @ManyToOne
     private Unemployed unemployed;
 
-    @OneToOne(mappedBy = "artist")
+    @ManyToOne
     private TemporaryWork temporaryWork;
 
     @OneToOne(mappedBy = "artist")
@@ -164,5 +164,4 @@ public class Artist{
     private boolean isAdult(){
         return Period.between(getBirthDate() , LocalDate.now()).getYears() >= 18;
     }
-
 }

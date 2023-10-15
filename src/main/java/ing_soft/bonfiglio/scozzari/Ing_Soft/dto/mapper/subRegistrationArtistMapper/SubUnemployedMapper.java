@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SubUnemployedMapper {
-    public static Unemployed SubUnemployedDTOToUnemployed(SubUnemployedDTO subUnemployedDTO) {
+    public static Unemployed SubUnemployedDTOToUnemployed (SubUnemployedDTO subUnemployedDTO) {
         if (subUnemployedDTO == null) {
             return null;
         }
@@ -17,7 +17,7 @@ public class SubUnemployedMapper {
         return unemployed;
     }
 
-    public static SubUnemployedDTO unemployedToSubUnemployedDTO(Unemployed unemployed) {
+    public static SubUnemployedDTO unemployedToSubUnemployedDTO (Unemployed unemployed) {
         if (unemployed == null) {
             return null;
         }

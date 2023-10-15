@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubUserMapper {
 
-    public static User userDTOToUser(SubUserDTO subUserDTO) {
+    public static User userDTOToUser (SubUserDTO subUserDTO) {
         if (subUserDTO == null) {
             return null;
         }
@@ -15,13 +15,13 @@ public class SubUserMapper {
         User user = new User();
         user.setName(subUserDTO.getName());
         user.setSurname(subUserDTO.getSurname());
-        user.setEmail(subUserDTO.getEmail()); // Email Referent
+        user.setEmail(subUserDTO.getEmail());
         user.setTaxCode(subUserDTO.getTaxCode());
 
         return user;
     }
 
-    public static SubUserDTO userToSubUserDTO(User user) {
+    public static SubUserDTO userToSubUserDTO (User user) {
         if (user == null) {
             return null;
         }
@@ -29,7 +29,7 @@ public class SubUserMapper {
         SubUserDTO subUserDTO = new SubUserDTO();
         subUserDTO.setName(user.getName());
         subUserDTO.setSurname(user.getSurname());
-        subUserDTO.setEmail(user.getEmail()); // Email Referent
+        subUserDTO.setEmail(user.getEmail());
         subUserDTO.setTaxCode(user.getTaxCode());
 
         return subUserDTO;

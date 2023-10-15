@@ -1,16 +1,21 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubArtistDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Artist;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Typology;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Gender;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Occupation;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.StateOfCitizenship;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Taxation;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class SubArtistMapper {
 
-    public static Artist artistDTOToArtist(SubArtistDTO subArtistDTO) {
+    public static Artist artistDTOToArtist (SubArtistDTO subArtistDTO) {
         if (subArtistDTO == null) {
             return null;
         }
@@ -42,20 +47,30 @@ public class SubArtistMapper {
         artist.setRegionOfDomicile(subArtistDTO.getRegionOfDomicile());
         artist.setStateOfDomicile(subArtistDTO.getStateOfDomicile());
         artist.setStageName(subArtistDTO.getStageName());
-        artist.setTypologies(subArtistDTO.getIdTypologies());
+
+        Set<Typology> typologies = subArtistDTO.getIdTypologies().stream()
+                .map(id -> {
+                    Typology typology = new Typology();
+                    typology.setId(String.valueOf(id));
+                    return typology;
+                })
+                .collect(Collectors.toSet());
+
+        artist.setTypologies(typologies);
+
         artist.setInstrument(subArtistDTO.getInstrument());
         artist.setVoice(subArtistDTO.getVoice());
         artist.setIsIva(subArtistDTO.getIsIva());
         artist.setIva(subArtistDTO.getIva());
-        artist.setTaxation(subArtistDTO.getTaxation());
-        artist.setOccupation(subArtistDTO.getOccupation());
+        artist.setTaxation(Taxation.valueOf(subArtistDTO.getTaxation()));
+        artist.setOccupation(Occupation.valueOf(subArtistDTO.getOccupation()));
         artist.setInpsNumber(subArtistDTO.getInpsNumber());
         artist.setMemberFrom(subArtistDTO.getMemberFrom());
 
         return artist;
     }
 
-    public static SubArtistDTO artistToSubArtistDTO(Artist artist) {
+    /*public static SubArtistDTO artistToArtistDTO(Artist artist) {
         if (artist == null) {
             return null;
         }
@@ -99,7 +114,7 @@ public class SubArtistMapper {
         subArtistDTO.setMemberFrom(artist.getMemberFrom());
 
         return subArtistDTO;
-    }
+    }*/
 
 
 }

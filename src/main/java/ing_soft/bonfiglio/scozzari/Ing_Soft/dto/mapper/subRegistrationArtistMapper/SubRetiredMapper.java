@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubRetiredMapper {
 
-    public static Retired subArtistDTOToRetired(SubRetiredDTO subRetiredDTO) {
+    public static Retired subRetiredDTOToRetired (SubRetiredDTO subRetiredDTO) {
         if (subRetiredDTO == null) {
             return null;
         }
@@ -19,7 +19,7 @@ public class SubRetiredMapper {
         return retired;
     }
 
-    public static SubRetiredDTO retiredToSubRetiredDTO(Retired retired) {
+    public static SubRetiredDTO retiredToSubRetiredDTO (Retired retired) {
         if (retired == null) {
             return null;
         }

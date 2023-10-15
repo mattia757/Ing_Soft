@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -18,7 +21,7 @@ public class Retired {
     @Column(nullable = false)
     private boolean isOver65;
 
-    @OneToOne
-    private Artist artist;
+    @OneToMany
+    private Set<Artist> artists = new HashSet<>();
 
 }

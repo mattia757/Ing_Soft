@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubAgencyMapper {
 
-    public static Agency agencyDTOToAgency(SubAgencyDTO subAgencyDTO) {
+    public static Agency agencyDTOToAgency (SubAgencyDTO subAgencyDTO) {
         if (subAgencyDTO == null) {
             return null;
         }
@@ -25,7 +25,7 @@ public class SubAgencyMapper {
         }
     }
 
-    public static SubAgencyDTO agencyToAgencyDTO(Agency agency) {
+    public static SubAgencyDTO agencyToAgencyDTO (Agency agency) {
         if (agency == null) {
             return null;
         }

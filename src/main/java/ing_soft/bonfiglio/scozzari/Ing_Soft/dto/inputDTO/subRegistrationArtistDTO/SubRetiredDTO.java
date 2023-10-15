@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubRetiredDTO implements InputDTO {
+public class SubRetiredDTO implements SubWorkDTO {
 
         @NotBlank(message = "Pension type cannot be empty")
         private boolean isOver65;
+
 }

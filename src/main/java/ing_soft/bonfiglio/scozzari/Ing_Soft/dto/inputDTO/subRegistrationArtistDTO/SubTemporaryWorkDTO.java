@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubTemporaryWorkDTO implements InputDTO {
+public class SubTemporaryWorkDTO implements SubWorkDTO {
 
     @NotBlank(message = "Employer name cannot be empty")
     @Size(max = 255, message = "Employer name cannot be longer than 255 characters")
@@ -27,4 +27,5 @@ public class SubTemporaryWorkDTO implements InputDTO {
 
     @NotBlank(message = "Revenue type cannot be null")
     private boolean isRevenueOver5000;
+
 }

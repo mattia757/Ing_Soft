@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubStudentDTO implements InputDTO {
+public class SubStudentDTO implements SubWorkDTO {
 
         @NotBlank(message = "Name is mandatory")
         @Size(max = 255, message = "Name must be less than 255 characters")
         private String studies;
+
 }

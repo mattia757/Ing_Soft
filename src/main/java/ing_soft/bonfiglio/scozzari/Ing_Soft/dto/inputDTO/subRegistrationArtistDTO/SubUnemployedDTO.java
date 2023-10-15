@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubUnemployedDTO implements InputDTO {
+public class SubUnemployedDTO implements SubWorkDTO {
 
     @NotBlank(message = "Please provide a valid allowance")
     private String allowance;
+
 }

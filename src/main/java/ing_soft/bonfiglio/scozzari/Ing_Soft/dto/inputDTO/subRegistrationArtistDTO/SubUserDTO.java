@@ -8,10 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubUserDTO implements InputDTO {
+public class SubUserDTO{
 
     private String name;
     private String surname;
-    private String email; //Email Referent
+    private String email;
     private String taxCode;
+
 }

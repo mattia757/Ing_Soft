@@ -31,7 +31,7 @@ public class AgencyServiceImpl implements AgencyService {
         private final UserRepository userRepository;
         private final AgencyMapper agencyMapper;
 
-        public void addAgency(AgencyDTO agencyDTO) throws Exception {
+        /*public void addAgency(AgencyDTO agencyDTO) throws Exception {
             List<Artist> artists = new ArrayList<>();
             Agency agency = agencyMapper.agencyDTOToAgency(agencyDTO);
 
@@ -63,5 +63,14 @@ public class AgencyServiceImpl implements AgencyService {
             } else {
                 throw new EntityNotFoundException("The name of the agency is empty");
             }
+        }*/
+
+    @Override
+    public void addAgency(Agency agency) throws Exception {
+        if(agencyRepository.findAgencyByName(agency.getName()).isEmpty()){
+            agencyRepository.save(agency);
+        } else {
+            throw new Exception("exception");
         }
+    }
 }
