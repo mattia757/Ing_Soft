@@ -108,7 +108,7 @@ public class SubArtistDTO{
     //@Size(max = 255, message = "Stage name must be less than 255 characters")
     private String stageName;
 
-    private Set<Long> idTypologies;
+    private Set<String> idTypologies;
 
     //@Size(max = 50, message = "Instrument must be less than 50 characters")
     private String instrument;
@@ -139,5 +139,7 @@ public class SubArtistDTO{
     //@Size(max = 255, message = "Occupation must be less than 255 characters")
     private String occupation;
 
-    //private Long idUser;
+    private Long idUser;
+
+    //private Set<Long> idAgency;
 }

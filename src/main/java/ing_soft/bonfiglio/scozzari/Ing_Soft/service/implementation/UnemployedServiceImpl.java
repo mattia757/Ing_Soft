@@ -14,11 +14,12 @@ public class UnemployedServiceImpl implements UnemployedService {
 
     private final UnemployedRepository unemployedRepository;
     @Override
-    public void addUnemployed(Unemployed unemployed) throws Exception {
-        if(unemployedRepository.findById(unemployed.getId()).isEmpty()){
+    public Unemployed addUnemployed(Unemployed unemployed) throws Exception {
+        //if(unemployedRepository.findById(unemployed.getId()).isEmpty()){
             unemployedRepository.save(unemployed);
-        } else {
-            throw new Exception("exception");
-        }
+        //} else {
+            //throw new Exception("exception");
+        //}
+        return unemployed;
     }
 }

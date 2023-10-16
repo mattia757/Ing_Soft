@@ -39,6 +39,7 @@ public class TheaterMapper {
             theater.setIva( theaterdto.getIva() );
             theater.setPec( theaterdto.getPec() );
             theater.setTaxCode( theaterdto.getTaxCode() );
+            theater.setWebSite( theaterdto.getWebsite() );
             theater.setUniqueCode( theaterdto.getUniqueCode() );
             theater.setRecipientCode( theaterdto.getRecipientCode() );
 

@@ -2,6 +2,7 @@ package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.AgencyDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubAgencyDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper.SubAgencyMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Agency;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Artist;
@@ -26,20 +27,19 @@ public class AgencyMapper {
         }
     }
 
-    public Agency agencyDTOToAgency (AgencyDTO agencyDTO){
+    public Agency agencyDTOToAgency (InputDTO agencyDTO){
 
-        if (agencyDTO == null)
+        if (!(agencyDTO instanceof AgencyDTO agencyData))
             return null;
         else {
             Agency agency = new Agency();
 
-            agency.setName(agencyDTO.getAgencyName());
-            agency.setEmail(agencyDTO.getAgencyEmail());
-            agency.setPec(agencyDTO.getAgencyPec());
-            agency.setTel1(agencyDTO.getAgencyPhone1());
-            agency.setTel2(agencyDTO.getAgencyPhone2());
-            agency.setWebSite(agencyDTO.getWebsite());
-
+            agency.setName(agencyData.getAgencyName());
+            agency.setEmail(agencyData.getAgencyEmail());
+            agency.setPec(agencyData.getAgencyPec());
+            agency.setTel1(agencyData.getAgencyPhone1());
+            agency.setTel2(agencyData.getAgencyPhone2());
+            agency.setWebSite(agencyData.getWebsite());
             return agency;
         }
     }

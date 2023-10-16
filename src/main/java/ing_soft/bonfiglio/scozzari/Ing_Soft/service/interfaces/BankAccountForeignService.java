@@ -4,6 +4,6 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.model.BankAccountForeign;
 
 public interface BankAccountForeignService {
 
-    void addBankAccountForeign(BankAccountForeign bankAccountForeign) throws Exception;
+    BankAccountForeign addBankAccountForeign(BankAccountForeign bankAccountForeign) throws Exception;
 
 }

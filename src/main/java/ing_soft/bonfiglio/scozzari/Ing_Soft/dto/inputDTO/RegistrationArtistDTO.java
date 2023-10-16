@@ -8,14 +8,11 @@ import lombok.*;
 @NoArgsConstructor
 public class RegistrationArtistDTO implements InputDTO{
 
-    //From User
-    //private SubUserDTO subUserDTO;
-
     //From Artist
     private SubArtistDTO subArtistDTO;
 
     //From Agenzia
-    private SubAgencyDTO subAgencyDTO;
+    //private SubAgencyDTO subAgencyDTO;
 
     //For Work
     private SubWorkDTO subWorkDTO;
@@ -23,24 +20,4 @@ public class RegistrationArtistDTO implements InputDTO{
     //For BankAccount
     private SubBankAccountDTO subBankAccountDTO;
 
-    //From Unemployed
-    //private SubUnemployedDTO subUnemployedDTO;
-
-    //From TemporaryWork
-    //private SubTemporaryWorkDTO subTemporaryWorkDTO;
-
-    //From PermanentWork
-    //private SubPermanentWorkDTO subPermanentWorkDTO;
-
-    //From Italian BankAccount
-    //private SubBankAccountITDTO subBankAccountITDTO;
-
-    //From Foreign BankAccount
-    //private SubBankAccountForeignDTO subBankAccountForeignDTO;
-
-    //From Student
-    //private SubStudentDTO subStudentDTO;
-
-    //From Retired
-    //private SubRetiredDTO subRetiredDTO;
 }

@@ -15,11 +15,12 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
     @Override
-    public void addStudent(Student student) throws Exception {
-        if(studentRepository.findById(student.getId()).isEmpty()){
+    public Student addStudent(Student student) throws Exception {
+        //if(studentRepository.findById(student.getId()).isEmpty()){
             studentRepository.save(student);
-        } else {
-            throw new Exception("exception");
-        }
+        //} else {
+            //throw new Exception("exception");
+        //}
+        return student;
     }
 }

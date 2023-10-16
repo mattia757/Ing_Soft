@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @Transactional
 @AllArgsConstructor
@@ -21,6 +23,7 @@ public class TheaterServiceImpl implements TheaterService {
     public void addTheater(Theater theater) throws Exception {
 
         if(theaterRepository.findTheaterByName(theater.getName()).isEmpty()){
+            theater.setCreatedAt(LocalDateTime.now());
             theaterRepository.save(theater);
         }
         else{

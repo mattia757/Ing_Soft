@@ -1,8 +1,9 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.service.interfaces;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.BankAccountIT;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.interfaces.BankAccount;
 
 public interface BankAccountITService {
 
-    void addBankAccountIT(BankAccountIT bankAccountIT) throws Exception;
+    BankAccountIT addBankAccountIT(BankAccountIT bankAccountIT) throws Exception;
 }

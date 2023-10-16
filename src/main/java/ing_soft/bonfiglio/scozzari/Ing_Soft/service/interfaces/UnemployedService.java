@@ -4,5 +4,5 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Unemployed;
 
 public interface UnemployedService {
 
-    void addUnemployed(Unemployed unemployed) throws Exception;
+    Unemployed addUnemployed(Unemployed unemployed) throws Exception;
 }

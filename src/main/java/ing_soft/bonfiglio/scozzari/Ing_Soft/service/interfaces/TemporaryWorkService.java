@@ -4,5 +4,5 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.model.TemporaryWork;
 
 public interface TemporaryWorkService {
 
-    void addTemporaryWork(TemporaryWork temporaryWork) throws Exception;
+    TemporaryWork addTemporaryWork(TemporaryWork temporaryWork) throws Exception;
 }

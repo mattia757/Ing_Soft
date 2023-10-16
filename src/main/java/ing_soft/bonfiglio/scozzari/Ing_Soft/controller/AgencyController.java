@@ -27,7 +27,7 @@ public class AgencyController {
             @RequestBody AgencyDTO agencyDTO
     ){
         try {
-            agencyService.addAgency(agencyDTO);
+            agencyService.addAgency(agencyMapper.agencyDTOToAgency(agencyDTO));
             return ResponseEntity.status(HttpStatus.CREATED).body("Agency successfully created!");
         } catch (Exception e) {
             throw new RuntimeException(e);

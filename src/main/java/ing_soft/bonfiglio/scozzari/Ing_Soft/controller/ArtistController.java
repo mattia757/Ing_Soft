@@ -5,6 +5,8 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.RegistrationArtistDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.*;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.RegistrationArtistMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper.SubUnemployedMapper;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.interfaces.BankAccount;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.interfaces.Work;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation.*;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.interfaces.PermanentWorkService;
 import lombok.RequiredArgsConstructor;
@@ -51,50 +53,56 @@ public class ArtistController {
         try {
             System.out.println(registrationArtistDTO);
             if(registrationArtistDTO instanceof RegistrationArtistDTO){
-                addWorkDTO(registrationArtistDTO);
-                addBankAccount(registrationArtistDTO);
-                addAgency(registrationArtistDTO);
-                artistService.addArtist(registrationArtistMapper.getArtistFromDTO(registrationArtistDTO));
+
+                Work work = addWorkDTO(registrationArtistDTO);
+                BankAccount bankAccount = addBankAccountDTO(registrationArtistDTO);
+                //addAgency(registrationArtistDTO);
+                artistService.addArtist(registrationArtistMapper.getArtistFromDTO(registrationArtistDTO),
+                        ((RegistrationArtistDTO) registrationArtistDTO).getSubArtistDTO().getIdUser(),
+                        ((RegistrationArtistDTO) registrationArtistDTO).getSubArtistDTO().getIdTypologies(), work, bankAccount);
             }
             return ResponseEntity.status(HttpStatus.CREATED).body("Artist successfully created!");
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while creating the artist.");
         }
     }
 
-    private void addWorkDTO(
+    private Work addWorkDTO(
             InputDTO registrationArtistDTO
     ) throws Exception {
         if(((RegistrationArtistDTO) registrationArtistDTO).getSubWorkDTO() instanceof SubUnemployedDTO){
-            unemployedService.addUnemployed(registrationArtistMapper.getUnemployedFromDTO(registrationArtistDTO));
+            return unemployedService.addUnemployed(registrationArtistMapper.getUnemployedFromDTO(registrationArtistDTO));
         } else if (((RegistrationArtistDTO) registrationArtistDTO).getSubWorkDTO() instanceof SubTemporaryWorkDTO) {
-            temporaryWorkService.addTemporaryWork(registrationArtistMapper.getTemporaryWorkFromDTO(registrationArtistDTO));
+            return temporaryWorkService.addTemporaryWork(registrationArtistMapper.getTemporaryWorkFromDTO(registrationArtistDTO));
         } else if (((RegistrationArtistDTO) registrationArtistDTO).getSubWorkDTO() instanceof SubPermanentWorkDTO) {
-            permanentWorkService.addPermanentWork(registrationArtistMapper.getPermanentWorkFromDTO(registrationArtistDTO));
+            return permanentWorkService.addPermanentWork(registrationArtistMapper.getPermanentWorkFromDTO(registrationArtistDTO));
         } else if (((RegistrationArtistDTO) registrationArtistDTO).getSubWorkDTO() instanceof SubStudentDTO) {
-            studentService.addStudent(registrationArtistMapper.getStudentFromDTO(registrationArtistDTO));
+            return studentService.addStudent(registrationArtistMapper.getStudentFromDTO(registrationArtistDTO));
         } else if (((RegistrationArtistDTO) registrationArtistDTO).getSubWorkDTO() instanceof SubRetiredDTO) {
-            retiredService.addRetired(registrationArtistMapper.getRetiredFromDTO(registrationArtistDTO));
+            return retiredService.addRetired(registrationArtistMapper.getRetiredFromDTO(registrationArtistDTO));
         }
+        throw new Exception("lavoro non trovato");
     }
 
-    private void addBankAccount(
+    private BankAccount addBankAccountDTO(
             InputDTO registrationArtistDTO
     ) throws Exception {
         if(((RegistrationArtistDTO) registrationArtistDTO).getSubBankAccountDTO() instanceof SubBankAccountITDTO){
-            bankAccountITService.addBankAccountIT(registrationArtistMapper.getBankAccountITFromDTO(registrationArtistDTO));
+            return bankAccountITService.addBankAccountIT(registrationArtistMapper.getBankAccountITFromDTO(registrationArtistDTO));
         }
         if(((RegistrationArtistDTO) registrationArtistDTO).getSubBankAccountDTO() instanceof SubBankAccountForeignDTO){
-            bankAccountForeignService.addBankAccountForeign(registrationArtistMapper.getBankAccountForeignFromDTO(registrationArtistDTO));
+            return bankAccountForeignService.addBankAccountForeign(registrationArtistMapper.getBankAccountForeignFromDTO(registrationArtistDTO));
         }
+        throw new Exception("conto bancario non trovato");
     }
 
-    private void addAgency(
+    /*private void addAgency(
             InputDTO registrationArtistDTO
     ) throws Exception {
         if(((RegistrationArtistDTO) registrationArtistDTO).getSubAgencyDTO() != null){
             agencyService.addAgency(registrationArtistMapper.getAgencyFromDTO(registrationArtistDTO));
         }
-    }
+    }*/
 
 }

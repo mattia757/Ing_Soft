@@ -4,6 +4,6 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Student;
 
 public interface StudentService {
 
-    void addStudent(Student student) throws Exception;
+    Student addStudent(Student student) throws Exception;
 
 }

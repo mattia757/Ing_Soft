@@ -15,11 +15,12 @@ public class TemporaryWorkServiceImpl implements TemporaryWorkService {
     private final TemporaryWorkRepository temporaryWorkRepository;
 
     @Override
-    public void addTemporaryWork(TemporaryWork temporaryWork) throws Exception {
-        if(temporaryWorkRepository.findById(temporaryWork.getId()).isEmpty()){
+    public TemporaryWork addTemporaryWork(TemporaryWork temporaryWork) throws Exception {
+        //if(temporaryWorkRepository.findById(temporaryWork.getId()).isEmpty()){
             temporaryWorkRepository.save(temporaryWork);
-        } else {
-            throw new Exception("exception");
-        }
+        //} else {
+            //throw new Exception("exception");
+        //}
+        return temporaryWork;
     }
 }

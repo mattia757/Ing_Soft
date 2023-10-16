@@ -1,14 +1,17 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubArtistDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Agency;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Artist;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Typology;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.User;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Gender;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Occupation;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.StateOfCitizenship;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.Taxation;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -47,17 +50,6 @@ public class SubArtistMapper {
         artist.setRegionOfDomicile(subArtistDTO.getRegionOfDomicile());
         artist.setStateOfDomicile(subArtistDTO.getStateOfDomicile());
         artist.setStageName(subArtistDTO.getStageName());
-
-        Set<Typology> typologies = subArtistDTO.getIdTypologies().stream()
-                .map(id -> {
-                    Typology typology = new Typology();
-                    typology.setId(String.valueOf(id));
-                    return typology;
-                })
-                .collect(Collectors.toSet());
-
-        artist.setTypologies(typologies);
-
         artist.setInstrument(subArtistDTO.getInstrument());
         artist.setVoice(subArtistDTO.getVoice());
         artist.setIsIva(subArtistDTO.getIsIva());
@@ -70,7 +62,7 @@ public class SubArtistMapper {
         return artist;
     }
 
-    /*public static SubArtistDTO artistToArtistDTO(Artist artist) {
+    public static SubArtistDTO artistToArtistDTO(Artist artist) {
         if (artist == null) {
             return null;
         }
@@ -102,19 +94,18 @@ public class SubArtistMapper {
         subArtistDTO.setRegionOfDomicile(artist.getRegionOfDomicile());
         subArtistDTO.setStateOfDomicile(artist.getStateOfDomicile());
         subArtistDTO.setStageName(artist.getStageName());
-        subArtistDTO.setIdTypologies(artist.getTypologies());
         subArtistDTO.setInstrument(artist.getInstrument());
         subArtistDTO.setVoice(artist.getVoice());
         subArtistDTO.setIsIva(artist.getIsIva());
         subArtistDTO.setIva(artist.getIva());
-        subArtistDTO.setTaxation(artist.getTaxation());
+        subArtistDTO.setTaxation(String.valueOf(artist.getTaxation()));
         subArtistDTO.setIva(artist.getIva());
-        subArtistDTO.setOccupation(artist.getOccupation());
+        subArtistDTO.setOccupation(String.valueOf(artist.getOccupation()));
         subArtistDTO.setInpsNumber(artist.getInpsNumber());
         subArtistDTO.setMemberFrom(artist.getMemberFrom());
 
         return subArtistDTO;
-    }*/
+    }
 
 
 }

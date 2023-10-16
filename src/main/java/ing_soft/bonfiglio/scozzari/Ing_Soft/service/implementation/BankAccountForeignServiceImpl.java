@@ -15,11 +15,12 @@ public class BankAccountForeignServiceImpl implements BankAccountForeignService 
     private final BankAccountForeignRepository bankAccountForeignRepository;
 
     @Override
-    public void addBankAccountForeign(BankAccountForeign bankAccountForeign) throws Exception {
-        if(bankAccountForeignRepository.findById(bankAccountForeign.getId()).isEmpty()){
+    public BankAccountForeign addBankAccountForeign(BankAccountForeign bankAccountForeign) throws Exception {
+        //if(bankAccountForeignRepository.findById(bankAccountForeign.getId()).isEmpty()){
             bankAccountForeignRepository.save(bankAccountForeign);
-        } else {
-            throw new Exception("exception");
-        }
+        //} else {
+            //throw new Exception("exception");
+        //}
+        return bankAccountForeign;
     }
 }

@@ -14,11 +14,12 @@ public class PermanentWorkServiceImpl implements PermanentWorkService {
 
     private final PermanentWorkRepository permanentWorkRepository;
     @Override
-    public void addPermanentWork(PermanentWork permanentWork) throws Exception{
-        if(permanentWorkRepository.findById(permanentWork.getId()).isEmpty()){
+    public PermanentWork addPermanentWork(PermanentWork permanentWork) throws Exception{
+        //if(permanentWorkRepository.findById(permanentWork.getId()).isEmpty()){
             permanentWorkRepository.save(permanentWork);
-        } else {
-            throw new Exception("exception");
-        }
+        //} else {
+            //throw new Exception("exception");
+        //}
+        return permanentWork;
     }
 }

@@ -8,10 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubAgencyDTO{
+
+    /*
 
     @NotBlank(message = "Name cannot be empty")
     @Size(max=255, message = "Name must be less than 255 characters")
@@ -31,5 +35,13 @@ public class SubAgencyDTO{
 
     @Size(max=255, message = "Website must be less than 255 characters")
     private String website;
+
+    @Email(message = "Must be a valid email address")
+    @Size(max=255, message = "Email must be less than 255 characters")
+    private String agencyPec;
+
+    */
+
+    private Set<Long> idAgency;
 
 }

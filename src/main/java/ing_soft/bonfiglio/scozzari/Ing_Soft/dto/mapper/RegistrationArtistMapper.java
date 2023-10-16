@@ -5,19 +5,24 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.RegistrationArtistDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.*;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper.*;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 public class RegistrationArtistMapper{
 
-    private SubAgencyMapper subAgencyMapper;
+
+    //private SubAgencyMapper subAgencyMapper;
+
     private SubArtistMapper subArtistMapper;
     private SubBankAccountITMapper subBankAccountITMapper;
     private SubBankAccountForeignMapper subBankAccountForeignMapper;
     private SubStudentMapper subStudentMapper;
     private SubTemporaryWorkMapper subTemporaryWorkMapper;
     private SubUnemployedMapper subUnemployedMapper;
+
     //private SubUserMapper subUserMapper;
+
     private SubRetiredMapper subRetiredMapper;
     private SubPermanentWorkMapper subPermanentWorkMapper;
 
@@ -35,60 +40,102 @@ public class RegistrationArtistMapper{
             throw new ClassCastException();
     }
 
-    public Agency getAgencyFromDTO (InputDTO registrationArtistDTO){
+    /*public Agency getAgencyFromDTO (InputDTO registrationArtistDTO){
         if (registrationArtistDTO instanceof RegistrationArtistDTO dto)
             return SubAgencyMapper.agencyDTOToAgency(dto.getSubAgencyDTO());
         else
             throw new ClassCastException();
+    }*/
+
+    public BankAccountIT getBankAccountITFromDTO(InputDTO registrationArtistDTO) {
+        if (registrationArtistDTO instanceof RegistrationArtistDTO) {
+            SubBankAccountDTO subBankAccountDTO = ((RegistrationArtistDTO) registrationArtistDTO).getSubBankAccountDTO();
+            if (subBankAccountDTO instanceof SubBankAccountITDTO) {
+                return SubBankAccountITMapper.SubBankAccountITDTOToBankAccountIT((SubBankAccountITDTO) subBankAccountDTO);
+            } else {
+                throw new ClassCastException();
+            }
+        } else {
+            throw new ClassCastException();
+        }
     }
 
-    public BankAccountIT getBankAccountITFromDTO (InputDTO registrationArtistDTO){
-        if (registrationArtistDTO instanceof RegistrationArtistDTO dto)
-            //return SubBankAccountITMapper.SubBankAccountITDTOToBankAccountIT(dto.);
-            return SubBankAccountITMapper.SubBankAccountITDTOToBankAccountIT((SubBankAccountITDTO) dto.getSubBankAccountDTO());
-        else
+    public BankAccountForeign getBankAccountForeignFromDTO(InputDTO registrationArtistDTO) {
+        if (registrationArtistDTO instanceof RegistrationArtistDTO) {
+            SubBankAccountDTO subBankAccountDTO = ((RegistrationArtistDTO) registrationArtistDTO).getSubBankAccountDTO();
+            if (subBankAccountDTO instanceof SubBankAccountForeignDTO) {
+                return SubBankAccountForeignMapper.subBankAccountForeignDTOToBankAccountForeign((SubBankAccountForeignDTO) subBankAccountDTO);
+            } else {
+                throw new ClassCastException();
+            }
+        } else {
             throw new ClassCastException();
+        }
     }
 
-    public BankAccountForeign getBankAccountForeignFromDTO (InputDTO registrationArtistDTO){
-        if (registrationArtistDTO instanceof RegistrationArtistDTO dto)
-            return SubBankAccountForeignMapper.subBankAccountForeignDTOToBankAccountForeign((SubBankAccountForeignDTO) dto.getSubBankAccountDTO());
-        else
+    public PermanentWork getPermanentWorkFromDTO(InputDTO registrationArtistDTO) {
+        if (registrationArtistDTO instanceof RegistrationArtistDTO) {
+            SubWorkDTO subWorkDTO = ((RegistrationArtistDTO) registrationArtistDTO).getSubWorkDTO();
+            if (subWorkDTO instanceof SubPermanentWorkDTO) {
+                return SubPermanentWorkMapper.subPermanentWorkDTOToPermanentWork((SubPermanentWorkDTO) subWorkDTO);
+            } else {
+                throw new ClassCastException();
+            }
+        } else {
             throw new ClassCastException();
+        }
     }
 
-    public PermanentWork getPermanentWorkFromDTO (InputDTO registrationArtistDTO){
-        if (registrationArtistDTO instanceof RegistrationArtistDTO dto)
-            return SubPermanentWorkMapper.subPermanentWorkDTOToPermanentWork((SubPermanentWorkDTO) dto.getSubWorkDTO());
-        else
+    public TemporaryWork getTemporaryWorkFromDTO(InputDTO registrationArtistDTO) {
+        if (registrationArtistDTO instanceof RegistrationArtistDTO) {
+            SubWorkDTO subWorkDTO = ((RegistrationArtistDTO) registrationArtistDTO).getSubWorkDTO();
+            if (subWorkDTO instanceof SubTemporaryWorkDTO) {
+                return SubTemporaryWorkMapper.subTemporaryWorkDTOToTemporaryWork((SubTemporaryWorkDTO) subWorkDTO);
+            } else {
+                throw new ClassCastException();
+            }
+        } else {
             throw new ClassCastException();
+        }
     }
 
-    public TemporaryWork getTemporaryWorkFromDTO (InputDTO registrationArtistDTO){
-        if (registrationArtistDTO instanceof RegistrationArtistDTO dto)
-            return SubTemporaryWorkMapper.subTemporaryWorkDTOToTemporaryWork((SubTemporaryWorkDTO) dto.getSubWorkDTO());
-        else
+    public Retired getRetiredFromDTO(InputDTO registrationArtistDTO) {
+        if (registrationArtistDTO instanceof RegistrationArtistDTO) {
+            SubWorkDTO subWorkDTO = ((RegistrationArtistDTO) registrationArtistDTO).getSubWorkDTO();
+            if (subWorkDTO instanceof SubRetiredDTO) {
+                return SubRetiredMapper.subRetiredDTOToRetired((SubRetiredDTO) subWorkDTO);
+            } else {
+                throw new ClassCastException();
+            }
+        } else {
             throw new ClassCastException();
+        }
     }
 
-    public Retired getRetiredFromDTO (InputDTO registrationArtistDTO){
-        if (registrationArtistDTO instanceof RegistrationArtistDTO dto)
-            return SubRetiredMapper.subRetiredDTOToRetired((SubRetiredDTO) dto.getSubWorkDTO());
-        else
+    public Student getStudentFromDTO(InputDTO registrationArtistDTO) {
+        if (registrationArtistDTO instanceof RegistrationArtistDTO) {
+            SubWorkDTO subWorkDTO = ((RegistrationArtistDTO) registrationArtistDTO).getSubWorkDTO();
+            if (subWorkDTO instanceof SubStudentDTO) {
+                return SubStudentMapper.subStudentDTOToStudent((SubStudentDTO) subWorkDTO);
+            } else {
+                throw new ClassCastException();
+            }
+        } else {
             throw new ClassCastException();
+        }
     }
 
-    public Student getStudentFromDTO (InputDTO registrationArtistDTO){
-        if (registrationArtistDTO instanceof RegistrationArtistDTO dto)
-            return SubStudentMapper.subStudentDTOToStudent((SubStudentDTO) dto.getSubWorkDTO());
-        else
+    public Unemployed getUnemployedFromDTO(InputDTO registrationArtistDTO) {
+        if (registrationArtistDTO instanceof RegistrationArtistDTO) {
+            SubWorkDTO subWorkDTO = ((RegistrationArtistDTO) registrationArtistDTO).getSubWorkDTO();
+            if (subWorkDTO instanceof SubUnemployedDTO) {
+                return SubUnemployedMapper.SubUnemployedDTOToUnemployed((SubUnemployedDTO) subWorkDTO);
+            } else {
+                throw new ClassCastException();
+            }
+        } else {
             throw new ClassCastException();
+        }
     }
 
-    public Unemployed getUnemployedFromDTO (InputDTO registrationArtistDTO){
-        if (registrationArtistDTO instanceof RegistrationArtistDTO dto)
-            return SubUnemployedMapper.SubUnemployedDTOToUnemployed((SubUnemployedDTO) dto.getSubWorkDTO());
-        else
-            throw new ClassCastException();
-    }
 }

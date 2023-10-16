@@ -15,11 +15,12 @@ public class RetiredServiceImpl implements RetiredService {
     private final RetiredRepository retiredRepository;
 
     @Override
-    public void addRetired(Retired retired) throws Exception{
-        if(retiredRepository.findById(retired.getId()).isEmpty()){
+    public Retired addRetired(Retired retired) throws Exception{
+        //if(retiredRepository.findById(retired.getId()).isEmpty()){
             retiredRepository.save(retired);
-        } else {
-            throw new Exception("exception");
-        }
+        //} else {
+            //throw new Exception("exception");
+        //}
+        return retired;
     }
 }
