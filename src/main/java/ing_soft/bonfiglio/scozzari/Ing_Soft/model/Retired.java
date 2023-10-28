@@ -21,8 +21,4 @@ public class Retired implements Work {
 
     @Column(nullable = false)
     private boolean isOver65;
-
-    @OneToMany
-    private Set<Artist> artists = new HashSet<>();
-
 }

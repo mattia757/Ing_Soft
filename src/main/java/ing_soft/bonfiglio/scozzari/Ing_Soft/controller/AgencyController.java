@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/api/agency")
 public class AgencyController {
@@ -29,6 +31,19 @@ public class AgencyController {
         try {
             agencyService.addAgency(agencyMapper.agencyDTOToAgency(agencyDTO));
             return ResponseEntity.status(HttpStatus.CREATED).body("Agency successfully created!");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping(value = "/linkAgencyArtists")
+    private ResponseEntity<String> linkAgencyArtists(
+            @RequestBody Long idAgency,
+            @RequestBody Set<Long> idArtists
+    ) {
+        try {
+            agencyService.linkAgencyArtist(idAgency, idArtists);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Agency and Artists successfully linked!");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

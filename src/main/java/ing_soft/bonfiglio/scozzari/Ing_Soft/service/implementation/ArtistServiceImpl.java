@@ -37,6 +37,8 @@ public class ArtistServiceImpl implements ArtistService {
 
     //MAPPER
     private final RegistrationArtistMapper registrationArtistMapper;
+
+    // TODO fare controllo su permanentwork
     @Override
     public void addArtist(
             Artist artist,

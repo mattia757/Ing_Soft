@@ -136,6 +136,9 @@ public class Artist{
     @OneToOne
     private User user;
 
+    @ManyToMany(mappedBy = "artists")
+    private Set<Opera> operas = new HashSet<>();
+
     @OneToMany
     private Set<DigitalDrawer> digitalDrawers = new HashSet<>();
 

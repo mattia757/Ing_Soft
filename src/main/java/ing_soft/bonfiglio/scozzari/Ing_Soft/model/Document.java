@@ -35,7 +35,7 @@ public class Document {
     private String createdBy;
 
     @Column(nullable = false)
-    private boolean approved;
+    private Boolean approved;
 
     @Column(nullable = false)
     private LocalDateTime date;

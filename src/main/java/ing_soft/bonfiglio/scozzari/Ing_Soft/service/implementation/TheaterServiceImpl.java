@@ -1,7 +1,9 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.TheaterMapper;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Opera;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Theater;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.User;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.repo.TheaterRepository;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.interfaces.TheaterService;
 import jakarta.transaction.Transactional;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -29,5 +32,9 @@ public class TheaterServiceImpl implements TheaterService {
         else{
             throw new Exception();
         }
+    }
+
+    public void addArtistsToOpera(Long idTheater, Long idSeason, Long idOpera, Set<Long> idArtists) {
+
     }
 }

@@ -30,7 +30,4 @@ public class TemporaryWork implements Work {
 
     @Column(nullable = false)
     private boolean isRevenueOver5000;
-
-    @OneToMany
-    private Set<Artist> artists = new HashSet<>();
 }

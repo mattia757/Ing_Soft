@@ -21,8 +21,4 @@ public class Student implements Work {
 
     @Column(nullable = false)
     private String studies;
-    //TODO Specify the studies
-
-    @OneToMany
-    private Set<Artist> artists = new HashSet<>();
 }

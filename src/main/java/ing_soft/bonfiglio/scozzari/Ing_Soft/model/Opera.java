@@ -39,4 +39,12 @@ public class Opera {
 
     @OneToMany(mappedBy = "opera")
     private Set<Play> play = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+        name = "opera_artist",
+        joinColumns = @JoinColumn(name = "opera_id"),
+        inverseJoinColumns = @JoinColumn(name = "artist_id")
+    )
+    private Set<Artist> artists = new HashSet<>();
 }

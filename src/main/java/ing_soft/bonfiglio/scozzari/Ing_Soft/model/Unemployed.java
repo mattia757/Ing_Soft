@@ -21,7 +21,4 @@ public class Unemployed implements Work {
 
     @Column(nullable = false)
     private String allowance;
-
-    @OneToMany
-    private Set<Artist> artists = new HashSet<>();
 }
