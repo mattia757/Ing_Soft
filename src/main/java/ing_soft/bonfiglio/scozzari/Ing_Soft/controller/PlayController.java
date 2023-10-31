@@ -1,5 +1,6 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.controller;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.PlayDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.PlayMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation.PlayServiceImpl;
@@ -21,10 +22,13 @@ public class PlayController {
 
     @PostMapping(value = "/add")
     private ResponseEntity<String> create(
-            @RequestBody PlayDTO playDTO
+            @RequestBody InputDTO playDTO
             ){
         try {
-            playService.addPlay(playDTO);
+            if (playDTO instanceof PlayDTO) {
+                playService.addPlay(playMapper.playDTOToPlay(playDTO), ((PlayDTO) playDTO).getOperaId());
+            }
+
             return ResponseEntity.ok("Play successfully created!");
         } catch (Exception e) {
             throw new RuntimeException(e);

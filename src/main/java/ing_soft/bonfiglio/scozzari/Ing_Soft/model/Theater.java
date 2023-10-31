@@ -61,10 +61,10 @@ public class Theater extends BaseEntity{
     @Column(nullable = true, unique = true)
     private String recipientCode;
 
-    @OneToMany(mappedBy = "theater")
+    @OneToMany(mappedBy = "theater", fetch = FetchType.LAZY)
     private List<Season> seasons;
 
-    @OneToMany(mappedBy = "theater")
+    @OneToMany(mappedBy = "theater", fetch = FetchType.LAZY)
     private Set<VenueTheater> venues = new HashSet<>();
 
     @OneToMany(mappedBy = "theater")

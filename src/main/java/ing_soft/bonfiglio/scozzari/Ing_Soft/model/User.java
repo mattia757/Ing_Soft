@@ -1,5 +1,7 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.UserRoles;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.UserAgency;
 import jakarta.persistence.*;

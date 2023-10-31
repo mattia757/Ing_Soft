@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PlayDTO {
+public class PlayDTO implements InputDTO {
 
     private String name;
 

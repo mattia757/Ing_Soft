@@ -1,5 +1,6 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.SeasonDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Season;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Theater;
@@ -38,32 +39,28 @@ public class SeasonMapper {
         return seasonDTO;
     }
 
-    public Season seasonDTOToSeason(SeasonDTO seasonDTO) {
-        if ( seasonDTO == null ) {
+    public Season seasonDTOToSeason(InputDTO seasonDTO) {
+        if ( !(seasonDTO instanceof SeasonDTO seasonData)) {
             return null;
         }
 
-        Theater theater = new Theater();
-        theater.setId( seasonDTO.getIdTheater() );
-
         Season.SeasonBuilder season = Season.builder();
 
-        season.title( seasonDTO.getTitle() );
-        season.startDate( seasonDTO.getStartDate() );
-        season.endDate( seasonDTO.getEndDate() );
-        season.artisticDirectorSocialCosts( seasonDTO.getArtisticDirectorSocialCosts() );
-        season.artisticDirectorCompensation( seasonDTO.getArtisticDirectorCompensation() );
-        season.artisticPersonnelGrossSalary( seasonDTO.getArtisticPersonnelGrossSalary() );
-        season.artisticPersonnelSocialCosts( seasonDTO.getArtisticPersonnelSocialCosts() );
-        season.technicalPersonnelGrossSalary( seasonDTO.getTechnicalPersonnelGrossSalary() );
-        season.technicalPersonnelSocialCosts( seasonDTO.getTechnicalPersonnelSocialCosts() );
-        season.administrativePersonnelGrossSalary( seasonDTO.getAdministrativePersonnelGrossSalary() );
-        season.administrativePersonnelSocialCosts( seasonDTO.getAdministrativePersonnelSocialCosts() );
-        season.artisticPersonnelPerDiem( seasonDTO.getArtisticPersonnelPerDiem() );
-        season.technicalPersonnelPerDiem( seasonDTO.getTechnicalPersonnelPerDiem() );
-        season.projectRelatedDailyExpenses( seasonDTO.getProjectRelatedDailyExpenses() );
-        season.travelTransportAccommodationCosts( seasonDTO.getTravelTransportAccommodationCosts() );
-        season.theater(theater);
+        season.title( seasonData.getTitle() );
+        season.startDate( seasonData.getStartDate() );
+        season.endDate( seasonData.getEndDate() );
+        season.artisticDirectorSocialCosts( seasonData.getArtisticDirectorSocialCosts() );
+        season.artisticDirectorCompensation( seasonData.getArtisticDirectorCompensation() );
+        season.artisticPersonnelGrossSalary( seasonData.getArtisticPersonnelGrossSalary() );
+        season.artisticPersonnelSocialCosts( seasonData.getArtisticPersonnelSocialCosts() );
+        season.technicalPersonnelGrossSalary( seasonData.getTechnicalPersonnelGrossSalary() );
+        season.technicalPersonnelSocialCosts( seasonData.getTechnicalPersonnelSocialCosts() );
+        season.administrativePersonnelGrossSalary( seasonData.getAdministrativePersonnelGrossSalary() );
+        season.administrativePersonnelSocialCosts( seasonData.getAdministrativePersonnelSocialCosts() );
+        season.artisticPersonnelPerDiem( seasonData.getArtisticPersonnelPerDiem() );
+        season.technicalPersonnelPerDiem( seasonData.getTechnicalPersonnelPerDiem() );
+        season.projectRelatedDailyExpenses( seasonData.getProjectRelatedDailyExpenses() );
+        season.travelTransportAccommodationCosts( seasonData.getTravelTransportAccommodationCosts() );
 
         return season.build();
     }

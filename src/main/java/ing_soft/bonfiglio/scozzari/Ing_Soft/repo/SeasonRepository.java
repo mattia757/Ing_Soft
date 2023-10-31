@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface SeasonRepository extends JpaRepository<Season, Long> {
 
+/*
     @Query("SELECT season FROM Season season WHERE season.title = :title")
     Optional<Season> findSeasonByTitle(String title);
+*/
 }

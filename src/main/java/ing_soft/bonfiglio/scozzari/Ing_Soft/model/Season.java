@@ -67,7 +67,7 @@ public class Season {
     @Column(nullable = false)
     private BigDecimal travelTransportAccommodationCosts;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Theater theater;
 
     @OneToMany(mappedBy = "season")

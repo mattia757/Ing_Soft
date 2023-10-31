@@ -1,5 +1,7 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.controller;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.OperaArtistDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.OperaDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.OperaMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation.OperaServiceImpl;
@@ -22,13 +24,31 @@ public class OperaController {
 
     @PostMapping(value = "/add")
     private ResponseEntity<String> create(
-            @RequestBody OperaDTO operaDTO
+            @RequestBody InputDTO operaDTO
     ){
         try {
-            operaService.addOpera(operaDTO);
+            if (operaDTO instanceof OperaDTO) {
+                operaService.addOpera(operaMapper.operaDTOToOpera(operaDTO), ((OperaDTO) operaDTO).getIdVenue(), ((OperaDTO) operaDTO).getSeasonId());
+            }
+
             return ResponseEntity.status(HttpStatus.CREATED).body("Opera successfully created!");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
+     @PostMapping(value = "/addArtists")
+    private ResponseEntity<String> addArtists(
+            @RequestBody InputDTO operaArtistsDTO
+        ){
+        try {
+            if (operaArtistsDTO instanceof OperaArtistDTO dto) {
+                System.out.println(operaArtistsDTO);
+                operaService.addArtists(dto.getIdArtists(), dto.getIdOpera());
+            }
+            return ResponseEntity.status(HttpStatus.CREATED).body("Artists successfully added!");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+     }
 }

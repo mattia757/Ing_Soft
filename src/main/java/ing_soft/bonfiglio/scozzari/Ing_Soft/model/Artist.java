@@ -1,5 +1,7 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -133,10 +135,18 @@ public class Artist{
             inverseJoinColumns = @JoinColumn(name = "agency_id"))
     private List<Agency> agencies = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToMany(mappedBy = "artists")
+    //@ManyToMany(mappedBy = "artists")
+    //private Set<Opera> operas = new HashSet<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @JoinTable(
+            name = "opera_artist",
+            inverseJoinColumns = @JoinColumn(name = "opera_id"),
+            joinColumns = @JoinColumn(name = "artist_id")
+    )
     private Set<Opera> operas = new HashSet<>();
 
     @OneToMany

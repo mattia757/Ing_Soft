@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -24,24 +25,13 @@ public class SeasonServiceImpl implements SeasonService {
     private final SeasonRepository seasonRepository;
     private final SeasonMapper seasonMapper;
 
-    public void addSeason(SeasonDTO seasonDTO) throws Exception {
-        // Prendo l'oggetto Theater dal DB con l'id passato nel JSON
-        Theater theater = theaterRepository.findById(seasonDTO.getIdTheater())
-                .orElseThrow(() -> new EntityNotFoundException("Theater not found with ID: " + seasonDTO.getIdTheater()));
-
-        //Creo una lista di stagioni e aggiungo la stagione appena creata
-        List<Season> seasons = theater.getSeasons();
-        seasons.add(seasonMapper.seasonDTOToSeason(seasonDTO));
-
-        //Aggiorno la lista di stagioni del teatro e salvo la stagione
-        theater.setSeasons(seasons);
-
-        //Setto la FK del teatro nella stagione
-        seasonMapper.seasonDTOToSeason(seasonDTO).setTheater(theater);
-
-        System.out.println(seasonDTO);
-
-        //Salvo la stagione
-        seasonRepository.save(seasonMapper.seasonDTOToSeason(seasonDTO));
+    @Override
+    public void addSeason(Season season, Long idTheater) throws Exception {
+        Optional<Theater> theater = theaterRepository.findById(idTheater);
+        if (theater.isEmpty()){
+            throw new EntityNotFoundException("Theater not found");
+        }
+        season.setTheater(theater.get());
+        seasonRepository.save(season);
     }
 }

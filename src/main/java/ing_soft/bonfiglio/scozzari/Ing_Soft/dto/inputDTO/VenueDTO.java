@@ -1,5 +1,6 @@
-package ing_soft.bonfiglio.scozzari.Ing_Soft.dto;
+package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VenueDTO {
+public class VenueDTO implements InputDTO {
 
     private String venue;
 

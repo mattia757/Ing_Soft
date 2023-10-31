@@ -30,21 +30,24 @@ public class Opera {
     @Column(nullable = false)
     private LocalDate startRehearsal;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seasonId", nullable = false)
     private Season season;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private VenueTheater venue;
 
-    @OneToMany(mappedBy = "opera")
+    @OneToMany(mappedBy = "opera", fetch = FetchType.LAZY)
     private Set<Play> play = new HashSet<>();
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(
         name = "opera_artist",
         joinColumns = @JoinColumn(name = "opera_id"),
         inverseJoinColumns = @JoinColumn(name = "artist_id")
     )
+    private Set<Artist> artists = new HashSet<>();*/
+
+    @ManyToMany(mappedBy = "operas")
     private Set<Artist> artists = new HashSet<>();
 }

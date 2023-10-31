@@ -1,6 +1,7 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.controller;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.VenueDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.VenueDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.VenueMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation.VenueServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/venue")
-public class VenueController {
+public class VenueController{
 
     @Autowired
     private VenueServiceImpl venueService;
@@ -22,10 +23,13 @@ public class VenueController {
 
     @PostMapping(value = "/add")
     private ResponseEntity<String> create(
-            @RequestBody VenueDTO venueDTO
+            @RequestBody InputDTO venueDTO
     ){
         try {
-            venueService.addVenue(venueDTO);
+            if (venueDTO instanceof VenueDTO) {
+                venueService.addVenue(venueMapper.venueDTOToVenue(venueDTO), ((VenueDTO) venueDTO).getIdTheater());
+            }
+
             return ResponseEntity.status(HttpStatus.CREATED).body("Venue successfully created!");
         } catch (Exception e) {
             throw new RuntimeException(e);
