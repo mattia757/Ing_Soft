@@ -79,6 +79,13 @@
 				<version>8.0.1.Final</version>
 			</dependency>
 
+			<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+			<dependency>
+				<groupId>org.hibernate.orm</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>6.1.7.Final</version>
+			</dependency>
+
 			<!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
 			<dependency>
 				<groupId>org.mapstruct</groupId>

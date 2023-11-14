@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
@@ -36,9 +37,12 @@ public class Opera {
     private Season season;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude
     private VenueTheater venue;
 
     @OneToMany(mappedBy = "opera", fetch = FetchType.LAZY)
+
     private Set<Play> play = new HashSet<>();
 
     /*@ManyToMany

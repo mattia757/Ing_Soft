@@ -1,5 +1,6 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VenueTheater {
+public class VenueTheater extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +29,7 @@ public class VenueTheater {
     private Long capacity;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "idTheater") // Nome della colonna nella tabella Venue_Theatre che collega alla tabella Theater
     private Theater theater;
 
@@ -38,7 +40,6 @@ public class VenueTheater {
     public String toString() {
         return "VenueTheater{" +
                 "id=" + id +
-                ", venue='" + venue + '\'' +
                 ", cap='" + cap + '\'' +
                 ", city='" + city + '\'' +
                 ", capacity=" + capacity +

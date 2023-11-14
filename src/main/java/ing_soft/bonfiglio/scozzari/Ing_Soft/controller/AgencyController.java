@@ -8,11 +8,9 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation.AgencyService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -36,6 +34,32 @@ public class AgencyController {
         }
     }
 
+    @PutMapping(value = "/update/{idAgency}")
+    private ResponseEntity<String> update(
+            @RequestBody InputDTO agencyDTO,
+            @PathVariable Long idAgency
+    ){
+        try {
+            System.out.println(idAgency);
+            agencyService.updateAgency(agencyMapper.agencyDTOToAgency(agencyDTO), idAgency);
+            return ResponseEntity.status(HttpStatus.OK).body("Agency successfully updated!");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @DeleteMapping(value = "/delete/{idAgency}")
+    private ResponseEntity<String> delete(
+            @PathVariable Long idAgency
+    ){
+        try {
+            agencyService.deleteAgency(idAgency);
+            return ResponseEntity.status(HttpStatus.OK).body("Agency successfully deleted!");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @PostMapping(value = "/linkAgencyArtists")
     private ResponseEntity<String> linkAgencyArtists(
             @RequestBody Long idAgency,
@@ -48,4 +72,6 @@ public class AgencyController {
             throw new RuntimeException(e);
         }
     }
+
+
 }
