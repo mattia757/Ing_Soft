@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.UserRoles;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.UserAgency;
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.UserTheater;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +23,9 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
+
+    //ATTRIBUTES: DONE
+    //FK: DONE
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,11 +59,14 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRoles role;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private Artist artist;
 
     @OneToMany(mappedBy = "user")
     private List<UserAgency> userAgencies = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserTheater> userTheaters = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

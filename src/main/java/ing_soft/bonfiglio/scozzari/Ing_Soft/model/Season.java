@@ -70,6 +70,28 @@ public class Season {
     @ManyToOne(fetch = FetchType.LAZY)
     private Theater theater;
 
-    @OneToMany(mappedBy = "season")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "season")
     private List<Opera> operas = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Season{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", artisticDirectorSocialCosts=" + artisticDirectorSocialCosts +
+                ", artisticDirectorCompensation=" + artisticDirectorCompensation +
+                ", artisticPersonnelGrossSalary=" + artisticPersonnelGrossSalary +
+                ", artisticPersonnelSocialCosts=" + artisticPersonnelSocialCosts +
+                ", technicalPersonnelGrossSalary=" + technicalPersonnelGrossSalary +
+                ", technicalPersonnelSocialCosts=" + technicalPersonnelSocialCosts +
+                ", administrativePersonnelGrossSalary=" + administrativePersonnelGrossSalary +
+                ", administrativePersonnelSocialCosts=" + administrativePersonnelSocialCosts +
+                ", artisticPersonnelPerDiem=" + artisticPersonnelPerDiem +
+                ", technicalPersonnelPerDiem=" + technicalPersonnelPerDiem +
+                ", projectRelatedDailyExpenses=" + projectRelatedDailyExpenses +
+                ", travelTransportAccommodationCosts=" + travelTransportAccommodationCosts +
+                '}';
+    }
 }

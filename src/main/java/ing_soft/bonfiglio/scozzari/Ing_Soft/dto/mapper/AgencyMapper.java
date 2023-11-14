@@ -2,10 +2,7 @@ package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper;
 
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.AgencyDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubAgencyDTO;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper.SubAgencyMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Agency;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Artist;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,6 +16,7 @@ public class AgencyMapper {
 
             agencyDTO.setAgencyName(agency.getName());
             agencyDTO.setAgencyEmail(agency.getEmail());
+            agencyDTO.setAgencyPec(agency.getPec());
             agencyDTO.setAgencyPhone1(agency.getTel1());
             agencyDTO.setAgencyPhone2(agency.getTel2());
             agencyDTO.setWebsite(agency.getWebSite());

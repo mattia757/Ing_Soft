@@ -51,7 +51,7 @@ public class Agency extends BaseEntity{
     private String webSite;
 
     @ManyToMany(mappedBy = "agencies", cascade = {CascadeType.ALL})
-    private List<Artist> artists = new ArrayList<>();
+    private Set<Artist> artists = new HashSet<>();
 
     @OneToMany(mappedBy = "agency")
     private List<UserAgency> userAgencies = new ArrayList<>();

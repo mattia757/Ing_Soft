@@ -1,7 +1,6 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.enums.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -16,6 +15,9 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Artist{
+
+    //ATTRIBUTES: DONE
+    //FK:
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -133,7 +135,7 @@ public class Artist{
             name = "artist_agency",
             joinColumns = @JoinColumn(name = "artist_id"),
             inverseJoinColumns = @JoinColumn(name = "agency_id"))
-    private List<Agency> agencies = new ArrayList<>();
+    private Set<Agency> agencies = new HashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     private User user;
@@ -141,7 +143,7 @@ public class Artist{
     //@ManyToMany(mappedBy = "artists")
     //private Set<Opera> operas = new HashSet<>();
 
-    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     @JoinTable(
             name = "opera_artist",
             inverseJoinColumns = @JoinColumn(name = "opera_id"),
@@ -167,14 +169,57 @@ public class Artist{
     @ManyToOne
     private TemporaryWork temporaryWork;
 
+    //TODO Gestire bene le relazioni tra artista e tipo di lavoro (la facciamo one to one) - vedi db
+
     @OneToOne(mappedBy = "artist")
     private BankAccountIT bankAccountIT;
 
     @OneToOne(mappedBy = "artist")
     private BankAccountForeign bankAccountForeign;
 
+    //TODO Gestire bene le relazioni tra artista e i tipi di conto bancario (la facciamo one to one) - vedi db
+
     @AssertTrue(message = "L'utente deve essere maggiorenne")
     private boolean isAdult(){
         return Period.between(getBirthDate() , LocalDate.now()).getYears() >= 18;
+    }
+
+    @Override
+    public String toString() {
+        return "Artist{" +
+                "id=" + id +
+                ", gender=" + gender +
+                ", birthDate=" + birthDate +
+                ", birthPlace='" + birthPlace + '\'' +
+                ", birthState='" + birthState + '\'' +
+                ", educationTitle='" + educationTitle + '\'' +
+                ", isEuropean=" + isEuropean +
+                ", stateOfCitizenship=" + stateOfCitizenship +
+                ", cellPhone1='" + cellPhone1 + '\'' +
+                ", cellPhone2='" + cellPhone2 + '\'' +
+                ", pec='" + pec + '\'' +
+                ", website='" + website + '\'' +
+                ", residence='" + residence + '\'' +
+                ", postalCodeOfResidence='" + postalCodeOfResidence + '\'' +
+                ", cityOfResidence='" + cityOfResidence + '\'' +
+                ", provinceOfResidence='" + provinceOfResidence + '\'' +
+                ", regionOfResidence='" + regionOfResidence + '\'' +
+                ", stateOfResidence='" + stateOfResidence + '\'' +
+                ", domicile='" + domicile + '\'' +
+                ", postalCodeOfDomicile='" + postalCodeOfDomicile + '\'' +
+                ", cityOfDomicile='" + cityOfDomicile + '\'' +
+                ", provinceOfDomicile='" + provinceOfDomicile + '\'' +
+                ", regionOfDomicile='" + regionOfDomicile + '\'' +
+                ", stateOfDomicile='" + stateOfDomicile + '\'' +
+                ", stageName='" + stageName + '\'' +
+                ", instrument='" + instrument + '\'' +
+                ", voice='" + voice + '\'' +
+                ", isIva=" + isIva +
+                ", iva='" + iva + '\'' +
+                ", taxation=" + taxation +
+                ", inpsNumber='" + inpsNumber + '\'' +
+                ", memberFrom=" + memberFrom +
+                ", occupation=" + occupation +
+                '}';
     }
 }

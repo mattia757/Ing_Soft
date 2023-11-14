@@ -29,11 +29,7 @@ public class TheaterController {
     ){
         try {
             System.out.println(theaterDTO.toString());
-
-            theaterService.addTheater(theaterMapper.theaterDTOToTheater((TheaterDTO) theaterDTO));
-
-
-
+            theaterService.addTheater(theaterMapper.theaterDTOToTheater(theaterDTO));
             return ResponseEntity.status(HttpStatus.CREATED).body("Theater successfully created!");
         } catch (Exception e) {
             throw new RuntimeException(e);

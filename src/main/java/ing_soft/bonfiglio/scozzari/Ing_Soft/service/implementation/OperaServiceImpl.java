@@ -1,6 +1,5 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation;
 
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.OperaDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.OperaMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Artist;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.Opera;
@@ -15,7 +14,6 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -61,6 +59,8 @@ public class OperaServiceImpl implements OperaService {
             Set<Artist> operaArtists = opera.get().getArtists() != null ? opera.get().getArtists() : new HashSet<>();
             operaArtists.add(artist);
             opera.get().setArtists(operaArtists);
+
+            //logger.log(Level.INFO, operaArtists.toString());
 
             // Aggiungi l'opera all'insieme delle opere dell'artista
             //Set<Opera> artistOperas = artist.getOperas() != null ? artist.getOperas() : new HashSet<>();

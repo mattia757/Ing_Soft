@@ -29,6 +29,7 @@ public class DigitalDrawer {
     @JoinTable(
             name = "DigitalDrawer_Document",
             joinColumns = @JoinColumn(name = "digitalDrawer_id"),
-            inverseJoinColumns = @JoinColumn(name = "document_id"))
+            inverseJoinColumns = @JoinColumn(name = "document_id")
+    )
     private Set<Document> documents = new HashSet<>();
 }

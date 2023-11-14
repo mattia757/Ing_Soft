@@ -1,5 +1,6 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
+import ing_soft.bonfiglio.scozzari.Ing_Soft.model.middleTables.UserTheater;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -69,4 +70,24 @@ public class Theater extends BaseEntity{
 
     @OneToMany(mappedBy = "theater")
     private Set<DigitalDrawer> digitalDrawers = new HashSet<>();
+
+    @OneToMany(mappedBy = "theater")
+    private Set<UserTheater> userTheaters = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Theater{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ", pec='" + pec + '\'' +
+                ", taxCode='" + taxCode + '\'' +
+                ", webSite='" + webSite + '\'' +
+                ", iva='" + iva + '\'' +
+                ", uniqueCode='" + uniqueCode + '\'' +
+                ", recipientCode='" + recipientCode + '\'' +
+                '}';
+    }
 }

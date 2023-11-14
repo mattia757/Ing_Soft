@@ -26,7 +26,7 @@ public class AgencyController {
 
     @PostMapping(value = "/add")
     private ResponseEntity<String> create(
-            @RequestBody AgencyDTO agencyDTO
+            @RequestBody InputDTO agencyDTO
     ){
         try {
             agencyService.addAgency(agencyMapper.agencyDTOToAgency(agencyDTO));

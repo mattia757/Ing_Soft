@@ -24,6 +24,15 @@ public class Play {
     @Column(nullable = false)
     private LocalDate datePlay;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Opera opera;
+
+    @Override
+    public String toString() {
+        return "Play{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", datePlay=" + datePlay +
+                '}';
+    }
 }

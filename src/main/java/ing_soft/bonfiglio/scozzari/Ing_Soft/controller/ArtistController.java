@@ -4,12 +4,10 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.InputDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.RegistrationArtistDTO;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.*;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.RegistrationArtistMapper;
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.mapper.subRegistrationArtistMapper.SubUnemployedMapper;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.interfaces.BankAccount;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.model.interfaces.Work;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation.*;
 import ing_soft.bonfiglio.scozzari.Ing_Soft.service.interfaces.PermanentWorkService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -96,13 +94,5 @@ public class ArtistController {
         }
         throw new Exception("conto bancario non trovato");
     }
-
-    /*private void addAgency(
-            InputDTO registrationArtistDTO
-    ) throws Exception {
-        if(((RegistrationArtistDTO) registrationArtistDTO).getSubAgencyDTO() != null){
-            agencyService.addAgency(registrationArtistMapper.getAgencyFromDTO(registrationArtistDTO));
-        }
-    }*/
 
 }

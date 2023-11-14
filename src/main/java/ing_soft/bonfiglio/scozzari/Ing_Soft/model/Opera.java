@@ -1,5 +1,6 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,6 +49,17 @@ public class Opera {
     )
     private Set<Artist> artists = new HashSet<>();*/
 
-    @ManyToMany(mappedBy = "operas")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "operas")
+    @JsonIgnore
     private Set<Artist> artists = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Opera{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", startDate=" + startDate +
+                ", startRehearsal=" + startRehearsal +
+                '}';
+    }
 }

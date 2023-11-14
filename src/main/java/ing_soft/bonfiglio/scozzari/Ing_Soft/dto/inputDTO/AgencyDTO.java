@@ -1,14 +1,12 @@
 package ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO;
 
-
-import ing_soft.bonfiglio.scozzari.Ing_Soft.dto.inputDTO.subRegistrationArtistDTO.SubAgencyDTO;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -39,8 +37,7 @@ public class AgencyDTO implements InputDTO {
     @Size(max=255, message = "Website must be less than 255 characters")
     private String website;
 
-    private List<Long> idArtists;
+    private Set<Long> idArtists;
 
-    //TODO capire come gestirla, se creare agenzia e poi le utenze dei suoi dipendenti oppure in altri modi
-    private List<Long> idUsers;
+    private Long idUser;
 }
