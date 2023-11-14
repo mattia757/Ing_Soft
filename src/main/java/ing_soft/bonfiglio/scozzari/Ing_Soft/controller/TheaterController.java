@@ -7,10 +7,7 @@ import ing_soft.bonfiglio.scozzari.Ing_Soft.service.implementation.TheaterServic
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -31,6 +28,31 @@ public class TheaterController {
             System.out.println(theaterDTO.toString());
             theaterService.addTheater(theaterMapper.theaterDTOToTheater(theaterDTO));
             return ResponseEntity.status(HttpStatus.CREATED).body("Theater successfully created!");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PutMapping(value = "/update/{id}")
+    private ResponseEntity<String> update (
+        @PathVariable Long id,
+        @RequestBody InputDTO theaterDTO
+    ) {
+        try {
+            theaterService.updateTheater(id, theaterMapper.theaterDTOToTheater(theaterDTO));
+            return ResponseEntity.status(HttpStatus.OK).body("Theater successfully updated!");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    private ResponseEntity<String> delete (
+        @PathVariable Long id
+    ) {
+        try {
+            theaterService.deleteEntity(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Theater successfully deleted!");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

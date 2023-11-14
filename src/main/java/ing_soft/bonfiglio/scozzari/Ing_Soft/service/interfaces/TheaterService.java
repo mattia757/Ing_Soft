@@ -8,4 +8,7 @@ import java.util.Optional;
 
 public interface TheaterService {
     void addTheater(Theater theater) throws Exception;
+    void updateTheater(Long id, Theater theater) throws Exception;
+
+    void deleteTheater(Long id) throws Exception;
 }
